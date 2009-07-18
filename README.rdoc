@@ -1,0 +1,7 @@
+= yardstick
+
+Description goes here.
+
+== Copyright
+
+Copyright (c) 2009 Dan Kubb. See LICENSE for details.

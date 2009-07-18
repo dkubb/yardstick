@@ -1,0 +1,8 @@
+*.sw?
+.DS_Store
+.yardoc
+coverage
+rdoc
+doc
+pkg
+tmp

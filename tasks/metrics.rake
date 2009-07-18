@@ -1,0 +1,1 @@
+require 'metric_fu'
