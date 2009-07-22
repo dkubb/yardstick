@@ -1,5 +1,6 @@
 module Yardstick
   class Measurement
+
     # Return a Measurement instance
     #
     # @example
@@ -160,6 +161,8 @@ module Yardstick
       def todo
         throw :measurement, :todo
       end
-    end
-  end
-end
+
+    end # module UtilityMethods
+
+  end # class Measurement
+end # module Yardstick

@@ -2,6 +2,7 @@ require 'optparse'
 
 module Yardstick
   class CLI
+
     # Parse the command line options, and run the command
     #
     # @example
@@ -72,5 +73,6 @@ module Yardstick
       private :parse_options
       private :display_exit
     end
-  end
-end
+
+  end # module CLI
+end # module Yardstick

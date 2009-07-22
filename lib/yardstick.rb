@@ -42,7 +42,8 @@ module Yardstick
   def self.measure_string(string, options = {})
     Yardstick::Processor.process_string(string)
   end
-end
+
+end # module Yardstick
 
 $LOAD_PATH << Yardstick::ROOT + 'lib'
 
@@ -70,6 +71,7 @@ module YARD
 
       # TODO: create an object to wrap tags, and extend each tag object with
       # the matching module, if one exists under Yardstick::Tag::*
-    end
-  end
-end
+
+    end # class MethodObject
+  end # module CodeObjects
+end # module YARD

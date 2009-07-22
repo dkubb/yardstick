@@ -1,5 +1,6 @@
 module Yardstick
   class Processor
+
     # Measure files provided
     #
     # @param [Array<#to_str>] files
@@ -61,5 +62,6 @@ module Yardstick
       private :method_objects
       private :measure_method_objects
     end
-  end
-end
+
+  end # class Processor
+end # module Yardstick

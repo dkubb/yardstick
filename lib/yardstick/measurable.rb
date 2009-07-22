@@ -3,6 +3,7 @@ module Yardstick
     include Measurement::UtilityMethods
 
     module ClassMethods
+
       # List of measurement types for this class
       #
       # @return [Array<Array(String, Symbol)>]
@@ -61,7 +62,7 @@ module Yardstick
       def copy_measurements(descendant)
         descendant.measurements.concat(measurements).uniq!
       end
-    end
+    end # module ClassMethods
 
     extend ClassMethods
 
@@ -78,5 +79,6 @@ module Yardstick
         Measurement.new(description, self, &block)
       end
     end
-  end
-end
+
+  end # module Measurable
+end # module Yardstick

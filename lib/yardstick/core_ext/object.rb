@@ -1,4 +1,5 @@
 class Object
+
   # Return the meta class for this instance
   #
   # @return [Class]
@@ -8,4 +9,5 @@ class Object
   def meta_class
     class << self; self end
   end
-end
+
+end # class Object

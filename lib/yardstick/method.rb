@@ -101,5 +101,6 @@ module Yardstick
     def api?(types)
       types.include?(tag_text('api'))
     end
-  end
-end
+
+  end # module Method
+end # module Yardstick
