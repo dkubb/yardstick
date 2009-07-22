@@ -135,7 +135,7 @@ module Yardstick
       object.path.sub(/\A::/, '')
     end
 
-    module UtilityMethods
+    module UtilityMethods  #:nodoc:
       private
 
       # Throw a :skip measurement message to the caller

@@ -1,4 +1,4 @@
-class Object
+class Object  #:nodoc:
 
   # Return the meta class for this instance
   #

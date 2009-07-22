@@ -50,7 +50,7 @@ $LOAD_PATH << Yardstick::ROOT + 'lib'
 require 'yardstick/core_ext/object'
 require 'yardstick/autoload'
 
-module YARD
+module YARD  #:nodoc: all
   module CodeObjects
     class MethodObject
 

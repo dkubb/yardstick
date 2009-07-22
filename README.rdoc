@@ -1,6 +1,15 @@
 = yardstick
 
-Description goes here.
+Yardstick is a tool that verifies YARD coverage of ruby code.
+
+It will measure the source and provide feedback on what is missing from
+the documentation and what can be improved.
+
+== Usage
+
+From the command-line:
+
+  yardstick lib/**/*.rb
 
 == Copyright
 
