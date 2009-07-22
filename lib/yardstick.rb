@@ -10,7 +10,7 @@ module Yardstick
   # @example
   #   Yardstick.measure('article.rb')  # => [ Measurement ]
   #
-  # @param [Array<#to_str>, #to_str] paths
+  # @param [Array<#to_str>, #to_str] files
   #   optional list of paths to measure
   # @param [Hash] options
   #   optional configuration

@@ -55,7 +55,7 @@ module Yardstick
 
     # The text for a specified tag
     #
-    # @param [String]
+    # @param [String] tag_name
     #   the name of the tag
     #
     # @return [String, nil]
@@ -68,7 +68,7 @@ module Yardstick
 
     # The types for a specified tag
     #
-    # @param [String]
+    # @param [String] tag_name
     #   the name of the tag
     #
     # @return [Array<String>, nil]
@@ -91,7 +91,7 @@ module Yardstick
 
     # Check if the method API type matches
     #
-    # @param [Array<String>]
+    # @param [Array<String>] types
     #   a collection of API types
     #
     # @return [Boolean]

@@ -7,13 +7,23 @@ module Yardstick
       # List of measurement types for this class
       #
       # @return [Array<Array(String, Symbol)>]
+      #   the measurements for this class
       #
       # @api private
       def measurements
         @measurements ||= []
       end
 
-      # Set the description for the next method
+      # Set the description for the measurement
+      #
+      # @param [#to_str] description
+      #   the measurement description
+      #
+      # @yield []
+      #   the measurement to perform
+      #
+      # @yieldreturn [Boolean]
+      #   return true if successful, false if not
       #
       # @return [undefined]
       #
@@ -72,6 +82,7 @@ module Yardstick
     #   docstring.measure  # => [ Measurement ]
     #
     # @return [Array<Measurement>]
+    #   a collection of measurements
     #
     # @api public
     def measure

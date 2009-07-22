@@ -6,12 +6,20 @@ module Yardstick
     # @example
     #   measurement = Measurement.new('The description', docstring, :successful_method)
     #
+    # @param [#to_str] description
+    #   the measurement description
+    # @param [YARD::Docstring] docstring
+    #   the docstring to measure
+    #
+    # @yield []
+    #   the measurement to perform
+    #
     # @return [Yardstick::Measurement]
     #   the measurement instance
     #
     # @api public
     def initialize(description, docstring, &block)
-      @description = description
+      @description = description.to_str
       @docstring   = docstring
       @block       = block
       @result      = measure
