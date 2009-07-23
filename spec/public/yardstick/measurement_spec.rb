@@ -2,31 +2,31 @@ require 'pathname'
 require Pathname(__FILE__).dirname.expand_path.join('..', '..', 'spec_helper')
 
 shared_examples_for 'measurement is successful' do
-  before :all do
+  before do
     @measurement = Yardstick::Measurement.new('successful', @docstring) { true }
   end
 end
 
 shared_examples_for 'measurement is skipped' do
-  before :all do
+  before do
     @measurement = Yardstick::Measurement.new('skipped', @docstring) { skip }
   end
 end
 
 shared_examples_for 'measurement is not successful' do
-  before :all do
+  before do
     @measurement = Yardstick::Measurement.new('not successful', @docstring) { false }
   end
 end
 
 shared_examples_for 'measurement is not implemented' do
-  before :all do
+  before do
     @measurement = Yardstick::Measurement.new('not implemented', @docstring) { todo }
   end
 end
 
 shared_examples_for 'measurement is warned' do
-  before :all do
+  before do
     $stderr = StringIO.new
     @response = @measurement.warn
     $stderr.rewind
@@ -39,18 +39,31 @@ shared_examples_for 'measurement is warned' do
 end
 
 describe Yardstick::Measurement do
-  before :all do
+  before do
     YARD.parse_string('def test; end')
+
     @docstring = YARD::Registry.all(:method).first.docstring
   end
 
   describe '.new' do
-    before :all do
+    before do
       @response = Yardstick::Measurement.new('test measurement', @docstring) { true }
     end
 
     it 'should return a Measurement' do
       @response.should be_kind_of(Yardstick::Measurement)
+    end
+  end
+
+  describe '#description' do
+    before do
+      @description = 'test measurement'
+
+      @measurement = Yardstick::Measurement.new(@description, @docstring) { true }
+    end
+
+    it 'should return the expected description' do
+      @measurement.description.should equal(@description)
     end
   end
 

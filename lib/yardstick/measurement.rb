@@ -1,6 +1,17 @@
 module Yardstick
   class Measurement
 
+    # Return the Measurement description
+    #
+    # @example
+    #   measurement.description  # => "The description"
+    #
+    # @return [String]
+    #   the description
+    #
+    # @api public
+    attr_reader :description
+
     # Return a Measurement instance
     #
     # @example
