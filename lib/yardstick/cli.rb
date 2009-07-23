@@ -36,7 +36,7 @@ module Yardstick
       option_parser(options).parse!(args)
       [ args, options ]
     rescue OptionParser::InvalidOption => error
-      display_exit(error.message << "\n" << args.inspect)
+      display_exit(error.message)
     end
 
     # Return an OptionParser instance for the command-line app
@@ -51,7 +51,7 @@ module Yardstick
     def self.option_parser(options)
       opts = OptionParser.new
       opts.on_tail('-v', '--version', 'print version information and exit') { display_exit("#{opts.program_name} #{Yardstick::VERSION}") }
-      opts.on_tail('-h', '--help',    'display this help and exit')         { display_exit(opts) }
+      opts.on_tail('-h', '--help',    'display this help and exit')         { display_exit(opts.to_s) }
       opts
     end
 

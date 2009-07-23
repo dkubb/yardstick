@@ -13,3 +13,21 @@ Spec::Runner.configure do |config|
     YARD::Registry.clear
   end
 end
+
+shared_examples_for 'measured itself' do
+  it 'should return an Array' do
+    @measurements.should be_kind_of(Array)
+  end
+
+  it 'should be non-empty' do
+    @measurements.should_not be_empty
+  end
+
+  it 'should all be measurements' do
+    @measurements.each { |measurement| measurement.should be_kind_of(Yardstick::Measurement) }
+  end
+
+  it 'should all be correct' do
+    @measurements.each { |measurement| measurement.should be_ok }
+  end
+end
