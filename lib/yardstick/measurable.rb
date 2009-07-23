@@ -4,23 +4,23 @@ module Yardstick
 
     module ClassMethods
 
-      # List of measurement types for this class
+      # List of rules for this class
       #
       # @return [Array<Array(String, Symbol)>]
-      #   the measurements for this class
+      #   the rules for this class
       #
       # @api private
-      def measurements
-        @measurements ||= []
+      def rules
+        @rules ||= []
       end
 
-      # Set the description for the measurement
+      # Set the description for the rule
       #
       # @param [#to_str] description
-      #   the measurement description
+      #   the rule description
       #
       # @yield []
-      #   the measurement to perform
+      #   the rule to perform
       #
       # @yieldreturn [Boolean]
       #   return true if successful, false if not
@@ -28,8 +28,8 @@ module Yardstick
       # @return [undefined]
       #
       # @api private
-      def measurement(description, &block)
-        measurements << [ description, block ]
+      def rule(description, &block)
+        rules << [ description, block ]
       end
 
     private
@@ -44,7 +44,7 @@ module Yardstick
       # @api private
       def included(mod)
         mod.extend(ClassMethods)
-        copy_measurements(mod)
+        copy_rules(mod)
       end
 
       # Extend the docstring meta class with measurable class methods
@@ -58,10 +58,10 @@ module Yardstick
       def extended(docstring)
         meta_class = docstring.meta_class
         meta_class.extend(ClassMethods)
-        copy_measurements(meta_class)
+        copy_rules(meta_class)
       end
 
-      # Copy measurements from the ancestor to the descendant
+      # Copy rules from the ancestor to the descendant
       #
       # @param [Module] descendant
       #   the descendant module or class
@@ -69,8 +69,8 @@ module Yardstick
       # @return [undefined]
       #
       # @api private
-      def copy_measurements(descendant)
-        descendant.measurements.concat(measurements).uniq!
+      def copy_rules(descendant)
+        descendant.rules.concat(rules).uniq!
       end
     end # module ClassMethods
 
@@ -86,7 +86,7 @@ module Yardstick
     #
     # @api public
     def measure
-      meta_class.measurements.map do |(description, block)|
+      meta_class.rules.map do |(description, block)|
         Measurement.new(description, self, &block)
       end
     end

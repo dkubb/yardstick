@@ -2,47 +2,47 @@ module Yardstick
   module Method
     include Measurable
 
-    measurement 'The method summary should be specified' do
+    rule 'The method summary should be specified' do
       skip if has_tag?('see')
       summary_text != ''
     end
 
-    measurement 'The method summary should be less than 80 characters in length' do
+    rule 'The method summary should be less than 80 characters in length' do
       summary_text.split(//).size <= 80
     end
 
-    measurement 'The method summary should not end in a period' do
+    rule 'The method summary should not end in a period' do
       summary_text[-1, 1] != '.'
     end
 
-    measurement 'The method summary should be a single line' do
+    rule 'The method summary should be a single line' do
       !summary_text.include?("\n")
     end
 
-    measurement 'The public/semipublic method should have an example specified' do
+    rule 'The public/semipublic method should have an example specified' do
       skip if api?(%w[ private ]) || tag_types('return') == %w[ undefined ]
       has_tag?('example')
     end
 
-    measurement 'The @api tag should be specified' do
+    rule 'The @api tag should be specified' do
       has_tag?('api')
     end
 
-    measurement 'The @api tag must be either public, semipublic or private' do
+    rule 'The @api tag must be either public, semipublic or private' do
       %w[ public semipublic private ].include?(tag_text('api'))
     end
 
-    measurement 'A method with protected visibility must have an @api tag of semipublic or private' do
+    rule 'A method with protected visibility must have an @api tag of semipublic or private' do
       skip unless visibility == :protected
       api?(%w[ semipublic private ])
     end
 
-    measurement 'A method with private visibility must have an @api tag of private' do
+    rule 'A method with private visibility must have an @api tag of private' do
       skip unless visibility == :private
       api?(%w[ private ])
     end
 
-    measurement 'The @return tag should be specified' do
+    rule 'The @return tag should be specified' do
       has_tag?('return')
     end
 
