@@ -57,8 +57,8 @@ task :heckle => :verify_rcov do
     heckle_caught_modules.each do |mod, methods|
       error_message_lines << "#{mod} contains the following " \
         'poorly-specified methods:'
-      methods.each do |m|
-        error_message_lines << " - #{m}"
+      methods.each do |method|
+        error_message_lines << " - #{method}"
       end
       error_message_lines << ''
     end
@@ -66,7 +66,6 @@ task :heckle => :verify_rcov do
     error_message_lines << 'Get your act together and come back ' \
       'when your specs are doing their job!'
 
-    puts '*************'
     raise error_message_lines.join("\n")
   else
     puts 'Well done! Your code withstood a heckling.'
