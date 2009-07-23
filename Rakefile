@@ -9,7 +9,7 @@ begin
 
   Jeweler::Tasks.new do |gem|
     gem.name              = 'yardstick'
-    gem.summary           = %Q{TODO}
+    gem.summary           = 'A tool for verifying YARD documentation coverage'
     gem.email             = 'dan.kubb@gmail.com'
     gem.homepage          = 'http://github.com/dkubb/yardstick'
     gem.authors           = [ 'Dan Kubb' ]
