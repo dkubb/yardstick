@@ -47,11 +47,11 @@ describe Yardstick::Measurement do
 
   describe '.new' do
     before do
-      @response = Yardstick::Measurement.new('test measurement', @docstring) { true }
+      @measurement = Yardstick::Measurement.new('test measurement', @docstring) { true }
     end
 
     it 'should return a Measurement' do
-      @response.should be_kind_of(Yardstick::Measurement)
+      @measurement.should be_kind_of(Yardstick::Measurement)
     end
   end
 
