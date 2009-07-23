@@ -1,7 +1,7 @@
 Yardstick 0.0.1
 ===============
 
-SYNOPSIS
+Synopsis
 --------
 
 Yardstick is a tool that verifies YARD coverage of ruby code.
@@ -9,7 +9,20 @@ Yardstick is a tool that verifies YARD coverage of ruby code.
 It will measure the source and provide feedback on what is missing from
 the documentation and what can be improved.
 
-USAGE
+Installation
+------------
+
+From Gem:
+
+    $ sudo gem install dkubb-yardstick --source http://gems.github.com/
+
+With a local working copy:
+
+    $ git clone git://github.com/dkubb/yardstick.git
+    $ cd yardstick
+    $ rake build && sudo rake install
+
+Usage
 -----
 
 Yardstick may be used two ways:
@@ -48,8 +61,9 @@ lists of files, or String code fragments, eg:
 TODO
 ----
 
+- Add coverage percentage to CLI output
 - Add more measurements, especially for @param, @yield and type
-  validation.
+  validation
 - Create a Rake task to allow integration of Yardstick into build
   processes more easily
 
