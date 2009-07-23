@@ -5,4 +5,7 @@ require 'pathname'
 require Pathname(__FILE__).dirname.expand_path.join('..', 'lib', 'yardstick')
 
 Spec::Runner.configure do |config|
+  config.before do
+    YARD::Registry.clear
+  end
 end

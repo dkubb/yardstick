@@ -4,23 +4,23 @@ module Yardstick
 
     measurement 'The method summary should be specified' do
       skip if has_tag?('see')
-      summary != ''
+      summary_text != ''
     end
 
     measurement 'The method summary should be less than 80 characters in length' do
-      summary.length <= 78
-    end
-
-    measurement 'The method summary should be a single line' do
-      !summary.include?("\n")
+      summary_text.split(//).size <= 80
     end
 
     measurement 'The method summary should not end in a period' do
-      summary[0, -1] != '.'
+      summary_text[-1, 1] != '.'
+    end
+
+    measurement 'The method summary should be a single line' do
+      !summary_text.include?("\n")
     end
 
     measurement 'The public/semipublic method should have an example specified' do
-      skip unless api?(%w[ public semipublic ]) && tag_types('return') != %w[ undefined ]
+      skip if api?(%w[ private ]) || tag_types('return') == %w[ undefined ]
       has_tag?('example')
     end
 
@@ -30,11 +30,6 @@ module Yardstick
 
     measurement 'The @api tag must be either public, semipublic or private' do
       %w[ public semipublic private ].include?(tag_text('api'))
-    end
-
-    measurement 'A method with public visibility must have an @api tag of public, semipublic or private' do
-      skip unless visibility == :public
-      api?(%w[ public semipublic private ])
     end
 
     measurement 'A method with protected visibility must have an @api tag of semipublic or private' do
@@ -52,6 +47,16 @@ module Yardstick
     end
 
   private
+
+    # The raw text for the summary
+    #
+    # @return [String]
+    #   the summary text
+    #
+    # @api private
+    def summary_text
+      split(/\r?\n\r?\n/).first || ''
+    end
 
     # The text for a specified tag
     #
