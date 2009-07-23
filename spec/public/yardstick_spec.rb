@@ -1,6 +1,92 @@
 require 'pathname'
 require Pathname(__FILE__).dirname.expand_path.join('..', 'spec_helper')
 
+shared_examples_for 'measured itself' do
+  it 'should return an Array' do
+    @measurements.should be_kind_of(Array)
+  end
+
+  it 'should be non-empty' do
+    @measurements.should_not be_empty
+  end
+
+  it 'should all be measurements' do
+    @measurements.each { |measurement| measurement.should be_kind_of(Yardstick::Measurement) }
+  end
+
+  it 'should all be correct' do
+    @measurements.each { |measurement| measurement.should be_ok }
+  end
+end
+
 describe Yardstick do
-  it 'should be awesome'
+  describe '.measure' do
+    describe 'with no arguments' do
+      before do
+        @measurements = Yardstick.measure
+      end
+
+      it_should_behave_like 'measured itself'
+    end
+
+    describe 'with a String path' do
+      before :all do
+        @measurements = Yardstick.measure(Yardstick::ROOT.join('lib', 'yardstick.rb').to_s)
+      end
+
+      it_should_behave_like 'measured itself'
+    end
+
+    describe 'with a Pathname' do
+      before :all do
+        @measurements = Yardstick.measure(Yardstick::ROOT.join('lib', 'yardstick.rb'))
+      end
+
+      it_should_behave_like 'measured itself'
+    end
+
+    describe 'with an Array of String objects' do
+      before :all do
+        @measurements = Yardstick.measure([ Yardstick::ROOT.join('lib', 'yardstick.rb').to_s ])
+      end
+
+      it_should_behave_like 'measured itself'
+    end
+
+    describe 'with an Array of Pathname objects' do
+      before :all do
+        @measurements = Yardstick.measure([ Yardstick::ROOT.join('lib', 'yardstick.rb') ])
+      end
+
+      it_should_behave_like 'measured itself'
+    end
+  end
+
+  describe '.measure_string' do
+    describe 'with a String' do
+      before do
+        @measurements = Yardstick.measure_string('def test; end')
+      end
+
+      it 'should return an Array' do
+        @measurements.should be_kind_of(Array)
+      end
+
+      it 'should be non-empty' do
+        @measurements.should_not be_empty
+      end
+
+      it 'should all be measurements' do
+        @measurements.each { |measurement| measurement.should be_kind_of(Yardstick::Measurement) }
+      end
+    end
+
+    describe 'with no arguments' do
+      it 'should raise an exception' do
+        lambda {
+          Yardstick.measure_string
+        }.should raise_error(ArgumentError, 'wrong number of arguments (0 for 1)')
+      end
+    end
+  end
 end

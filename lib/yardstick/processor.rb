@@ -3,15 +3,15 @@ module Yardstick
 
     # Measure files provided
     #
-    # @param [Array<#to_str>] files
+    # @param [Array<#to_str>] path
     #   the files to measure
     #
     # @return [Array<Measurement>]
     #   a collection of measurements
     #
     # @api private
-    def self.process_files(files)
-      YARD.parse(Pathname.glob(files).map { |file| file.to_str })
+    def self.process_path(path)
+      YARD.parse(Pathname.glob(path).map { |file| file.to_str })
       measure_method_objects(method_objects)
     end
 

@@ -10,7 +10,7 @@ module Yardstick
   # @example
   #   Yardstick.measure('article.rb')  # => [ Measurement ]
   #
-  # @param [Array<#to_str>, #to_str] files
+  # @param [Array<#to_str>, #to_str] path
   #   optional list of paths to measure
   # @param [Hash] options
   #   optional configuration
@@ -19,8 +19,8 @@ module Yardstick
   #   the measurements for each file
   #
   # @api public
-  def self.measure(files = 'lib/**/*.rb', options = {})
-    Yardstick::Processor.process_files(files)
+  def self.measure(path = 'lib/**/*.rb', options = {})
+    Yardstick::Processor.process_path(path)
   end
 
   # Measure a string of code and YARD documentation
