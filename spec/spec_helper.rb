@@ -9,6 +9,10 @@ Pathname.glob(Yardstick::ROOT.join('lib', '**', '*.rb')).sort.each do |file|
 end
 
 Spec::Runner.configure do |config|
+  config.before :all do
+    YARD::Registry.clear
+  end
+
   config.before do
     YARD::Registry.clear
   end
