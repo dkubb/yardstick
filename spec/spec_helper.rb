@@ -2,7 +2,13 @@ require 'rubygems'
 require 'spec'
 require 'pathname'
 
-require Pathname(__FILE__).dirname.expand_path.join('..', 'lib', 'yardstick')
+dir = Pathname(__FILE__).dirname.expand_path.join('..', 'lib')
+
+require dir + 'yardstick'
+
+Pathname.glob(dir.join('**', '*.rb')).sort.each do |file|
+  require file.to_s.chomp('.rb')
+end
 
 Spec::Runner.configure do |config|
   config.before do
