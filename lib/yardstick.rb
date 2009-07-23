@@ -45,7 +45,7 @@ module Yardstick
 
 end # module Yardstick
 
-$LOAD_PATH << Yardstick::ROOT + 'lib'
+$LOAD_PATH.unshift(Yardstick::ROOT + 'lib')
 
 require 'yardstick/core_ext/object'
 require 'yardstick/yard_ext'
