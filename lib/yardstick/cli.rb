@@ -14,7 +14,7 @@ module Yardstick
     # @return [Array(Measurement)]
     #   the measurement for each file
     #
-    # @api private
+    # @api public
     def self.run(*args)
       Yardstick.measure(*parse_options(args)).each do |measurement|
         measurement.warn
