@@ -14,7 +14,7 @@ task :heckle => :verify_rcov do
   IO.popen("spec --heckle #{root_module} #{spec_files} 2>/dev/null") do |pipe|
     while line = pipe.gets
       case line = line.chomp
-        when /\A\*\*\*\s+(#{root_module}(?:::)?(?:\w+(?:::)?)*)#(\w+)\b/
+        when /\A\*\*\*\s+(#{root_module}(?:::)?(?:\w+(?:::)?)*)#(\w+[?!]?)/
           current_module, current_method = $1, $2
         when "The following mutations didn't cause test failures:"
           heckle_caught_modules[current_module] << current_method
