@@ -11,7 +11,7 @@ module Yardstick
     # @param [Array] *args
     #   arguments passed in from the command line
     #
-    # @return [Array(Measurement)]
+    # @return [Array<Measurement>]
     #   the measurement for each file
     #
     # @api public
