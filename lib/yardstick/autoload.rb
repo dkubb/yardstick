@@ -4,4 +4,5 @@ module Yardstick
   autoload :Measurement, 'yardstick/measurement'
   autoload :Method,      'yardstick/method'
   autoload :Processor,   'yardstick/processor'
+  autoload :Rule,        'yardstick/rule'
 end # module Yardstick

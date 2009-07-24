@@ -29,7 +29,7 @@ module Yardstick
       #
       # @api private
       def rule(description, &block)
-        rules << [ description, block ]
+        rules << Rule.new(description, &block)
       end
 
     private
@@ -86,9 +86,7 @@ module Yardstick
     #
     # @api public
     def measure
-      meta_class.rules.map do |(description, block)|
-        Measurement.new(description, self, &block)
-      end
+      meta_class.rules.map { |rule| rule.measure(self) }
     end
 
   end # module Measurable
