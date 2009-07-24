@@ -5,4 +5,5 @@ module Yardstick
   autoload :Method,      'yardstick/method'
   autoload :Processor,   'yardstick/processor'
   autoload :Rule,        'yardstick/rule'
+  autoload :RuleSet,     'yardstick/rule_set'
 end # module Yardstick

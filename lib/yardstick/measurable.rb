@@ -6,12 +6,12 @@ module Yardstick
 
       # List of rules for this class
       #
-      # @return [Array<Array(String, Symbol)>]
+      # @return [RuleSet<Rule>]
       #   the rules for this class
       #
       # @api private
       def rules
-        @rules ||= []
+        @rules ||= RuleSet.new
       end
 
       # Set the description for the rule
@@ -44,7 +44,7 @@ module Yardstick
       # @api private
       def included(mod)
         mod.extend(ClassMethods)
-        copy_rules(mod)
+        mod.rules.merge(rules)
       end
 
       # Extend the docstring meta class with measurable class methods
@@ -58,19 +58,7 @@ module Yardstick
       def extended(docstring)
         meta_class = docstring.meta_class
         meta_class.extend(ClassMethods)
-        copy_rules(meta_class)
-      end
-
-      # Copy rules from the ancestor to the descendant
-      #
-      # @param [Module] descendant
-      #   the descendant module or class
-      #
-      # @return [undefined]
-      #
-      # @api private
-      def copy_rules(descendant)
-        descendant.rules.concat(rules).uniq!
+        meta_class.rules.merge(rules)
       end
     end # module ClassMethods
 
@@ -86,7 +74,7 @@ module Yardstick
     #
     # @api public
     def measure
-      meta_class.rules.map { |rule| rule.measure(self) }
+      meta_class.rules.measure(self)
     end
 
   end # module Measurable
