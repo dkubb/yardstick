@@ -1,6 +1,6 @@
-require 'rubygems'
-require 'spec'
 require 'pathname'
+require 'rubygems'
+require 'spec/autorun'
 
 require Pathname(__FILE__).dirname.expand_path.join('..', 'lib', 'yardstick')
 
