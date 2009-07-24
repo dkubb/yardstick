@@ -31,5 +31,21 @@ module Yardstick
       Measurement.new(@description, docstring, &@block)
     end
 
-  end # module Rule
+    # Test if Rule is equivalent to another rule
+    #
+    # @example
+    #   rule == equivalent_rule  # => true
+    #
+    # @param [Rule] other
+    #   the other Rule
+    #
+    # @return [Boolean]
+    #   true if the Rule is equivalent to the other, false if not
+    #
+    # @api semipublic
+    def ==(other)
+      @description == other.instance_variable_get(:@description)
+    end
+
+  end # class Rule
 end # module Yardstick

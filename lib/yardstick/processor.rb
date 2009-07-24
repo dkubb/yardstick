@@ -6,7 +6,7 @@ module Yardstick
     # @param [Array<#to_s>, #to_s] path
     #   the files to measure
     #
-    # @return [Array<Measurement>]
+    # @return [MeasurementSet]
     #   a collection of measurements
     #
     # @api private
@@ -20,7 +20,7 @@ module Yardstick
     # @param [#to_str] string
     #   the string to measure
     #
-    # @return [Array<Measurement>]
+    # @return [MeasurementSet]
     #   a collection of measurements
     #
     # @api private
@@ -31,14 +31,16 @@ module Yardstick
 
     # Measure method objects in YARD registry
     #
-    # @return [Array<Measurement>]
+    # @return [MeasurementSet]
     #   a collection of measurements
     #
     # @api private
     def self.measurements
-      method_objects.map do |method_object|
-        method_object.docstring.measure
-      end.flatten
+      measurements = MeasurementSet.new
+      method_objects.each do |method_object|
+        measurements.merge(method_object.docstring.measure)
+      end
+      measurements
     end
 
     # Return method objects in YARD registry
@@ -56,8 +58,7 @@ module Yardstick
     end
 
     class << self
-      private :measurements
-      private :method_objects
+      private :measurements, :method_objects
     end
 
   end # class Processor

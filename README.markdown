@@ -61,10 +61,11 @@ lists of files, or String code fragments, eg:
 TODO
 ----
 
-- Add coverage percentage to CLI output
 - Add more measurements, especially for @param, @yield and type
   validation
 - Create a Rake task to allow integration of Yardstick into build
   processes more easily
+- Create an OrderedSet class to move common code from MeasurementSet
+  and RuleSet into
 
 Copyright (c) 2009 Dan Kubb. See LICENSE for details.

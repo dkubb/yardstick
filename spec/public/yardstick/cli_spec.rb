@@ -17,12 +17,17 @@ shared_examples_for 'displays version' do
   end
 end
 
+shared_examples_for 'displays coverage summary' do
+  it 'should output the coverage summary' do
+    @output.should == "\nCoverage: 100.0%  Success: 20  Failed: 0  Total: 20\n"
+  end
+end
+
 describe Yardstick::CLI do
   def capture_display(&block)
-    $stdout = StringIO.new
-    block.should raise_error(SystemExit)
-    $stdout.rewind
-    @output = $stdout.read
+    capture_stdout do
+      block.should raise_error(SystemExit)
+    end
   end
 
   describe '.run' do
@@ -56,34 +61,38 @@ describe Yardstick::CLI do
 
     describe 'with a String path' do
       before :all do
-        @measurements = Yardstick::CLI.run(Yardstick::ROOT.join('lib', 'yardstick.rb').to_s)
+        @measurements = capture_stderr { Yardstick::CLI.run(Yardstick::ROOT.join('lib', 'yardstick.rb').to_s) }
       end
 
       it_should_behave_like 'measured itself'
+      it_should_behave_like 'displays coverage summary'
     end
 
     describe 'with a Pathname' do
       before :all do
-        @measurements = Yardstick::CLI.run(Yardstick::ROOT.join('lib', 'yardstick.rb'))
+        @measurements = capture_stderr { Yardstick::CLI.run(Yardstick::ROOT.join('lib', 'yardstick.rb')) }
       end
 
       it_should_behave_like 'measured itself'
+      it_should_behave_like 'displays coverage summary'
     end
 
     describe 'with an Array of String objects' do
       before :all do
-        @measurements = Yardstick::CLI.run(*[ Yardstick::ROOT.join('lib', 'yardstick.rb').to_s ])
+        @measurements = capture_stderr { Yardstick::CLI.run(*[ Yardstick::ROOT.join('lib', 'yardstick.rb').to_s ]) }
       end
 
       it_should_behave_like 'measured itself'
+      it_should_behave_like 'displays coverage summary'
     end
 
     describe 'with an Array of Pathname objects' do
       before :all do
-        @measurements = Yardstick::CLI.run(*[ Yardstick::ROOT.join('lib', 'yardstick.rb') ])
+        @measurements = capture_stderr { Yardstick::CLI.run(*[ Yardstick::ROOT.join('lib', 'yardstick.rb') ]) }
       end
 
       it_should_behave_like 'measured itself'
+      it_should_behave_like 'displays coverage summary'
     end
 
     describe 'with invalid option' do

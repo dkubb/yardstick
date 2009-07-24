@@ -11,14 +11,14 @@ module Yardstick
     # @param [Array] *args
     #   arguments passed in from the command line
     #
-    # @return [Array<Measurement>]
+    # @return [MeasurementSet]
     #   the measurement for each file
     #
     # @api public
     def self.run(*args)
-      Yardstick.measure(*parse_options(args)).each do |measurement|
-        measurement.warn
-      end
+      measurements = Yardstick.measure(*parse_options(args))
+      measurements.warn
+      measurements
     end
 
     # Parse the options provided from the command-line
@@ -69,9 +69,7 @@ module Yardstick
     end
 
     class << self
-      private :option_parser
-      private :parse_options
-      private :display_exit
+      private :option_parser, :parse_options, :display_exit
     end
 
   end # module CLI

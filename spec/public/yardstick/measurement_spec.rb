@@ -27,14 +27,7 @@ end
 
 shared_examples_for 'measurement is warned' do
   before do
-    $stderr = StringIO.new
-    @response = @measurement.warn
-    $stderr.rewind
-    @output = $stderr.read
-  end
-
-  it 'should return nil' do
-    @response.should be_nil
+    capture_stderr { @measurement.warn }
   end
 end
 

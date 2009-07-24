@@ -43,8 +43,7 @@ module Yardstick
       #
       # @api private
       def included(mod)
-        mod.extend(ClassMethods)
-        mod.rules.merge(rules)
+        mod.extend(ClassMethods).rules.merge(rules)
       end
 
       # Extend the docstring meta class with measurable class methods
@@ -56,9 +55,7 @@ module Yardstick
       #
       # @api private
       def extended(docstring)
-        meta_class = docstring.meta_class
-        meta_class.extend(ClassMethods)
-        meta_class.rules.merge(rules)
+        included(docstring.meta_class)
       end
     end # module ClassMethods
 
@@ -69,7 +66,7 @@ module Yardstick
     # @example
     #   docstring.measure  # => [ Measurement ]
     #
-    # @return [Array<Measurement>]
+    # @return [MeasurementSet]
     #   a collection of measurements
     #
     # @api public

@@ -6,8 +6,8 @@ shared_examples_for 'method is measured' do
     @measurements = docstring.measure
   end
 
-  it 'should return an Array' do
-    @measurements.should be_kind_of(Array)
+  it 'should return a MeasurementSet' do
+    @measurements.should be_kind_of(Yardstick::MeasurementSet)
   end
 end
 

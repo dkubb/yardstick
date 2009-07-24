@@ -12,7 +12,7 @@ module Yardstick
       @rules = []
     end
 
-    # Append a Rule onto the RuleSet
+    # Append a Rule
     #
     # @param [Rule] rule
     #   the rule to append
@@ -26,7 +26,7 @@ module Yardstick
       self
     end
 
-    # Merge another RuleSet into the RuleSet
+    # Merge in another RuleSet
     #
     # @param [RuleSet] other
     #   the other rule set
@@ -45,12 +45,12 @@ module Yardstick
     # @param [YARD::Docstring] docstring
     #   the docstring to measure
     #
-    # @return [Array<Measurement>]
+    # @return [MeasurementSet]
     #   a collection of measurements
     #
     # @api private
     def measure(docstring)
-      map { |rule| rule.measure(docstring) }
+      MeasurementSet.new(map { |rule| rule.measure(docstring) })
     end
 
     # Iterate over each Rule
@@ -69,5 +69,6 @@ module Yardstick
       @rules.each(&block)
       self
     end
-  end
-end
+
+  end # class RuleSet
+end # module Yardstick

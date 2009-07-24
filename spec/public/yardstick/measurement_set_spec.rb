@@ -1,0 +1,204 @@
+require 'pathname'
+require Pathname(__FILE__).dirname.expand_path.join('..', '..', 'spec_helper')
+
+describe Yardstick::MeasurementSet do
+  before do
+    YARD.parse_string('def test; end')
+
+    @description  = 'test measurement'
+    @docstring    = YARD::Registry.all(:method).first.docstring
+
+    @measurement  = Yardstick::Measurement.new(@description, @docstring) { true }
+    @measurements = Yardstick::MeasurementSet.new
+  end
+
+  it 'should be Enumerable' do
+    Yardstick::MeasurementSet.new.should be_kind_of(Enumerable)
+  end
+
+  describe '.new' do
+    describe 'with no arguments' do
+      before do
+        @measurements = Yardstick::MeasurementSet.new
+      end
+
+      it 'should return a MeasurementSet' do
+        @measurements.should be_kind_of(Yardstick::MeasurementSet)
+      end
+
+      it 'should be empty' do
+        @measurements.should be_empty
+      end
+    end
+
+    describe 'with Measurements' do
+      before do
+        @measurements = Yardstick::MeasurementSet.new([ @measurement ])
+      end
+
+      it 'should return a MeasurementSet' do
+        @measurements.should be_kind_of(Yardstick::MeasurementSet)
+      end
+
+      it 'should include the Measurements' do
+        @measurements.should include(@measurement)
+      end
+    end
+  end
+
+  describe '#<<' do
+    describe 'with a new Measurement' do
+      before do
+        @measurements.should be_empty
+
+        @response = @measurements << @measurement
+      end
+
+      it 'should return self' do
+        @response.should be_equal(@measurements)
+      end
+
+      it 'should append the Measurement' do
+        @measurements.to_a.last.should equal(@measurement)
+      end
+    end
+
+    describe 'with a duplicate Measurement' do
+      before do
+        @measurements.should be_empty
+        @measurements << @measurement
+        @measurements.to_a.should == [ @measurement ]
+
+        @response = @measurements << @measurement
+      end
+
+      it 'should return self' do
+        @response.should be_equal(@measurements)
+      end
+
+      it 'should not append the Measurement again' do
+        @measurements.to_a.should == [ @measurement ]
+      end
+    end
+  end
+
+  describe '#merge' do
+    before do
+      @measurements.should be_empty
+
+      @other = Yardstick::MeasurementSet.new
+      @other << @measurement
+
+      @response = @measurements.merge(@other)
+    end
+
+    it 'should return self' do
+      @response.should be_equal(@measurements)
+    end
+
+    it 'should merge the other Measurements' do
+      @measurements.should include(*@other)
+    end
+  end
+
+  describe '#each' do
+    before do
+      @measurements << @measurement
+
+      @yield = []
+
+      @response = @measurements.each { |*args| @yield << args }
+    end
+
+    it 'should return self' do
+      @response.should be_equal(@measurements)
+    end
+
+    it 'should yield measurements' do
+      @yield.should eql([ [ @measurement ] ])
+    end
+  end
+
+  describe '#empty?' do
+    describe 'when there are no measurements' do
+      it 'should return true' do
+        @measurements.empty?.should be_true
+      end
+    end
+
+    describe 'when there are measurements' do
+      before do
+        @measurements << @measurement
+      end
+
+      it 'should return false' do
+        @measurements.empty?.should be_false
+      end
+    end
+  end
+
+  describe '#total' do
+    before do
+      @measurements << @measurement
+    end
+
+    it 'should return the number of total measurements' do
+      @measurements.total.should eql(1)
+    end
+  end
+
+  describe '#successful' do
+    before do
+      @measurements << @measurement
+    end
+
+    it 'should return the number of successful measurements' do
+      @measurements.successful.should eql(1)
+    end
+  end
+
+  describe '#failed' do
+    before do
+      @measurements << @measurement
+    end
+
+    it 'should return the number of failed measurements' do
+      @measurements.failed.should eql(0)
+    end
+  end
+
+  describe '#coverage' do
+    describe 'when there are no measurements' do
+      it 'should return 0' do
+        @measurements.coverage.should eql(0)
+      end
+    end
+
+    describe 'when there are measurements' do
+      before do
+        @response = @measurements << @measurement
+      end
+
+      it 'should return a Rational' do
+        @measurements.coverage.should be_kind_of(Rational)
+      end
+
+      it 'should return the expected value' do
+        @measurements.coverage.should == 1
+      end
+    end
+  end
+
+  describe '#warn' do
+    before do
+      @measurements << Yardstick::Measurement.new(@description, @docstring) { false }
+
+      capture_stderr { @measurements.warn }
+    end
+
+    it 'should output the summary' do
+      @output.should == "(stdin):1: #test: test measurement\n" \
+        "\nCoverage: 0.0%  Success: 0  Failed: 1  Total: 1\n"
+    end
+  end
+end
