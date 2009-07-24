@@ -1,96 +1,7 @@
 require 'rational'
 
 module Yardstick
-  class MeasurementSet
-    include Enumerable
-
-    # Returns the MeasurementSet instance
-    #
-    # @example
-    #   measurements = Yardstick::MeasurementSet.new
-    #
-    # @param [Array<Measurement>] measurements
-    #   optional measurements
-    #
-    # @return [MeasurementSet<Measurement>]
-    #   the measurement set instance
-    #
-    # @api public
-    def initialize(measurements = [])
-      @measurements = measurements.dup
-    end
-
-    # Append a Measurement
-    #
-    # @example
-    #   measurements << measurement
-    #
-    # @param [Measurement] measurement
-    #   the measurement to append
-    #
-    # @return [MeasurementSet<Measurement>]
-    #   returns self
-    #
-    # @api public
-    def <<(measurement)
-      @measurements << measurement unless @measurements.include?(measurement)
-      self
-    end
-
-    # Merge in another MeasurementSet
-    #
-    # @example
-    #   measurements.merge(other)  # => both Measurements combined
-    #
-    # @param [MeasurementSet] other
-    #   the other measurement set
-    #
-    # @return [MeasurementSet<Measurement>]
-    #   returns self
-    #
-    # @api public
-    def merge(other)
-      other.each { |measurement| self << measurement }
-      self
-    end
-
-    # Iterate over each Measurement
-    #
-    # @example
-    #   measurements.each do |measurement
-    #     # ... do something with measurement ...
-    #   end
-    #
-    # @yield [measurement]
-    #   yield to the Measurement
-    #
-    # @yieldparam [Measurement] measurement
-    #   a Measurement in the MeasurementSet
-    #
-    # @return [MeasurementSet<Measurement>]
-    #   returns self
-    #
-    # @api public
-    def each(&block)
-      @measurements.each(&block)
-      self
-    end
-
-    # Check if there are any measurements
-    #
-    # @example No Measurements
-    #   measurements.empty?  # => true
-    #
-    # @example One or more Measurements
-    #   measurements.empty?  # => false
-    #
-    # @return [Boolean]
-    #   true if there are no measurements, false if there are
-    #
-    # @api public
-    def empty?
-      @measurements.empty?
-    end
+  class MeasurementSet < OrderedSet
 
     # The total number of measurements
     #
@@ -102,7 +13,7 @@ module Yardstick
     #
     # @api public
     def total
-      @measurements.size
+      size
     end
 
     # The number of successful measurements
