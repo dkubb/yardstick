@@ -11,8 +11,8 @@ Spec::Rake::SpecTask.new(:spec, &spec_defaults)
 
 Spec::Rake::SpecTask.new(:rcov) do |rcov|
   spec_defaults.call(rcov)
-  rcov.rcov       = true
-  rcov.rcov_opts << File.readlines('spec/rcov.opts').map { |line| line.strip }
+  rcov.rcov      = true
+  rcov.rcov_opts = File.readlines('spec/rcov.opts').map { |line| line.strip }
 end
 
 RCov::VerifyTask.new(:verify_rcov => :rcov) do |rcov|
