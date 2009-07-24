@@ -3,7 +3,7 @@ module Yardstick
 
     # Measure files provided
     #
-    # @param [Array<#to_str>] path
+    # @param [Array<#to_s>, #to_s] path
     #   the files to measure
     #
     # @return [Array<Measurement>]
@@ -11,8 +11,8 @@ module Yardstick
     #
     # @api private
     def self.process_path(path)
-      YARD.parse(Dir[*Array(path).map { |file| file.to_s }])
-      measure_method_objects(method_objects)
+      YARD.parse(Array(path).map { |file| file.to_s })
+      measurements
     end
 
     # Measure string provided
@@ -26,7 +26,19 @@ module Yardstick
     # @api private
     def self.process_string(string)
       YARD.parse_string(string.to_str)
-      measure_method_objects(method_objects)
+      measurements
+    end
+
+    # Measure method objects in YARD registry
+    #
+    # @return [Array<Measurement>]
+    #   a collection of measurements
+    #
+    # @api private
+    def self.measurements
+      method_objects.map do |method_object|
+        method_object.docstring.measure
+      end.flatten
     end
 
     # Return method objects in YARD registry
@@ -43,24 +55,9 @@ module Yardstick
       YARD::Registry.clear
     end
 
-    # Measure the method objects provided
-    #
-    # @param [Array<YARD::CodeObjects::MethodObject>] method_objects
-    #   a collection of method objects
-    #
-    # @return [Array<Measurement>]
-    #   a collection of measurements
-    #
-    # @api private
-    def self.measure_method_objects(method_objects)
-      method_objects.map do |method_object|
-        method_object.docstring.measure
-      end.flatten
-    end
-
     class << self
+      private :measurements
       private :method_objects
-      private :measure_method_objects
     end
 
   end # class Processor
