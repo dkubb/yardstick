@@ -11,7 +11,7 @@ module Yardstick
     #
     # @api private
     def self.process_path(path)
-      YARD.parse(Pathname.glob(path).map { |file| file.to_str })
+      YARD.parse(Dir[*Array(path).map { |file| file.to_s }])
       measure_method_objects(method_objects)
     end
 
