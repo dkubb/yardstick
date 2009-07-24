@@ -11,7 +11,7 @@ task :heckle => :verify_rcov do
   heckle_caught_modules = Hash.new { |hash, key| hash[key] = [] }
   unhandled_mutations = 0
 
-  IO.popen("spec --heckle #{root_module} #{spec_files}") do |pipe|
+  IO.popen("spec --heckle #{root_module} #{spec_files} 2>/dev/null") do |pipe|
     while line = pipe.gets
       case line = line.chomp
         when /\A\*\*\*\s+(#{root_module}(?:::)?(?:\w+(?:::)?)*)#(\w+)\b/
