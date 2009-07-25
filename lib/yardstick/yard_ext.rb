@@ -12,9 +12,7 @@ module YARD  #:nodoc: all
       #
       # @api public
       def docstring
-        # TODO: update to use super() once reek does not flag it as
-        #   a utility method
-        @docstring.extend(Yardstick::Method)
+        super.extend(Yardstick::Method)
       end
 
       # TODO: create an object to wrap tags, and extend each tag object with
