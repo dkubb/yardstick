@@ -12,7 +12,9 @@ module Yardstick
     #
     # @api private
     def initialize(entries = [])
-      @entries = entries.dup
+      @entries = []
+      @index   = {}
+      merge(entries)
     end
 
     # Append to the OrderedSet
@@ -25,13 +27,16 @@ module Yardstick
     #
     # @api private
     def <<(entry)
-      @entries << entry unless @entries.include?(entry)
+      unless include?(entry)
+        @index[entry] = @entries.length
+        @entries << entry
+      end
       self
     end
 
     # Merge in another OrderedSet
     #
-    # @param [OrderedSet] other
+    # @param [#each] other
     #   the other ordered set
     #
     # @return [OrderedSet]
@@ -76,8 +81,31 @@ module Yardstick
     #   number of entries
     #
     # @api private
-    def size
-      @entries.size
+    def length
+      @entries.length
+    end
+
+    # Check if the entry exists in the set
+    #
+    # @return [Boolean]
+    #   true if the entry exists in the set, false if not
+    #
+    # @api private
+    def include?(entry)
+      @index.key?(entry)
+    end
+
+    # Return the index for the entry in the set
+    #
+    # @param [Object] entry
+    #   the entry to check the set for
+    #
+    # @return [Integer, nil]
+    #   the index for the entry, or nil if it does not exist
+    #
+    # @api private
+    def index(entry)
+      @index[entry]
     end
 
   end # class OrderedSet

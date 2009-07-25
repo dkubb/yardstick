@@ -49,8 +49,6 @@ describe Yardstick::MeasurementSet do
   describe '#<<' do
     describe 'with a new Measurement' do
       before do
-        @measurements.should be_empty
-
         @response = @measurements << @measurement
       end
 
@@ -63,13 +61,12 @@ describe Yardstick::MeasurementSet do
       end
     end
 
-    describe 'with a duplicate Measurement' do
+    describe 'with an equivalent Measurement' do
       before do
-        @measurements.should be_empty
         @measurements << @measurement
         @measurements.to_a.should == [ @measurement ]
 
-        @response = @measurements << @measurement
+        @response = @measurements << Yardstick::Measurement.new(@description, @docstring) { true }
       end
 
       it 'should return self' do
@@ -84,8 +81,6 @@ describe Yardstick::MeasurementSet do
 
   describe '#merge' do
     before do
-      @measurements.should be_empty
-
       @other = Yardstick::MeasurementSet.new
       @other << @measurement
 
@@ -133,6 +128,54 @@ describe Yardstick::MeasurementSet do
 
       it 'should return false' do
         @measurements.empty?.should be_false
+      end
+    end
+  end
+
+  describe '#include?' do
+    describe 'when provided an included measurement' do
+      before do
+        @measurements << @measurement
+
+        @response = @measurements.include?(@measurement)
+      end
+
+      it 'should return true' do
+        @response.should be_true
+      end
+    end
+
+    describe 'when provided an excluded measurement' do
+      before do
+        @response = @measurements.include?(@measurement)
+      end
+
+      it 'should return false' do
+        @response.should be_false
+      end
+    end
+  end
+
+  describe '#index' do
+    describe 'when provided an included measurement' do
+      before do
+        @measurements << @measurement
+
+        @response = @measurements.index(@measurement)
+      end
+
+      it 'should return the index' do
+        @response.should eql(0)
+      end
+    end
+
+    describe 'when provided an excluded measurement' do
+      before do
+        @response = @measurements.index(@measurement)
+      end
+
+      it 'should return nil' do
+        @response.should == nil
       end
     end
   end

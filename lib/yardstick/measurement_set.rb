@@ -13,7 +13,7 @@ module Yardstick
     #
     # @api public
     def total
-      size
+      length
     end
 
     # The number of successful measurements
@@ -26,7 +26,7 @@ module Yardstick
     #
     # @api public
     def successful
-      select { |measurement| measurement.ok? }.size
+      select { |measurement| measurement.ok? }.length
     end
 
     # The number of failed measurements

@@ -8,7 +8,7 @@ module Yardstick
     end
 
     rule 'The method summary should be less than 80 characters in length' do
-      summary_text.split(//).size <= 80
+      summary_text.split(//).length <= 80
     end
 
     rule 'The method summary should not end in a period' do
