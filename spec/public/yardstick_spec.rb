@@ -63,7 +63,7 @@ describe Yardstick do
       it 'should raise an exception' do
         lambda {
           Yardstick.measure_string
-        }.should raise_error(ArgumentError, 'wrong number of arguments (0 for 1)')
+        }.should raise_error(ArgumentError, RUBY_PLATFORM =~ /java/ ? 'wrong # of arguments(0 for 1)' : 'wrong number of arguments (0 for 1)')
       end
     end
   end
