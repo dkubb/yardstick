@@ -11,10 +11,10 @@ module Yardstick
     #   the ordered set instance
     #
     # @api private
-    def initialize(entries = [])
+    def initialize(entries = nil)
       @entries = []
       @index   = {}
-      merge(entries)
+      merge(entries) if entries
     end
 
     # Append to the OrderedSet
