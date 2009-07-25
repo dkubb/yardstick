@@ -13,7 +13,7 @@ end
 
 shared_examples_for 'displays version' do
   it 'should display the program and version' do
-    @output.should == "#{OptionParser.new.program_name} 0.0.1\n"
+    @output.should == "#{OptionParser.new.program_name} #{Yardstick::VERSION}\n"
   end
 end
 

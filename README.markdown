@@ -1,4 +1,4 @@
-Yardstick 0.0.1
+Yardstick 0.1.0
 ===============
 
 Synopsis
