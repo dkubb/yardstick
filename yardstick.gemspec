@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{yardstick}
-  s.version = "0.0.1"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2009-07-23}
+  s.date = %q{2009-07-25}
   s.default_executable = %q{yardstick}
   s.email = %q{dan.kubb@gmail.com}
   s.executables = ["yardstick"]
@@ -28,14 +28,20 @@ Gem::Specification.new do |s|
      "lib/yardstick/core_ext/object.rb",
      "lib/yardstick/measurable.rb",
      "lib/yardstick/measurement.rb",
+     "lib/yardstick/measurement_set.rb",
      "lib/yardstick/method.rb",
+     "lib/yardstick/ordered_set.rb",
      "lib/yardstick/processor.rb",
+     "lib/yardstick/rule.rb",
+     "lib/yardstick/rule_set.rb",
      "lib/yardstick/yard_ext.rb",
      "spec/public/yardstick/cli_spec.rb",
+     "spec/public/yardstick/measurement_set_spec.rb",
      "spec/public/yardstick/measurement_spec.rb",
      "spec/public/yardstick/method_spec.rb",
      "spec/public/yardstick_spec.rb",
      "spec/rcov.opts",
+     "spec/semipublic/yardstick/rule_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
      "tasks/ci.rake",
@@ -53,9 +59,11 @@ Gem::Specification.new do |s|
   s.summary = %q{A tool for verifying YARD documentation coverage}
   s.test_files = [
     "spec/public/yardstick/cli_spec.rb",
+     "spec/public/yardstick/measurement_set_spec.rb",
      "spec/public/yardstick/measurement_spec.rb",
      "spec/public/yardstick/method_spec.rb",
      "spec/public/yardstick_spec.rb",
+     "spec/semipublic/yardstick/rule_spec.rb",
      "spec/spec_helper.rb"
   ]
 
