@@ -1,10 +1,10 @@
 Yardstick 0.1.0
 ===============
 
-**Homepage:**     [http://yardstick.rubyforge.org/](http://yardstick.rubyforge.org/)
-**Git:**          [http://github.com/dkubb/yardstick](http://github.com/dkubb/yardstick)
-**Issues:**       [http://github.com/dkubb/yardstick/issues](http://github.com/dkubb/yardstick/issues)
-**Mailing List:** [http://groups.google.com/group/yardstick](http://groups.google.com/group/yardstick)
+**Homepage:**     [http://yardstick.rubyforge.org/](http://yardstick.rubyforge.org/)<br />
+**Git:**          [http://github.com/dkubb/yardstick](http://github.com/dkubb/yardstick)<br />
+**Issues:**       [http://github.com/dkubb/yardstick/issues](http://github.com/dkubb/yardstick/issues)<br />
+**Mailing List:** [http://groups.google.com/group/yardstick](http://groups.google.com/group/yardstick)<br />
 **IRC:**          #yardstick on irc.freenode.net
 
 Synopsis
