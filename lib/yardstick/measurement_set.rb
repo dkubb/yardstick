@@ -45,7 +45,8 @@ module Yardstick
     # The percentage of successful measurements
     #
     # @example
-    #   measurements.coverage  # => Rational(561, 570).to_f  # => 98.4%
+    #   coverage = measurements.coverage  # => Rational(561, 570)
+    #   '%.1f%%' % (coverage * 100)       # => "98.4%"
     #
     # @return [Integer, Rational]
     #   the coverage percentage
