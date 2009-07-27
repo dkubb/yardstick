@@ -39,7 +39,7 @@ This is the simplest way to run yardstick.  Provide it a list of files
 and it will measure all of them and output suggestions for improvement,
 eg:
 
-    $ yardstick lib/**/*.rb
+    $ yardstick 'lib/**/*.rb' 'app/**/*.rb' ...etc...
 
 **2. Rake task**
 
