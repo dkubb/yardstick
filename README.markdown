@@ -31,7 +31,7 @@ With a local working copy:
 Usage
 -----
 
-Yardstick may be used two ways:
+Yardstick may be used three ways:
 
 **1. yardstick Command-line Tool**
 
@@ -41,7 +41,22 @@ eg:
 
     $ yardstick lib/**/*.rb
 
-**2. Yardstick Libraries**
+**2. Rake task
+
+Yardstick may be integrated with existing Rakefile and build processes,
+and is especially useful when used with a continuous integration system.
+You can set thresholds, as well as check that the threshold matches the
+actual coverage, forcing you to bump it up if it increases.  It uses
+a simple DSL to configure the task, and is modeled after RCov::VerifyTask,
+eg:
+
+    require 'yardstick/rake/verify'
+
+    Yardstick::Rake::Verify.new do |verify|
+      verify.threshold = 100
+    end
+
+**3. Yardstick Libraries**
 
 Yardstick comes with several libraries that will allow you to process
 lists of files, or String code fragments, eg:
