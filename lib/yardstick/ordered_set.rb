@@ -87,6 +87,9 @@ module Yardstick
 
     # Check if the entry exists in the set
     #
+    # @param [Object] entry
+    #   the entry to test for
+    #
     # @return [Boolean]
     #   true if the entry exists in the set, false if not
     #

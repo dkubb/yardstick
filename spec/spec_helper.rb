@@ -9,13 +9,16 @@ Pathname.glob(Yardstick::ROOT.join('lib', '**', '*.rb').to_s).sort.each do |file
 end
 
 Spec::Runner.configure do |config|
-  config.before :all do
-    YARD::Registry.clear
-  end
+  clear_tasks = lambda { Rake::Task.clear }
 
-  config.before do
-    YARD::Registry.clear
-  end
+  config.before(:all, &clear_tasks)
+  config.before(      &clear_tasks)
+
+  clear_yard_registry = lambda { YARD::Registry.clear }
+
+  config.before(:all, &clear_yard_registry)
+  config.before(      &clear_yard_registry)
+
 
   def capture_stdout
     $stdout = StringIO.new

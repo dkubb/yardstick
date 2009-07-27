@@ -69,7 +69,7 @@ TODO
 
 - Add more measurements, especially for @param, @yield and type
   validation
-- Create a Rake task to allow integration of Yardstick into build
-  processes more easily
+- Create a Rake task to output Yardstick coverage reports
+- Output results as HTML from command line tool and Rake task
 
 Copyright (c) 2009 Dan Kubb. See LICENSE for details.

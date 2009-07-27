@@ -8,4 +8,9 @@ module Yardstick
   autoload :Processor,      'yardstick/processor'
   autoload :Rule,           'yardstick/rule'
   autoload :RuleSet,        'yardstick/rule_set'
+
+  module Rake
+    autoload :Measurement, 'yardstick/rake/measurement'
+    autoload :Verify,      'yardstick/rake/verify'
+  end # module Rake
 end # module Yardstick

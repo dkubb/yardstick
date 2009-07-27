@@ -1,1 +1,1 @@
-task :ci => [ :heckle, 'metrics:all' ]
+task :ci => [ :verify_measurements, :heckle, 'metrics:all' ]
