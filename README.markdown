@@ -41,14 +41,13 @@ eg:
 
     $ yardstick lib/**/*.rb
 
-**2. Rake task
+**2. Rake task**
 
 Yardstick may be integrated with existing Rakefile and build processes,
 and is especially useful when used with a continuous integration system.
 You can set thresholds, as well as check that the threshold matches the
-actual coverage, forcing you to bump it up if it increases.  It uses
-a simple DSL to configure the task, and is modeled after RCov::VerifyTask,
-eg:
+actual coverage, forcing you to bump it up if the actual coverage has
+increased.  It uses a simple DSL to configure the task eg:
 
     require 'yardstick/rake/verify'
 
