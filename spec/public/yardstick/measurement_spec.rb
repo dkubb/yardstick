@@ -33,7 +33,12 @@ end
 
 describe Yardstick::Measurement do
   before do
-    YARD.parse_string('def test; end')
+    YARD.parse_string(<<-RUBY)
+      class MeasurementTest
+        def test
+        end
+      end
+    RUBY
 
     @docstring = YARD::Registry.all(:method).first.docstring
   end
@@ -186,7 +191,7 @@ describe Yardstick::Measurement do
       it_should_behave_like 'measurement is warned'
 
       it 'should output a warning' do
-        @output.should == "(stdin):1: #test: not successful\n"
+        @output.should == "(stdin):2: MeasurementTest#test: not successful\n"
       end
     end
 
@@ -195,7 +200,7 @@ describe Yardstick::Measurement do
       it_should_behave_like 'measurement is warned'
 
       it 'should output a warning' do
-        @output.should == "(stdin):1: #test: not implemented\n"
+        @output.should == "(stdin):2: MeasurementTest#test: not implemented\n"
       end
     end
   end

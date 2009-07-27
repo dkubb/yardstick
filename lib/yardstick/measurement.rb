@@ -178,7 +178,7 @@ module Yardstick
     #
     # @api private
     def path
-      object.path.sub(/\A::/, '')
+      object.path
     end
 
     module UtilityMethods  #:nodoc:
