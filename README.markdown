@@ -60,6 +60,8 @@ increased.  It uses a simple DSL to configure the task eg:
 Yardstick comes with several libraries that will allow you to process
 lists of files, or String code fragments, eg:
 
+    require 'yardstick'
+
     # measure a list of file paths
     measurements = Yardstick.measure(paths)
 
