@@ -33,7 +33,7 @@ Usage
 
 Yardstick may be used three ways:
 
-**1. yardstick Command-line Tool**
+**1. Command-line Tool**
 
 This is the simplest way to run yardstick.  Provide it a list of files
 and it will measure all of them and output suggestions for improvement,
@@ -55,7 +55,7 @@ increased.  It uses a simple DSL to configure the task eg:
       verify.threshold = 100
     end
 
-**3. Yardstick Libraries**
+**3. Libraries**
 
 Yardstick comes with several libraries that will allow you to process
 lists of files, or String code fragments, eg:
