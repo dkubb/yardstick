@@ -235,13 +235,31 @@ describe Yardstick::MeasurementSet do
   describe '#puts' do
     before do
       @measurements << Yardstick::Measurement.new(@description, @docstring) { false }
-
-      capture_stdout { @measurements.puts }
     end
 
-    it 'should output the summary' do
-      @output.should == "(stdin):1: #test: test measurement\n" \
-        "\nCoverage: 0.0%  Success: 0  Failed: 1  Total: 1\n"
+    describe 'with no arguments' do
+      before do
+        capture_stdout { @measurements.puts }
+      end
+
+      it 'should output the summary' do
+        @output.should == "(stdin):1: #test: test measurement\n" \
+          "\nCoverage: 0.0%  Success: 0  Failed: 1  Total: 1\n"
+      end
+    end
+
+    describe 'with an object implementing #puts' do
+      before do
+        io = StringIO.new
+        @measurements.puts(io)
+        io.rewind
+        @output = io.read
+      end
+
+      it 'should output the summary' do
+        @output.should == "(stdin):1: #test: test measurement\n" \
+          "\nCoverage: 0.0%  Success: 0  Failed: 1  Total: 1\n"
+      end
     end
   end
 end

@@ -89,12 +89,15 @@ module Yardstick
     # @example
     #   measurement.puts  # (outputs results if not successful)
     #
+    # @param [#puts] io
+    #   optional object to puts the summary
+    #
     # @return [undefined]
     #
     # @api public
-    def puts
+    def puts(io = $stdout)
       unless ok?
-        Kernel.puts("#{file}:#{line}: #{path}: #{@description}")
+        io.puts("#{file}:#{line}: #{path}: #{@description}")
       end
     end
 

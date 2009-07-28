@@ -31,6 +31,15 @@ shared_examples_for 'measurement is displayed' do
   end
 end
 
+shared_examples_for 'measurement is sent to object' do
+  before do
+    io = StringIO.new
+    @measurement.puts(io)
+    io.rewind
+    @output = io.read
+  end
+end
+
 describe Yardstick::Measurement do
   before do
     YARD.parse_string(<<-RUBY)
@@ -168,39 +177,79 @@ describe Yardstick::Measurement do
   end
 
   describe '#puts' do
-    describe 'when the measurement is successful' do
-      it_should_behave_like 'measurement is successful'
-      it_should_behave_like 'measurement is displayed'
+    describe 'with no arguments' do
+      describe 'when the measurement is successful' do
+        it_should_behave_like 'measurement is successful'
+        it_should_behave_like 'measurement is displayed'
 
-      it 'should not display any output' do
-        @output.should == ''
+        it 'should not display any output' do
+          @output.should == ''
+        end
+      end
+
+      describe 'when the measurement is skipped' do
+        it_should_behave_like 'measurement is skipped'
+        it_should_behave_like 'measurement is displayed'
+
+        it 'should not display any output' do
+          @output.should == ''
+        end
+      end
+
+      describe 'when the measurement is not successful' do
+        it_should_behave_like 'measurement is not successful'
+        it_should_behave_like 'measurement is displayed'
+
+        it 'should display output' do
+          @output.should == "(stdin):2: MeasurementTest#test: not successful\n"
+        end
+      end
+
+      describe 'when the measurement is not implemented' do
+        it_should_behave_like 'measurement is not implemented'
+        it_should_behave_like 'measurement is displayed'
+
+        it 'should display output' do
+          @output.should == "(stdin):2: MeasurementTest#test: not implemented\n"
+        end
       end
     end
 
-    describe 'when the measurement is skipped' do
-      it_should_behave_like 'measurement is skipped'
-      it_should_behave_like 'measurement is displayed'
+    describe 'with an object implementing #puts' do
+      describe 'when the measurement is successful' do
+        it_should_behave_like 'measurement is successful'
+        it_should_behave_like 'measurement is sent to object'
 
-      it 'should not display any output' do
-        @output.should == ''
+        it 'should not display any output' do
+          @output.should == ''
+        end
       end
-    end
 
-    describe 'when the measurement is not successful' do
-      it_should_behave_like 'measurement is not successful'
-      it_should_behave_like 'measurement is displayed'
+      describe 'when the measurement is skipped' do
+        it_should_behave_like 'measurement is skipped'
+        it_should_behave_like 'measurement is sent to object'
 
-      it 'should display output' do
-        @output.should == "(stdin):2: MeasurementTest#test: not successful\n"
+        it 'should not display any output' do
+          @output.should == ''
+        end
       end
-    end
 
-    describe 'when the measurement is not implemented' do
-      it_should_behave_like 'measurement is not implemented'
-      it_should_behave_like 'measurement is displayed'
+      describe 'when the measurement is not successful' do
+        it_should_behave_like 'measurement is not successful'
+        it_should_behave_like 'measurement is sent to object'
 
-      it 'should display output' do
-        @output.should == "(stdin):2: MeasurementTest#test: not implemented\n"
+        it 'should display output' do
+          @output.should == "(stdin):2: MeasurementTest#test: not successful\n"
+        end
+      end
+
+      describe 'when the measurement is not implemented' do
+        it_should_behave_like 'measurement is not implemented'
+        it_should_behave_like 'measurement is sent to object'
+
+        it 'should display output' do
+          @output.should == "(stdin):2: MeasurementTest#test: not implemented\n"
+        end
       end
     end
   end

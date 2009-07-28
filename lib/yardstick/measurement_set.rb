@@ -61,23 +61,29 @@ module Yardstick
     # @example
     #   measurements.puts  # (outputs measurements results and summary)
     #
+    # @param [#puts] io
+    #   optional object to puts the summary
+    #
     # @return [undefined]
     #
     # @api public
-    def puts
-      each { |measurement| measurement.puts }
-      puts_summary
+    def puts(io = $stdout)
+      each { |measurement| measurement.puts(io) }
+      puts_summary(io)
     end
 
   private
 
     # Warn the summary of all measurements
     #
+    # @param [#puts] io
+    #   object to puts the summary
+    #
     # @return [undefined]
     #
     # @api private
-    def puts_summary
-      Kernel.puts("\n#{[ coverage_text, successful_text, failed_text, total_text ].join('  ')}")
+    def puts_summary(io)
+      io.puts("\n#{[ coverage_text, successful_text, failed_text, total_text ].join('  ')}")
     end
 
     # The text for the coverage percentage to include in the summary
