@@ -59,14 +59,14 @@ module Yardstick
     # Warn the unsuccessful measurements and a summary
     #
     # @example
-    #   measurements.warn  # (outputs measurements results and summary)
+    #   measurements.puts  # (outputs measurements results and summary)
     #
     # @return [undefined]
     #
     # @api public
-    def warn
-      each { |measurement| measurement.warn }
-      warn_summary
+    def puts
+      each { |measurement| measurement.puts }
+      puts_summary
     end
 
   private
@@ -76,8 +76,8 @@ module Yardstick
     # @return [undefined]
     #
     # @api private
-    def warn_summary
-      Kernel.warn("\n#{[ coverage_text, successful_text, failed_text, total_text ].join('  ')}")
+    def puts_summary
+      Kernel.puts("\n#{[ coverage_text, successful_text, failed_text, total_text ].join('  ')}")
     end
 
     # The text for the coverage percentage to include in the summary

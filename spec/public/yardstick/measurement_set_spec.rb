@@ -232,11 +232,11 @@ describe Yardstick::MeasurementSet do
     end
   end
 
-  describe '#warn' do
+  describe '#puts' do
     before do
       @measurements << Yardstick::Measurement.new(@description, @docstring) { false }
 
-      capture_stderr { @measurements.warn }
+      capture_stdout { @measurements.puts }
     end
 
     it 'should output the summary' do

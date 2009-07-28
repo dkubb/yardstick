@@ -61,7 +61,7 @@ describe Yardstick::CLI do
 
     describe 'with a String path' do
       before :all do
-        @measurements = capture_stderr { Yardstick::CLI.run(Yardstick::ROOT.join('lib', 'yardstick.rb').to_s) }
+        @measurements = capture_stdout { Yardstick::CLI.run(Yardstick::ROOT.join('lib', 'yardstick.rb').to_s) }
       end
 
       it_should_behave_like 'measured itself'
@@ -70,7 +70,7 @@ describe Yardstick::CLI do
 
     describe 'with a Pathname' do
       before :all do
-        @measurements = capture_stderr { Yardstick::CLI.run(Yardstick::ROOT.join('lib', 'yardstick.rb')) }
+        @measurements = capture_stdout { Yardstick::CLI.run(Yardstick::ROOT.join('lib', 'yardstick.rb')) }
       end
 
       it_should_behave_like 'measured itself'
@@ -79,7 +79,7 @@ describe Yardstick::CLI do
 
     describe 'with an Array of String objects' do
       before :all do
-        @measurements = capture_stderr { Yardstick::CLI.run(*[ Yardstick::ROOT.join('lib', 'yardstick.rb').to_s ]) }
+        @measurements = capture_stdout { Yardstick::CLI.run(*[ Yardstick::ROOT.join('lib', 'yardstick.rb').to_s ]) }
       end
 
       it_should_behave_like 'measured itself'
@@ -88,7 +88,7 @@ describe Yardstick::CLI do
 
     describe 'with an Array of Pathname objects' do
       before :all do
-        @measurements = capture_stderr { Yardstick::CLI.run(*[ Yardstick::ROOT.join('lib', 'yardstick.rb') ]) }
+        @measurements = capture_stdout { Yardstick::CLI.run(*[ Yardstick::ROOT.join('lib', 'yardstick.rb') ]) }
       end
 
       it_should_behave_like 'measured itself'

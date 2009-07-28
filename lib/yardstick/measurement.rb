@@ -87,14 +87,14 @@ module Yardstick
     # Warns the results the measurement if it was not successful
     #
     # @example
-    #   measurement.warn  # (outputs results if not successful)
+    #   measurement.puts  # (outputs results if not successful)
     #
     # @return [undefined]
     #
     # @api public
-    def warn
+    def puts
       unless ok?
-        Kernel.warn("#{file}:#{line}: #{path}: #{@description}")
+        Kernel.puts("#{file}:#{line}: #{path}: #{@description}")
       end
     end
 

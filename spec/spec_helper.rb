@@ -28,15 +28,6 @@ Spec::Runner.configure do |config|
     @output = $stdout.read
     $stdout = STDOUT
   end
-
-  def capture_stderr
-    $stderr = StringIO.new
-    yield
-  ensure
-    $stderr.rewind
-    @output = $stderr.read
-    $stderr = STDERR
-  end
 end
 
 shared_examples_for 'measured itself' do

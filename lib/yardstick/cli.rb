@@ -17,7 +17,7 @@ module Yardstick
     # @api public
     def self.run(*args)
       measurements = Yardstick.measure(*parse_options(args))
-      measurements.warn
+      measurements.puts
       measurements
     end
 

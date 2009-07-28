@@ -25,9 +25,9 @@ shared_examples_for 'measurement is not implemented' do
   end
 end
 
-shared_examples_for 'measurement is warned' do
+shared_examples_for 'measurement is displayed' do
   before do
-    capture_stderr { @measurement.warn }
+    capture_stdout { @measurement.puts }
   end
 end
 
@@ -167,39 +167,39 @@ describe Yardstick::Measurement do
     end
   end
 
-  describe '#warn' do
+  describe '#puts' do
     describe 'when the measurement is successful' do
       it_should_behave_like 'measurement is successful'
-      it_should_behave_like 'measurement is warned'
+      it_should_behave_like 'measurement is displayed'
 
-      it 'should not output a warning' do
+      it 'should not display any output' do
         @output.should == ''
       end
     end
 
     describe 'when the measurement is skipped' do
       it_should_behave_like 'measurement is skipped'
-      it_should_behave_like 'measurement is warned'
+      it_should_behave_like 'measurement is displayed'
 
-      it 'should not output a warning' do
+      it 'should not display any output' do
         @output.should == ''
       end
     end
 
     describe 'when the measurement is not successful' do
       it_should_behave_like 'measurement is not successful'
-      it_should_behave_like 'measurement is warned'
+      it_should_behave_like 'measurement is displayed'
 
-      it 'should output a warning' do
+      it 'should display output' do
         @output.should == "(stdin):2: MeasurementTest#test: not successful\n"
       end
     end
 
     describe 'when the measurement is not implemented' do
       it_should_behave_like 'measurement is not implemented'
-      it_should_behave_like 'measurement is warned'
+      it_should_behave_like 'measurement is displayed'
 
-      it 'should output a warning' do
+      it 'should display output' do
         @output.should == "(stdin):2: MeasurementTest#test: not implemented\n"
       end
     end
