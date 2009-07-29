@@ -49,11 +49,23 @@ You can set thresholds, as well as check that the threshold matches the
 actual coverage, forcing you to bump it up if the actual coverage has
 increased.  It uses a simple DSL to configure the task eg:
 
+    # measure coverage
+
+    require 'yardstick/rake/measurement'
+
+    Yardstick::Rake::Measurement.new(:yardstick_measure) do |measurement|
+      measurement.output = 'measurement/report.txt'
+    end
+
+
+    # verify coverage
+
     require 'yardstick/rake/verify'
 
     Yardstick::Rake::Verify.new do |verify|
       verify.threshold = 100
     end
+
 
 **3. Libraries**
 
@@ -85,7 +97,8 @@ TODO
 
 - Add more measurements, especially for @param, @yield and type
   validation
-- Create a Rake task to output Yardstick coverage reports
+- Update yardstick_measure task to use the Yardstick::CLI library
+  underneath.
 - Output results as HTML from command line tool and Rake task
 
 Copyright (c) 2009 Dan Kubb. See LICENSE for details.

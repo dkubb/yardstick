@@ -48,12 +48,12 @@ module Yardstick
       # Initialize a Verify task
       #
       # @example
-      #   task = Yardstick::Rake::Verify.new(:verify_measurements) do |task|
+      #   task = Yardstick::Rake::Verify.new do |task|
       #     task.threshold = 100
       #   end
       #
       # @param [Symbol] name
-      #   optional name for the task
+      #   optional task name
       #
       # @yield [task]
       #   yield to self
@@ -68,7 +68,7 @@ module Yardstick
       def initialize(name = :verify_measurements)
         @name                    = name
         @require_exact_threshold = true
-        @path                    = Pathname('lib/**/*.rb').freeze
+        @path                    = 'lib/**/*.rb'
         @verbose                 = true
 
         yield self
@@ -78,6 +78,9 @@ module Yardstick
       end
 
       # Verify the YARD coverage measurements
+      #
+      # @example
+      #   task.verify_measurements  # output coverage and threshold
       #
       # @return [undefined]
       #

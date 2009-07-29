@@ -15,9 +15,6 @@ module YARD  #:nodoc: all
         super.extend(Yardstick::Method)
       end
 
-      # TODO: create an object to wrap tags, and extend each tag object with
-      # the matching module, if one exists under Yardstick::Tag::*
-
     end # class MethodObject
   end # module CodeObjects
 end # module YARD

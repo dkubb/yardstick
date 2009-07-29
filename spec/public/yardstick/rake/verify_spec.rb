@@ -1,29 +1,27 @@
 require 'pathname'
 require Pathname(__FILE__).dirname.expand_path.join('..', '..', '..', 'spec_helper')
 
-require 'rake'
-
-shared_examples_for 'set default name' do
+shared_examples_for 'set default name for verify task' do
   it 'should set name to :verify_measurements' do
     @task.instance_variable_get(:@name).should == :verify_measurements
   end
 end
 
-shared_examples_for 'set default require_exact_threshold' do
+shared_examples_for 'set default require_exact_threshold for verify task' do
   it 'should set require_exact_threshold to true' do
     @task.instance_variable_get(:@require_exact_threshold).should be_true
   end
 end
 
-shared_examples_for 'set default path' do
-  path = Pathname('lib/**/*.rb')
+shared_examples_for 'set default path for verify task' do
+  path = 'lib/**/*.rb'
 
-  it "should set path to #{path.to_s.inspect}" do
+  it "should set path to #{path.inspect}" do
     @task.instance_variable_get(:@path).should == path
   end
 end
 
-shared_examples_for 'set default verbose' do
+shared_examples_for 'set default verbose for verify task' do
   it 'should set verbose to true' do
     @task.instance_variable_get(:@verbose).should be_true
   end
@@ -42,10 +40,10 @@ describe Yardstick::Rake::Verify do
         @task.should be_kind_of(Yardstick::Rake::Verify)
       end
 
-      it_should_behave_like 'set default name'
-      it_should_behave_like 'set default require_exact_threshold'
-      it_should_behave_like 'set default path'
-      it_should_behave_like 'set default verbose'
+      it_should_behave_like 'set default name for verify task'
+      it_should_behave_like 'set default require_exact_threshold for verify task'
+      it_should_behave_like 'set default path for verify task'
+      it_should_behave_like 'set default verbose for verify task'
 
       it 'should create a task named verify_measurements' do
         Rake::Task['verify_measurements'].should be_kind_of(Rake::Task)
@@ -79,9 +77,9 @@ describe Yardstick::Rake::Verify do
         @task.instance_variable_get(:@name).should == :custom_task_name
       end
 
-      it_should_behave_like 'set default require_exact_threshold'
-      it_should_behave_like 'set default path'
-      it_should_behave_like 'set default verbose'
+      it_should_behave_like 'set default require_exact_threshold for verify task'
+      it_should_behave_like 'set default path for verify task'
+      it_should_behave_like 'set default verbose for verify task'
 
       it 'should create a task named custom_task_name' do
         Rake::Task['custom_task_name'].should be_kind_of(Rake::Task)
@@ -145,6 +143,7 @@ describe Yardstick::Rake::Verify do
   describe '#path=' do
     before do
       @path = 'lib/yardstick.rb'
+
       @task = Yardstick::Rake::Verify.new do |verify|
         verify.threshold = 100
         verify.path      = @path

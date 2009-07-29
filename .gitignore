@@ -3,6 +3,7 @@
 .yardoc
 coverage
 profiling
+measurements
 rdoc
 doc
 pkg
