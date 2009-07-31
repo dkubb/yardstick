@@ -1,11 +1,11 @@
 Yardstick 0.1.0
 ===============
 
-**Homepage:**     [http://yardstick.rubyforge.org/](http://yardstick.rubyforge.org/)<br />
-**Git:**          [http://github.com/dkubb/yardstick](http://github.com/dkubb/yardstick)<br />
-**Issues:**       [http://github.com/dkubb/yardstick/issues](http://github.com/dkubb/yardstick/issues)<br />
-**Mailing List:** [http://groups.google.com/group/yardstick](http://groups.google.com/group/yardstick)<br />
-**IRC:**          #yardstick on irc.freenode.net
+* [Homepage](http://yardstick.rubyforge.org/)
+* [Git](http://github.com/dkubb/yardstick)
+* [Bug Tracker](http://github.com/dkubb/yardstick/issues)
+* [Mailing List](http://groups.google.com/group/yardstick)
+* [IRC](irc://irc.freenode.net/yardstick)
 
 Synopsis
 --------
@@ -18,9 +18,19 @@ the documentation and what can be improved.
 Installation
 ------------
 
-From Gem:
+With Rubygems:
 
     $ sudo gem install dkubb-yardstick --source http://gems.github.com/
+    $ irb -rubygems
+    >> require 'yardstick'
+    => true
+
+With the [Rip package manager](http://hellorip.com/):
+
+    $ rip install git://github.com/dkubb/yardstick.git
+    $ irb -rrip
+    >> require 'yardstick'
+    => true
 
 With a local working copy:
 
