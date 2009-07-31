@@ -20,14 +20,14 @@ Installation
 
 With Rubygems:
 
-    $ sudo gem install dkubb-yardstick --source http://gems.github.com/
+    $ sudo gem install yardstick
     $ irb -rubygems
     >> require 'yardstick'
     => true
 
 With the [Rip package manager](http://hellorip.com/):
 
-    $ rip install git://github.com/dkubb/yardstick.git
+    $ rip install git://github.com/dkubb/yardstick.git 0.1.0
     $ irb -rrip
     >> require 'yardstick'
     => true
