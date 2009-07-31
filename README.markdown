@@ -32,11 +32,14 @@ With the [Rip package manager](http://hellorip.com/):
     >> require 'yardstick'
     => true
 
-With a local working copy:
+With git and local working copy:
 
     $ git clone git://github.com/dkubb/yardstick.git
     $ cd yardstick
     $ rake build && sudo rake install
+    $ irb -rubygems
+    >> require 'yardstick'
+    => true
 
 Usage
 -----
