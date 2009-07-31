@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2009-07-27}
+  s.date = %q{2009-07-30}
   s.default_executable = %q{yardstick}
   s.email = %q{dan.kubb@gmail.com}
   s.executables = ["yardstick"]
@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "bin/yardstick",
+     "deps.rip",
      "lib/yardstick.rb",
      "lib/yardstick/autoload.rb",
      "lib/yardstick/cli.rb",
@@ -41,6 +42,7 @@ Gem::Specification.new do |s|
      "spec/public/yardstick/measurement_set_spec.rb",
      "spec/public/yardstick/measurement_spec.rb",
      "spec/public/yardstick/method_spec.rb",
+     "spec/public/yardstick/rake/measurement_spec.rb",
      "spec/public/yardstick/rake/verify_spec.rb",
      "spec/public/yardstick_spec.rb",
      "spec/rcov.opts",
@@ -66,6 +68,7 @@ Gem::Specification.new do |s|
      "spec/public/yardstick/measurement_set_spec.rb",
      "spec/public/yardstick/measurement_spec.rb",
      "spec/public/yardstick/method_spec.rb",
+     "spec/public/yardstick/rake/measurement_spec.rb",
      "spec/public/yardstick/rake/verify_spec.rb",
      "spec/public/yardstick_spec.rb",
      "spec/semipublic/yardstick/rule_spec.rb",
