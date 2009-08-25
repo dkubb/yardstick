@@ -1,6 +1,8 @@
 require 'rake'
 require 'rake/tasklib'
+
 require 'pathname'
+require 'yardstick'
 
 module Yardstick
   module Rake
