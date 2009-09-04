@@ -103,7 +103,12 @@ lists of files, or String code fragments, eg:
 * Update yardstick_measure task to use the Yardstick::CLI library
   underneath.
 * Output results as HTML from command line tool and Rake task
-* Specify method_missing to be @api public even if its visibility
-  is private
+* Specify method_missing to allow public, semipublic or private even
+  if its visibility is private
+* Allow initialize to be public, semipublic or private regardless of
+  its visibility.  A constructor may not necessarily be public, and may
+  not be used externally.
+* Allow @return type to be "self" to specify the return value is
+  the object itself.  Ask argv[0] if it can be made a YARD convention.
 
 Copyright (c) 2009 Dan Kubb. See LICENSE for details.
