@@ -19,7 +19,6 @@ Spec::Runner.configure do |config|
   config.before(:all, &clear_yard_registry)
   config.before(      &clear_yard_registry)
 
-
   def capture_stdout
     $stdout = StringIO.new
     yield

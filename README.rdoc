@@ -1,52 +1,43 @@
-Yardstick 0.1.0
-===============
+= Yardstick 0.1.0
 
-* [Homepage](http://yardstick.rubyforge.org/)
-* [Git](http://github.com/dkubb/yardstick)
-* [Bug Tracker](http://github.com/dkubb/yardstick/issues)
-* [Mailing List](http://groups.google.com/group/yardstick)
-* [IRC](irc://irc.freenode.net/yardstick)
+Yardstick is a tool that verifies documentation coverage of Ruby code.  It will measure the source and provide feedback on what is missing from the documentation and what can be improved.
 
-Synopsis
---------
+* {Homepage}[http://yardstick.rubyforge.org/]
+* {Git}[http://github.com/dkubb/yardstick]
+* {Bug Tracker}[http://github.com/dkubb/yardstick/issues]
+* {Mailing List}[http://groups.google.com/group/yardstick]
+* {IRC}[irc://irc.freenode.net/yardstick]
 
-Yardstick is a tool that verifies YARD coverage of ruby code.
-
-It will measure the source and provide feedback on what is missing from
-the documentation and what can be improved.
-
-Installation
-------------
+== Installation
 
 With Rubygems:
 
-    $ sudo gem install yardstick
-    $ irb -rubygems
-    >> require 'yardstick'
-    => true
+  $ sudo gem install yardstick
+  $ irb -rubygems
+  >> require 'yardstick'
+  => true
 
-With the [Rip package manager](http://hellorip.com/):
+With the {Rip package manager}[http://hellorip.com/]:
 
-    $ rip install git://github.com/dkubb/yardstick.git 0.1.0
-    $ irb -rrip
-    >> require 'yardstick'
-    => true
+  $ rip install git://github.com/dkubb/yardstick.git 0.1.0
+  $ irb -rrip
+  >> require 'yardstick'
+  => true
 
 With git and local working copy:
 
-    $ git clone git://github.com/dkubb/yardstick.git
-    $ cd yardstick
-    $ rake build && sudo rake install
-    $ irb -rubygems
-    >> require 'yardstick'
-    => true
+  $ git clone git://github.com/dkubb/yardstick.git
+  $ cd yardstick
+  $ rake build && sudo rake install
+  $ irb -rubygems
+  >> require 'yardstick'
+  => true
 
-Usage
------
+== Usage
 
 Yardstick may be used three ways:
 
-**1. Command-line Tool**
+=== 1. Command-line Tool
 
 This is the simplest way to run yardstick.  Provide it a list of files
 and it will measure all of them and output suggestions for improvement,
@@ -54,7 +45,7 @@ eg:
 
     $ yardstick 'lib/**/*.rb' 'app/**/*.rb' ...etc...
 
-**2. Rake task**
+=== 2. Rake task
 
 Yardstick may be integrated with existing Rakefile and build processes,
 and is especially useful when used with a continuous integration system.
@@ -80,7 +71,7 @@ increased.  It uses a simple DSL to configure the task eg:
     end
 
 
-**3. Libraries**
+=== 3. Libraries
 
 Yardstick comes with several libraries that will allow you to process
 lists of files, or String code fragments, eg:
@@ -105,13 +96,12 @@ lists of files, or String code fragments, eg:
       end
     RUBY
 
-TODO
-----
+== TODO
 
-- Add more measurements, especially for @param, @yield and type
+* Add more measurements, especially for @param, @yield and type
   validation
-- Update yardstick_measure task to use the Yardstick::CLI library
+* Update yardstick_measure task to use the Yardstick::CLI library
   underneath.
-- Output results as HTML from command line tool and Rake task
+* Output results as HTML from command line tool and Rake task
 
 Copyright (c) 2009 Dan Kubb. See LICENSE for details.
