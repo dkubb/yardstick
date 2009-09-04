@@ -103,5 +103,7 @@ lists of files, or String code fragments, eg:
 * Update yardstick_measure task to use the Yardstick::CLI library
   underneath.
 * Output results as HTML from command line tool and Rake task
+* Specify method_missing to be @api public even if its visibility
+  is private
 
 Copyright (c) 2009 Dan Kubb. See LICENSE for details.
