@@ -96,6 +96,19 @@ module Yardstick
         assert_matches_threshold
       end
 
+    protected
+
+      # The total YARD coverage
+      #
+      # @return [Float]
+      #   the total coverage
+      #
+      # @api private
+      def total_coverage
+        measurements = Yardstick.measure(@path)
+        self.class.round_percentage(measurements.coverage * 100)
+      end
+
     private
 
       # Define the task
@@ -106,30 +119,6 @@ module Yardstick
       def define
         desc "Verify that yardstick coverage is at least #{@threshold}%"
         task(@name) { verify_measurements }
-      end
-
-      # The total YARD coverage
-      #
-      # @return [Float]
-      #   the total coverage
-      #
-      # @api private
-      def total_coverage
-        measurements = Yardstick.measure(@path)
-        round_percentage(measurements.coverage * 100)
-      end
-
-      # Round percentage to 1/10th of a percent
-      #
-      # @param [Float] percentage
-      #   the percentage to round
-      #
-      # @return [Float]
-      #   the rounded percentage
-      #
-      # @api private
-      def round_percentage(percentage)
-        (percentage * 10).ceil / 10.0
       end
 
       # Raise an exception if threshold is not set
@@ -155,6 +144,7 @@ module Yardstick
       #
       # @api private
       def assert_meets_threshold
+        total_coverage = self.total_coverage
         if total_coverage < @threshold
           raise "Coverage must be at least #{@threshold}% but was #{total_coverage}%"
         end
@@ -169,9 +159,24 @@ module Yardstick
       #
       # @api private
       def assert_matches_threshold
+        total_coverage = self.total_coverage
         if @require_exact_threshold && total_coverage > @threshold
           raise "Coverage has increased above the threshold of #{@threshold}% to #{total_coverage}%. You should update your threshold value."
         end
+      end
+
+
+      # Round percentage to 1/10th of a percent
+      #
+      # @param [Float] percentage
+      #   the percentage to round
+      #
+      # @return [Float]
+      #   the rounded percentage
+      #
+      # @api private
+      def self.round_percentage(percentage)
+        (percentage * 10).ceil / 10.0
       end
 
     end # class Verify
