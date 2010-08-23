@@ -9,12 +9,12 @@ Pathname.glob(Yardstick::ROOT.join('lib', '**', '*.rb').to_s).sort.each do |file
 end
 
 Spec::Runner.configure do |config|
-  clear_tasks = lambda { Rake::Task.clear }
+  clear_tasks = proc { Rake::Task.clear }
 
   config.before(:all, &clear_tasks)
   config.before(      &clear_tasks)
 
-  clear_yard_registry = lambda { YARD::Registry.clear }
+  clear_yard_registry = proc { YARD::Registry.clear }
 
   config.before(:all, &clear_yard_registry)
   config.before(      &clear_yard_registry)
