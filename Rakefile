@@ -13,16 +13,14 @@ begin
     gem.authors           = [ 'Dan Kubb' ]
     gem.rubyforge_project = 'yardstick'
 
-    gem.add_dependency 'yard', '~>0.4.0'
+    gem.add_dependency 'yard', '~> 0.5.8'
 
-    gem.add_development_dependency 'flay',               '~> 1.4.0'
-    gem.add_development_dependency 'flog',               '~> 2.2.0'
-    gem.add_development_dependency 'gruff',              '~> 0.3.6'
-    gem.add_development_dependency 'jscruggs-metric_fu', '~> 1.1.5'  # gem install jscruggs-metric_fu --source http://gems.github.com
-    gem.add_development_dependency 'reek',               '~> 1.2.6'
-    gem.add_development_dependency 'roodi',              '~> 2.0.1'
-    gem.add_development_dependency 'rspec',              '~> 1.2.9'
-    gem.add_development_dependency 'rmagick',            '~> 2.12.2'
+    gem.add_development_dependency 'flay',      '~> 1.4.0'
+    gem.add_development_dependency 'flog',      '~> 2.4.0'
+    gem.add_development_dependency 'metric_fu', '~> 1.5.1'
+    gem.add_development_dependency 'reek',      '~> 1.2.8'
+    gem.add_development_dependency 'roodi',     '~> 2.1.0'
+    gem.add_development_dependency 'rspec',     '~> 1.3'
   end
 
   Jeweler::RubyforgeTasks.new do |rubyforge|
