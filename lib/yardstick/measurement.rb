@@ -106,7 +106,7 @@ module Yardstick
     # @example
     #   measurement == equal_measurement  # => true
     #
-    # @param [Measurement] other
+    # @param [Yardstick::Measurement] other
     #   the other Measurement
     #
     # @return [Boolean]

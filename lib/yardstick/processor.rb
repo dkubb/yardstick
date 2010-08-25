@@ -6,7 +6,7 @@ module Yardstick
     # @param [Array<#to_s>, #to_s] path
     #   the files to measure
     #
-    # @return [MeasurementSet]
+    # @return [Yardstick::MeasurementSet]
     #   a collection of measurements
     #
     # @api private
@@ -20,7 +20,7 @@ module Yardstick
     # @param [#to_str] string
     #   the string to measure
     #
-    # @return [MeasurementSet]
+    # @return [Yardstick::MeasurementSet]
     #   a collection of measurements
     #
     # @api private
@@ -31,7 +31,7 @@ module Yardstick
 
     # Measure method objects in YARD registry
     #
-    # @return [MeasurementSet]
+    # @return [Yardstick::MeasurementSet]
     #   a collection of measurements
     #
     # @api private

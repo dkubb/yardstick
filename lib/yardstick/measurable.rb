@@ -6,7 +6,7 @@ module Yardstick
 
       # List of rules for this class
       #
-      # @return [RuleSet<Rule>]
+      # @return [Yardstick::RuleSet<Rule>]
       #   the rules for this class
       #
       # @api private
@@ -66,7 +66,7 @@ module Yardstick
     # @example
     #   docstring.measure  # => [ Measurement ]
     #
-    # @return [MeasurementSet]
+    # @return [Yardstick::MeasurementSet]
     #   a collection of measurements
     #
     # @api public

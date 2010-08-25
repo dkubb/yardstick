@@ -7,7 +7,7 @@ module Yardstick
     # @param [Array] entries
     #   optional entries
     #
-    # @return [OrderedSet]
+    # @return [Yardstick::OrderedSet]
     #   the ordered set instance
     #
     # @api private
@@ -22,7 +22,7 @@ module Yardstick
     # @param [Object] entry
     #   the object to append
     #
-    # @return [OrderedSet]
+    # @return [Yardstick::OrderedSet]
     #   returns self
     #
     # @api private
@@ -39,7 +39,7 @@ module Yardstick
     # @param [#each] other
     #   the other ordered set
     #
-    # @return [OrderedSet]
+    # @return [Yardstick::OrderedSet]
     #   returns self
     #
     # @api private
@@ -56,7 +56,7 @@ module Yardstick
     # @yieldparam [Object] entry
     #   an entry in the ordered set
     #
-    # @return [OrderedSet]
+    # @return [Yardstick::OrderedSet]
     #   returns self
     #
     # @api private

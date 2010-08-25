@@ -11,7 +11,7 @@ module Yardstick
     # @param [Array] *args
     #   arguments passed in from the command line
     #
-    # @return [MeasurementSet]
+    # @return [Yardstick::MeasurementSet]
     #   the measurement for each file
     #
     # @api public
@@ -44,7 +44,7 @@ module Yardstick
     # @param [Hash] options
     #   the options to set when parsing the command-line arguments
     #
-    # @return [OptionParser]
+    # @return [Yardstick::OptionParser]
     #   the option parser instance
     #
     # @api private

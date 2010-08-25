@@ -15,7 +15,7 @@ module Yardstick
   # @param [Hash] options
   #   optional configuration
   #
-  # @return [MeasurementSet]
+  # @return [Yardstick::MeasurementSet]
   #   the measurements for each file
   #
   # @api public
@@ -35,7 +35,7 @@ module Yardstick
   # @param [Hash] options
   #   optional configuration
   #
-  # @return [MeasurementSet]
+  # @return [Yardstick::MeasurementSet]
   #   the measurements for the string
   #
   # @api public
