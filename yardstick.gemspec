@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2010-08-22}
+  s.date = %q{2010-11-07}
   s.default_executable = %q{yardstick}
   s.email = %q{dan.kubb@gmail.com}
   s.executables = ["yardstick"]
@@ -25,7 +25,6 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "bin/yardstick",
-     "deps.rip",
      "lib/yardstick.rb",
      "lib/yardstick/autoload.rb",
      "lib/yardstick/cli.rb",
