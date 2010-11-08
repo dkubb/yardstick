@@ -1,18 +1,19 @@
 require 'rubygems'
 require 'rake'
-require 'pathname'
 
 begin
+  gem 'jeweler', '~> 1.4'
   require 'jeweler'
 
   Jeweler::Tasks.new do |gem|
-    gem.name              = 'yardstick'
-    gem.summary           = 'A tool for verifying YARD documentation coverage'
-    gem.email             = 'dan.kubb@gmail.com'
-    gem.homepage          = 'http://github.com/dkubb/yardstick'
-    gem.authors           = [ 'Dan Kubb' ]
+    gem.name     = 'yardstick'
+    gem.summary  = 'A tool for verifying YARD documentation coverage'
+    gem.email    = 'dan.kubb@gmail.com'
+    gem.homepage = 'http://github.com/dkubb/yardstick'
+    gem.authors  = [ 'Dan Kubb' ]
+    gem.has_rdoc = 'yard'
+
     gem.rubyforge_project = 'yardstick'
-    gem.has_rdoc          = 'yard'
 
     gem.add_dependency 'yard', '~> 0.6.1'
 
@@ -24,11 +25,12 @@ begin
     gem.add_development_dependency 'rspec',     '~> 1.3.1'
   end
 
-  Jeweler::RubyforgeTasks.new do |rubyforge|
-    rubyforge.remote_doc_path = ''
-  end
+  Jeweler::GemcutterTasks.new
 
-  Pathname.glob('tasks/**/*.rake').each { |task| load task.expand_path }
-rescue LoadError
-  puts 'Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler'
+  FileList['tasks/**/*.rake'].each { |task| import task }
+
+rescue LoadError => e
+  puts 'Jeweler (or a dependency) not available. Install it with: gem install jeweler'
+  puts '-----------------------------------------------------------------------------'
+  puts e.backtrace # Let's help by actually showing *which* dependency is missing
 end
