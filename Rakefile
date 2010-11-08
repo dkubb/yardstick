@@ -12,6 +12,7 @@ begin
     gem.homepage          = 'http://github.com/dkubb/yardstick'
     gem.authors           = [ 'Dan Kubb' ]
     gem.rubyforge_project = 'yardstick'
+    gem.has_rdoc          = 'yard'
 
     gem.add_dependency 'yard', '~> 0.6.1'
 

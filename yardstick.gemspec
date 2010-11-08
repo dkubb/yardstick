@@ -59,6 +59,7 @@ Gem::Specification.new do |s|
      "tasks/yardstick.rake",
      "yardstick.gemspec"
   ]
+  s.has_rdoc = %q{yard}
   s.homepage = %q{http://github.com/dkubb/yardstick}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
