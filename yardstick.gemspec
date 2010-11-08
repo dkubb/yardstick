@@ -82,30 +82,30 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<yard>, ["~> 0.5.8"])
-      s.add_development_dependency(%q<flay>, ["~> 1.4.0"])
-      s.add_development_dependency(%q<flog>, ["~> 2.4.0"])
+      s.add_runtime_dependency(%q<yard>, ["~> 0.6.1"])
+      s.add_development_dependency(%q<flay>, ["~> 1.4.1"])
+      s.add_development_dependency(%q<flog>, ["~> 2.5.0"])
       s.add_development_dependency(%q<metric_fu>, ["~> 1.5.1"])
       s.add_development_dependency(%q<reek>, ["~> 1.2.8"])
       s.add_development_dependency(%q<roodi>, ["~> 2.1.0"])
-      s.add_development_dependency(%q<rspec>, ["~> 1.3"])
+      s.add_development_dependency(%q<rspec>, ["~> 1.3.1"])
     else
-      s.add_dependency(%q<yard>, ["~> 0.5.8"])
-      s.add_dependency(%q<flay>, ["~> 1.4.0"])
-      s.add_dependency(%q<flog>, ["~> 2.4.0"])
+      s.add_dependency(%q<yard>, ["~> 0.6.1"])
+      s.add_dependency(%q<flay>, ["~> 1.4.1"])
+      s.add_dependency(%q<flog>, ["~> 2.5.0"])
       s.add_dependency(%q<metric_fu>, ["~> 1.5.1"])
       s.add_dependency(%q<reek>, ["~> 1.2.8"])
       s.add_dependency(%q<roodi>, ["~> 2.1.0"])
-      s.add_dependency(%q<rspec>, ["~> 1.3"])
+      s.add_dependency(%q<rspec>, ["~> 1.3.1"])
     end
   else
-    s.add_dependency(%q<yard>, ["~> 0.5.8"])
-    s.add_dependency(%q<flay>, ["~> 1.4.0"])
-    s.add_dependency(%q<flog>, ["~> 2.4.0"])
+    s.add_dependency(%q<yard>, ["~> 0.6.1"])
+    s.add_dependency(%q<flay>, ["~> 1.4.1"])
+    s.add_dependency(%q<flog>, ["~> 2.5.0"])
     s.add_dependency(%q<metric_fu>, ["~> 1.5.1"])
     s.add_dependency(%q<reek>, ["~> 1.2.8"])
     s.add_dependency(%q<roodi>, ["~> 2.1.0"])
-    s.add_dependency(%q<rspec>, ["~> 1.3"])
+    s.add_dependency(%q<rspec>, ["~> 1.3.1"])
   end
 end
 
