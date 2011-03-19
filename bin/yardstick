@@ -2,6 +2,6 @@
 
 require 'rubygems'
 require 'pathname'
-require Pathname(__FILE__).dirname.expand_path.parent.join('lib', 'yardstick')
+require File.expand_path('../../lib/yardstick', __FILE__)
 
 Yardstick::CLI.run(*ARGV)

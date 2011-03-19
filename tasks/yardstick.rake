@@ -1,4 +1,4 @@
-require Pathname(__FILE__).dirname.expand_path.join('..', 'lib', 'yardstick')
+require File.expand_path('../../lib/yardstick', __FILE__)
 
 # yardstick_measure task
 Yardstick::Rake::Measurement.new
