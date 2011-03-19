@@ -19,7 +19,4 @@ RCov::VerifyTask.new(:verify_rcov => :rcov) do |rcov|
   rcov.threshold = 100
 end
 
-task :spec => :check_dependencies
-task :rcov => :check_dependencies
-
 task :default => :spec
