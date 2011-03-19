@@ -1,5 +1,4 @@
-require 'pathname'
-require Pathname(__FILE__).dirname.expand_path.join('..', '..', '..', 'spec_helper')
+require 'spec_helper'
 
 shared_examples_for 'set default name for measurement task' do
   it 'should set name to :yardstick_measure' do

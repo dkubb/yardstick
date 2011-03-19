@@ -1,5 +1,4 @@
-require 'pathname'
-require Pathname(__FILE__).dirname.expand_path.join('..', '..', 'spec_helper')
+require 'spec_helper'
 
 describe Yardstick::MeasurementSet do
   before do

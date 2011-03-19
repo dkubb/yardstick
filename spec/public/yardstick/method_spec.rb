@@ -1,5 +1,4 @@
-require 'pathname'
-require Pathname(__FILE__).dirname.expand_path.join('..', '..', 'spec_helper')
+require 'spec_helper'
 
 shared_examples_for 'method is measured' do
   before do
