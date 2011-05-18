@@ -1,11 +1,36 @@
-*.rbc
-*.sw?
+## MAC OS
 .DS_Store
-.yardoc
+
+## TEXTMATE
+*.tmproj
+tmtags
+
+## EMACS
+*~
+\#*
+.\#*
+
+## VIM
+*.swp
+
+## Rubinius
+*.rbc
+
+## PROJECT::GENERAL
+*.gem
 coverage
 profiling
-measurements
+turbulence
 rdoc
-doc
 pkg
 tmp
+doc
+log
+.yardoc
+measurements
+
+## BUNDLER
+.bundle
+Gemfile.lock
+
+## PROJECT::SPECIFIC
