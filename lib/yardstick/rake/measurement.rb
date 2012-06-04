@@ -10,9 +10,6 @@ module Yardstick
 
       # List of paths to measure
       #
-      # @param [Array<#to_s>, #to_s] path
-      #   optional list of paths to measure
-      #
       # @return [undefined]
       #
       # @api public

@@ -8,7 +8,7 @@ module Yardstick
     # @example
     #   Yardstick::CLI.run(%w[ article.rb ])  # => [ Measurement ]
     #
-    # @param [Array] *args
+    # @param [Array] args
     #   arguments passed in from the command line
     #
     # @return [Yardstick::MeasurementSet]

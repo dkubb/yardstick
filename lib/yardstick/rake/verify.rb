@@ -7,18 +7,12 @@ module Yardstick
 
       # Set the threshold
       #
-      # @param [Number] threshold
-      #   the threshold to set
-      #
       # @return [undefined]
       #
       # @api public
       attr_writer :threshold
 
       # Specify if the threshold should match the coverage
-      #
-      # @param [Boolean] require_exact_threshold
-      #   true if the threshold should match the coverage, false if not
       #
       # @return [undefined]
       #
@@ -27,18 +21,12 @@ module Yardstick
 
       # List of paths to measure
       #
-      # @param [Array<#to_s>, #to_s] path
-      #   optional list of paths to measure
-      #
       # @return [undefined]
       #
       # @api public
       attr_writer :path
 
       # Specify if the coverage summary should be displayed
-      #
-      # @param [Boolean] verbose
-      #   true if the coverage summary should be displayed, false if not
       #
       # @return [undefined]
       #
