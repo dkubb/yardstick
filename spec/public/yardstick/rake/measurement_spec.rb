@@ -53,7 +53,7 @@ describe Yardstick::Rake::Measurement do
       end
 
       it 'should include the path in the task name' do
-        Rake::Task['yardstick_measure'].comment.should == 'Measure docs in lib/**/*.rb with yardstick'
+        Rake.application.last_description.should == 'Measure docs in lib/**/*.rb with yardstick'
       end
 
       def execute_action
@@ -84,7 +84,7 @@ describe Yardstick::Rake::Measurement do
       end
 
       it 'should include the path in the task name' do
-        Rake::Task['custom_task_name'].comment.should == 'Measure docs in lib/**/*.rb with yardstick'
+        Rake.application.last_description.should == 'Measure docs in lib/**/*.rb with yardstick'
       end
 
       def execute_action
@@ -119,7 +119,7 @@ describe Yardstick::Rake::Measurement do
       end
 
       it 'should include the path in the task name' do
-        Rake::Task['yardstick_measure'].comment.should == 'Measure docs in lib/**/*.rb with yardstick'
+        Rake.application.last_description.should == 'Measure docs in lib/**/*.rb with yardstick'
       end
 
       def execute_action

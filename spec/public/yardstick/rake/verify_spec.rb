@@ -49,7 +49,7 @@ describe Yardstick::Rake::Verify do
       end
 
       it 'should include the threshold in the task name' do
-        Rake::Task['verify_measurements'].comment.should == 'Verify that yardstick coverage is at least 100%'
+        Rake.application.last_description.should == 'Verify that yardstick coverage is at least 100%'
       end
 
       it 'should display coverage summary when executed' do
@@ -85,7 +85,7 @@ describe Yardstick::Rake::Verify do
       end
 
       it 'should include the threshold in the task name' do
-        Rake::Task['custom_task_name'].comment.should == 'Verify that yardstick coverage is at least 100%'
+        Rake.application.last_description.should == 'Verify that yardstick coverage is at least 100%'
       end
 
       it 'should display coverage summary when executed' do
