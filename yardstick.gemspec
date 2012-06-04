@@ -4,15 +4,15 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{yardstick}
-  s.version = "0.4.0"
+  s.name = "yardstick"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Dan Kubb}]
-  s.date = %q{2011-05-18}
-  s.description = %q{Measure YARD documentation coverage}
-  s.email = %q{dan.kubb@gmail.com}
-  s.executables = [%q{yardstick}]
+  s.authors = ["Dan Kubb"]
+  s.date = "2012-06-04"
+  s.description = "Measure YARD documentation coverage"
+  s.email = "dan.kubb@gmail.com"
+  s.executables = ["yardstick"]
   s.extra_rdoc_files = [
     "LICENSE",
     "README.rdoc"
@@ -59,10 +59,10 @@ Gem::Specification.new do |s|
     "tasks/yardstick.rake",
     "yardstick.gemspec"
   ]
-  s.homepage = %q{http://github.com/dkubb/yardstick}
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.2}
-  s.summary = %q{A tool for verifying YARD documentation coverage}
+  s.homepage = "http://github.com/dkubb/yardstick"
+  s.require_paths = ["lib"]
+  s.rubygems_version = "1.8.24"
+  s.summary = "A tool for verifying YARD documentation coverage"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3

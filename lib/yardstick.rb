@@ -2,7 +2,7 @@ require 'pathname'
 require 'yard'
 
 module Yardstick
-  VERSION = '0.1.0'.freeze
+  VERSION = '0.5.0'.freeze
   ROOT    = Pathname(__FILE__).dirname.parent.expand_path.freeze
 
   # Measure a list of files
