@@ -57,6 +57,7 @@ module Yardstick
       def extended(docstring)
         included(docstring.meta_class)
       end
+
     end # module ClassMethods
 
     extend ClassMethods

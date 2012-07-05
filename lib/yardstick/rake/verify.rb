@@ -153,7 +153,6 @@ module Yardstick
         end
       end
 
-
       # Round percentage to 1/10th of a percent
       #
       # @param [Float] percentage
