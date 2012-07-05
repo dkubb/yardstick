@@ -20,7 +20,7 @@ module Yardstick
   #
   # @api public
   def self.measure(path = 'lib/**/*.rb', options = {})
-    Yardstick::Processor.process_path(path)
+    Processor.process_path(path)
   end
 
   # Measure a string of code and YARD documentation
@@ -40,7 +40,7 @@ module Yardstick
   #
   # @api public
   def self.measure_string(string, options = {})
-    Yardstick::Processor.process_string(string)
+    Processor.process_string(string)
   end
 
 end # module Yardstick
