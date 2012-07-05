@@ -1,5 +1,4 @@
 require 'pathname'
-require 'yard'
 
 module Yardstick
   VERSION = '0.6.0'.freeze

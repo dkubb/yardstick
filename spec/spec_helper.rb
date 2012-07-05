@@ -2,6 +2,7 @@ require 'pathname'
 require 'rubygems'
 require 'spec/autorun'
 
+require 'yard'
 require 'yardstick'
 
 Pathname.glob(Yardstick::ROOT.join('lib', '**', '*.rb').to_s).sort.each do |file|
