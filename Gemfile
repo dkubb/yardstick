@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'yard', '~> 0.8.1'
+gem 'yard', '~> 0.8.3'
 
 group :development do
   gem 'jeweler', '~> 1.8.3'
