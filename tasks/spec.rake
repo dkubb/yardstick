@@ -3,6 +3,7 @@ require 'spec/rake/verify_rcov'
 
 spec_defaults = lambda do |spec|
   spec.pattern    = 'spec/**/*_spec.rb'
+  spec.ruby_opts = %w[ -r./spec/support/config_alias ]
   spec.spec_opts << '--options' << 'spec/spec.opts'
 end
 
