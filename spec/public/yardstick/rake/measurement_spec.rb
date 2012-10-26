@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'yardstick/rake/measurement'
 
 shared_examples_for 'set default name for measurement task' do
   it 'should set name to :yardstick_measure' do

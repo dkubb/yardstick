@@ -1,5 +1,3 @@
-require 'rational'
-
 module Yardstick
   class MeasurementSet < OrderedSet
 

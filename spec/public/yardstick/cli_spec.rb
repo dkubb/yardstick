@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'yardstick/cli'
 
 shared_examples_for 'displays help' do
   it 'should display the help message' do

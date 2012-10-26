@@ -1,20 +1,7 @@
 require 'rake'
 
-begin
-  require 'jeweler'
+require File.expand_path('../lib/yardstick/version', __FILE__)
 
-  Jeweler::Tasks.new do |gem|
-    gem.name        = 'yardstick'
-    gem.summary     = 'A tool for verifying YARD documentation coverage'
-    gem.description = 'Measure YARD documentation coverage'
-    gem.email       = 'dan.kubb@gmail.com'
-    gem.homepage    = 'http://github.com/dkubb/yardstick'
-    gem.authors     = [ 'Dan Kubb' ]
-  end
+FileList['tasks/**/*.rake'].each { |task| import task }
 
-  Jeweler::GemcutterTasks.new
-
-  FileList['tasks/**/*.rake'].each { |task| import task }
-rescue LoadError
-  puts 'Jeweler (or a dependency) not available. Install it with: gem install jeweler'
-end
+task :default => :spec

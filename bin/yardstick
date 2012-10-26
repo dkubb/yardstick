@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby -KU
 
-require 'rubygems'
-require 'pathname'
-require File.expand_path('../../lib/yardstick', __FILE__)
+$LOAD_PATH.unshift(File.expand_path('../../lib', __FILE__))
+
+require 'yardstick'
+require 'yardstick/cli'
 
 Yardstick::CLI.run(*ARGV)

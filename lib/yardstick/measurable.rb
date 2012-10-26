@@ -55,7 +55,7 @@ module Yardstick
       #
       # @api private
       def extended(docstring)
-        included(docstring.meta_class)
+        included(docstring.singleton_class)
       end
 
     end # module ClassMethods
@@ -72,7 +72,7 @@ module Yardstick
     #
     # @api public
     def measure
-      meta_class.rules.measure(self)
+      singleton_class.rules.measure(self)
     end
 
   end # module Measurable

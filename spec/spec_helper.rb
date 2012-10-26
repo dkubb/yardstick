@@ -1,13 +1,6 @@
-require 'pathname'
-require 'rubygems'
-require 'spec/autorun'
-
-require 'yard'
 require 'yardstick'
-
-Pathname.glob(Yardstick::ROOT.join('lib', '**', '*.rb').to_s).sort.each do |file|
-  require file.to_s.chomp('.rb')
-end
+require 'spec'
+require 'spec/autorun'
 
 Spec::Runner.configure do |config|
   clear_tasks = proc { Rake::Task.clear }

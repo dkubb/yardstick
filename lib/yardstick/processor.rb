@@ -1,5 +1,3 @@
-require 'yard'
-
 module Yardstick
   class Processor
 

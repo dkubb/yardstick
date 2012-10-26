@@ -1,4 +1,7 @@
-require File.expand_path('../../lib/yardstick', __FILE__)
+$LOAD_PATH.unshift(File.expand_path('../../lib', __FILE__))
+
+require 'yardstick/rake/measurement'
+require 'yardstick/rake/verify'
 
 # yardstick_measure task
 Yardstick::Rake::Measurement.new

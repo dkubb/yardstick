@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'yardstick/rake/verify'
 
 shared_examples_for 'set default name for verify task' do
   it 'should set name to :verify_measurements' do

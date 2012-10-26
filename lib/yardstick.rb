@@ -1,8 +1,26 @@
 require 'pathname'
+require 'rational'
+
+require 'backports'
+require 'yard'
+
+require 'yardstick/yard_ext'
+
+require 'yardstick/ordered_set'
+require 'yardstick/rule_set'
+require 'yardstick/measurement'
+
+require 'yardstick/measurement_set'
+require 'yardstick/processor'
+require 'yardstick/rule'
+
+require 'yardstick/measurable'
+require 'yardstick/method'
+
+require 'yardstick/version'
 
 module Yardstick
-  VERSION = '0.6.0'.freeze
-  ROOT    = Pathname(__FILE__).dirname.parent.expand_path.freeze
+  ROOT = Pathname(__FILE__).dirname.parent.expand_path.freeze
 
   # Measure a list of files
   #
@@ -43,9 +61,3 @@ module Yardstick
   end
 
 end # module Yardstick
-
-$LOAD_PATH.unshift((Yardstick::ROOT + 'lib').to_s)
-
-require 'yardstick/core_ext/object'
-require 'yardstick/yard_ext'
-require 'yardstick/autoload'

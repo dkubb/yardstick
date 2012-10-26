@@ -1,6 +1,8 @@
 require 'rake'
 require 'rake/tasklib'
 
+require 'yardstick'
+
 module Yardstick
   module Rake
     class Verify < ::Rake::TaskLib
