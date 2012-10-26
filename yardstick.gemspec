@@ -91,3 +91,4 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rspec>, ["~> 1.3.2"])
   end
 end
+
