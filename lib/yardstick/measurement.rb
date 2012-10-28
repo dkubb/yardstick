@@ -1,4 +1,6 @@
 module Yardstick
+
+  # A measurement given a constraint on the docs
   class Measurement
 
     # Return the Measurement description

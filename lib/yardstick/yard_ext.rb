@@ -1,5 +1,7 @@
 module YARD  #:nodoc: all
   module CodeObjects
+
+    # A YARD extension
     class MethodObject
 
       # Return the docstring associated with the method

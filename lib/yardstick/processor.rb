@@ -1,4 +1,6 @@
 module Yardstick
+
+  # Handle procesing a docstring or path of files
   class Processor
 
     # Measure files provided

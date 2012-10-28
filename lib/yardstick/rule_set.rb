@@ -1,4 +1,6 @@
 module Yardstick
+
+  # A set of rules to apply to docs
   class RuleSet < OrderedSet
 
     # Measure a docstring with all Rules

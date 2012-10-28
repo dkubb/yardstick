@@ -1,4 +1,6 @@
 module Yardstick
+
+  # A set of yardstick measurements
   class MeasurementSet < OrderedSet
 
     # The total number of measurements

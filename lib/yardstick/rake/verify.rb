@@ -5,6 +5,8 @@ require 'yardstick'
 
 module Yardstick
   module Rake
+
+    # A rake task for verifying the doc thresholds
     class Verify < ::Rake::TaskLib
 
       # Set the threshold

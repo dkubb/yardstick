@@ -1,4 +1,6 @@
 module Yardstick
+
+  # A base class for an ordered set
   class OrderedSet
     include Enumerable
 

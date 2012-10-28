@@ -6,6 +6,8 @@ require 'yardstick'
 
 module Yardstick
   module Rake
+
+    # A rake task for measuring docs in a set of files
     class Measurement < ::Rake::TaskLib
 
       # List of paths to measure

@@ -1,4 +1,6 @@
 module Yardstick
+
+  # A constraint on the docs
   class Rule
 
     # Return a Rule instance
