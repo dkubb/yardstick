@@ -1,27 +1,34 @@
 require 'spec_helper'
 
 describe Yardstick::Rule do
-  describe '#eql?' do
-    describe 'when rules are equal' do
-      before do
-        @rule  = Yardstick::Rule.new('test rule') { true }
-        @other = Yardstick::Rule.new('test rule') { true }
-      end
+  let(:object)      { described_class.new(description) { true } }
+  let(:description) { 'test rule'                               }
 
-      it 'should return true' do
-        @rule.eql?(@other).should be_true
+  describe '#eql?' do
+    subject { object.eql?(other) }
+
+    describe 'when rules are equal' do
+      let(:other) { described_class.new(description) { true } }
+
+      it 'is true' do
+        should be(true)
       end
     end
 
     describe 'when rules are not equal' do
-      before do
-        @rule  = Yardstick::Rule.new('test rule')  { true }
-        @other = Yardstick::Rule.new('other rule') { true }
-      end
+      let(:other) { described_class.new('other rule') { true } }
 
-      it 'should return false' do
-        @rule.eql?(@other).should be_false
+      it 'is false' do
+        should be(false)
       end
+    end
+  end
+
+  describe '#hash' do
+    subject { object.hash }
+
+    it 'is the expected hash' do
+      should == description.hash
     end
   end
 end
