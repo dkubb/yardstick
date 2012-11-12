@@ -4,6 +4,18 @@ module Yardstick
 
     module ClassMethods
 
+      # Include the class or module with measurable class methods
+      #
+      # @param [Module] mod
+      #   the module to include within
+      #
+      # @return [undefined]
+      #
+      # @api private
+      def included(mod)
+        mod.extend(ClassMethods).rules.merge(rules)
+      end
+
       # List of rules for this class
       #
       # @return [Yardstick::RuleSet<Rule>]
@@ -32,32 +44,6 @@ module Yardstick
         rules << Rule.new(description, &block)
       end
 
-    private
-
-      # Include the class or module with measurable class methods
-      #
-      # @param [Module] mod
-      #   the module to include within
-      #
-      # @return [undefined]
-      #
-      # @api private
-      def included(mod)
-        mod.extend(ClassMethods).rules.merge(rules)
-      end
-
-      # Extend the docstring meta class with measurable class methods
-      #
-      # @param [YARD::Docstring] docstring
-      #   the docstring to extend
-      #
-      # @return [undefined]
-      #
-      # @api private
-      def extended(docstring)
-        included(docstring.singleton_class)
-      end
-
     end # module ClassMethods
 
     extend ClassMethods
@@ -72,7 +58,7 @@ module Yardstick
     #
     # @api public
     def measure
-      singleton_class.rules.measure(self)
+      self.class.rules.measure(self)
     end
 
   end # module Measurable

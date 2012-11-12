@@ -4,8 +4,6 @@ require 'rational'
 require 'backports'
 require 'yard'
 
-require 'yardstick/yard_ext'
-
 require 'yardstick/ordered_set'
 require 'yardstick/rule_set'
 require 'yardstick/measurement'
@@ -16,6 +14,8 @@ require 'yardstick/rule'
 
 require 'yardstick/measurable'
 require 'yardstick/method'
+
+require 'yardstick/yard_ext'
 
 require 'yardstick/version'
 
