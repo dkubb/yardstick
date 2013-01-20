@@ -2,14 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'backports', '~> 2.7.0'
-gem 'yard',      '~> 0.8.3'
-
-group :development do
-  gem 'jeweler', '~> 1.8.3'
-  gem 'rake',    '~> 0.9.2'
-  gem 'rspec',   '~> 1.3.2'
-end
+gemspec
 
 group :jruby do
   platform :jruby do
