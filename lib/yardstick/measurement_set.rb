@@ -53,7 +53,7 @@ module Yardstick
     #
     # @api public
     def coverage
-      empty? ? 0 : Rational(successful, total)
+      empty? ? 1 : Rational(successful, total)
     end
 
     # Warn the unsuccessful measurements and a summary

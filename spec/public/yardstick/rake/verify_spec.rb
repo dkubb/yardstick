@@ -189,7 +189,7 @@ describe Yardstick::Rake::Verify do
     describe 'with threshold not met' do
       before do
         @task = Yardstick::Rake::Verify.new do |verify|
-          verify.threshold = 0.1
+          verify.threshold = 101.0
           verify.path      = 'spec/spec_helper.rb'
         end
       end
@@ -199,10 +199,10 @@ describe Yardstick::Rake::Verify do
           capture_stdout do
             @task.verify_measurements
           end
-        }.should raise_error(RuntimeError, 'Coverage must be at least 0.1% but was 0.0%')
+        }.should raise_error(RuntimeError, 'Coverage must be at least 101.0% but was 100.0%')
 
         # check the stdout output
-        @output.should == "Coverage: 0.0% (threshold: 0.1%)\n"
+        @output.should == "Coverage: 100.0% (threshold: 101.0%)\n"
       end
     end
 

@@ -211,8 +211,8 @@ describe Yardstick::MeasurementSet do
 
   describe '#coverage' do
     describe 'when there are no measurements' do
-      it 'should return 0' do
-        @measurements.coverage.should eql(0)
+      it 'should return 1' do
+        @measurements.coverage.should eql(1)
       end
     end
 
