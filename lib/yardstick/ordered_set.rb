@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Yardstick
 
   # A base class for an ordered set

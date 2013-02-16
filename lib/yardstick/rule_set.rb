@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Yardstick
 
   # A set of rules to apply to docs

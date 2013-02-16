@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module YARD  #:nodoc: all
 
   # Extend docstring with yardstick methods
