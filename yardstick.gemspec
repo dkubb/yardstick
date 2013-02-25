@@ -11,6 +11,7 @@ Gem::Specification.new do |gem|
   gem.description = 'Measure YARD documentation coverage'
   gem.summary     = 'A tool for verifying YARD documentation coverage'
   gem.homepage    = 'https://github.com/dkubb/yardstick'
+  gem.licenses    = ['MIT']
 
   gem.require_paths    = %w[lib]
   gem.files            = `git ls-files`.split($/)
