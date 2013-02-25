@@ -1,10 +1,11 @@
-# encoding: utf-8
-
-require File.expand_path('../lib/yardstick/version', __FILE__)
+# coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'yardstick/version'
 
 Gem::Specification.new do |gem|
   gem.name        = 'yardstick'
-  gem.version     = Yardstick::VERSION.dup
+  gem.version     = Yardstick::VERSION
   gem.authors     = ['Dan Kubb']
   gem.email       = %w[dan.kubb@gmail.com]
   gem.description = 'Measure YARD documentation coverage'
