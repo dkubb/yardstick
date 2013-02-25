@@ -1,8 +1,11 @@
-# encoding: utf-8
+# coding: utf-8
 
 source 'https://rubygems.org'
 
 gemspec
+
+gem 'rake', '~> 10.0.3'
+gem 'rspec', '~> 1.3.2'
 
 group :yard do
   gem 'redcarpet', '~> 2.2.2', :platforms => [ :mri, :rbx ]
