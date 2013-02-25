@@ -8,7 +8,7 @@ gem 'rake', '~> 10.0.3'
 gem 'rspec', '~> 1.3.2'
 
 group :yard do
-  gem 'redcarpet', '~> 2.2.2', :platforms => [ :mri, :rbx ]
+  gem 'kramdown', '~> 0.14.2'
 end
 
 group :guard do
