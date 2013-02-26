@@ -16,6 +16,14 @@ module Yardstick
     # @api public
     attr_reader :description
 
+    # Return the method docstring
+    #
+    # @return [YARD::Docstring]
+    #
+    # @api private
+    attr_reader :docstring
+    protected :docstring
+
     # Return a Measurement instance
     #
     # @example
@@ -118,8 +126,9 @@ module Yardstick
     #
     # @api semipublic
     def eql?(other)
-      @description.eql?(other.instance_variable_get(:@description)) &&
-      @docstring.eql?(other.instance_variable_get(:@docstring))
+      other.kind_of?(self.class) &&
+      description.eql?(other.description) &&
+      docstring.eql?(other.docstring)
     end
 
     # Return hash identifier for the Measurement
@@ -129,7 +138,7 @@ module Yardstick
     #
     # @api private
     def hash
-      [ @description, @docstring ].hash
+      @description.hash ^ @docstring.hash
     end
 
   private
