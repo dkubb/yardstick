@@ -7,8 +7,8 @@ gemspec
 gem 'rake', '~> 10.0.3'
 gem 'rspec', '~> 1.3.2'
 
-group :yard do
-  gem 'kramdown', '~> 0.14.2'
+group :benchmarks do
+  gem 'rbench', '~> 0.2.3'
 end
 
 group :guard do
@@ -25,6 +25,12 @@ group :guard do
   gem 'libnotify',               '~> 0.8.0', :require => false
   gem 'rb-notifu',               '~> 0.0.4', :require => false
   gem 'terminal-notifier-guard', '~> 1.5.3', :require => false
+end
+
+platform :jruby do
+  group :jruby do
+    gem 'jruby-openssl', '~> 0.8.2'
+  end
 end
 
 group :metrics do
@@ -50,21 +56,16 @@ group :metrics do
     gem 'rails_best_practices', '= 1.13.3'  # for metric_fu
   end
 
-  platforms :mri_19 do
-    gem 'simplecov', '~> 0.7.1'
-  end
-
   platforms :rbx do
     gem 'pelusa', '~> 0.2.2'
   end
 end
 
-group :benchmarks do
-  gem 'rbench', '~> 0.2.3'
+group :test do
+  gem 'coveralls', '~> 0.5.6'
+  gem 'simplecov', '~> 0.7.1'
 end
 
-platform :jruby do
-  group :jruby do
-    gem 'jruby-openssl', '~> 0.8.2'
-  end
+group :yard do
+  gem 'kramdown', '~> 0.14.2'
 end
