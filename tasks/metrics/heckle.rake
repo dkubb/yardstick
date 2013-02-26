@@ -1,9 +1,9 @@
 # original code by Ashley Moran:
 # http://aviewfromafar.net/2007/11/1/rake-task-for-heckling-your-specs
 desc 'Heckle each module and class'
-task :heckle => :verify_rcov do
+task 'metrics:heckle' => 'metrics:coverage' do
   root_module = 'Yardstick'
-  spec_files  = FileList['spec/**/*_spec.rb']
+  spec_files  = FileList['spec/uni/**/*_spec.rb']
 
   current_module = nil
   current_method = nil
