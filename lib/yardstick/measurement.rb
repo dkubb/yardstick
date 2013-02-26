@@ -109,7 +109,7 @@ module Yardstick
     # @api public
     def puts(io = $stdout)
       unless ok?
-        io.puts("#{file}:#{line}: #{path}: #{@description}")
+        io.puts("#{file}:#{line}: #{path}: #{description}")
       end
     end
 
@@ -138,7 +138,7 @@ module Yardstick
     #
     # @api private
     def hash
-      @description.hash ^ @docstring.hash
+      description.hash ^ docstring.hash
     end
 
   private
@@ -153,7 +153,7 @@ module Yardstick
     # @api private
     def measure
       catch :measurement do
-        @docstring.instance_eval(&@block)
+        docstring.instance_eval(&@block)
       end
     end
 
@@ -164,7 +164,7 @@ module Yardstick
     #
     # @api private
     def object
-      @docstring.object
+      docstring.object
     end
 
     # The filename for the code
@@ -225,6 +225,5 @@ module Yardstick
       end
 
     end # module UtilityMethods
-
   end # class Measurement
 end # module Yardstick
