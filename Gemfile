@@ -1,11 +1,13 @@
-# coding: utf-8
+# encoding: utf-8
 
 source 'https://rubygems.org'
 
 gemspec
 
-gem 'rake', '~> 10.0.3'
-gem 'rspec', '~> 1.3.2'
+group :development do
+  gem 'rake',  '~> 10.0.3'
+  gem 'rspec', '~> 1.3.2'
+end
 
 group :benchmarks do
   gem 'rbench', '~> 0.2.3'
