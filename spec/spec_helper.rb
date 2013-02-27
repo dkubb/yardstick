@@ -19,7 +19,7 @@ end
 
 require 'yardstick'
 require 'spec'
-require 'rspec/autorun' if RUBY_VERSION < '1.9'
+require 'spec/autorun' if RUBY_VERSION < '1.9'
 
 # require spec support files and shared behavior
 Dir[File.expand_path('../{support,shared}/**/*.rb', __FILE__)].each do |file|
