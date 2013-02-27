@@ -1,5 +1,5 @@
 language: ruby
-bundler_args: --without yard guard benchmarks metrics
+bundler_args: --without yard guard benchmarks
 script: "bundle exec rake ci"
 rvm:
   - ree
