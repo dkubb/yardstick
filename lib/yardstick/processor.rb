@@ -15,7 +15,7 @@ module Yardstick
     #
     # @api private
     def self.process_path(path)
-      YARD.parse(Array(path).map { |file| file.to_s })
+      YARD.parse(Array(path).map(&:to_s), [], YARD::Logger::ERROR)
       measurements
     end
 
