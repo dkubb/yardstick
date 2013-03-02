@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
   gem.require_paths    = %w[lib]
   gem.files            = `git ls-files`.split($/)
   gem.test_files       = `git ls-files -- spec/{public,semipublic}`.split($/)
-  gem.extra_rdoc_files = %w[LICENSE README.rdoc]
+  gem.extra_rdoc_files = %w[LICENSE README.md]
   gem.executables      = %w[yardstick]
 
   gem.add_dependency 'backports', ['~> 3.0', '>= 3.0.3']
