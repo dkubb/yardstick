@@ -7,11 +7,11 @@
 
 Yardstick is a tool that verifies documentation coverage of Ruby code.  It will measure the source and provide feedback on what is missing from the documentation and what can be improved.
 
-* [Homepage][http://yardstick.rubyforge.org/]
-* [Git][http://github.com/dkubb/yardstick]
-* [Bug Tracker][http://github.com/dkubb/yardstick/issues]
-* [Mailing List][http://groups.google.com/group/yardstick]
-* [IRC][irc://irc.freenode.net/yardstick]
+* [Homepage](http://yardstick.rubyforge.org/)
+* [Git](http://github.com/dkubb/yardstick)
+* [Bug Tracker](http://github.com/dkubb/yardstick/issues)
+* [Mailing List](http://groups.google.com/group/yardstick)
+* [IRC](irc://irc.freenode.net/yardstick)
 
 Installation
 ------------
@@ -25,7 +25,7 @@ $ irb -rubygems
 => true
 ```
 
-With the {Rip package manager}[http://hellorip.com/]:
+With the [Rip package manager](http://hellorip.com/):
 
 ```
 $ rip install git://github.com/dkubb/yardstick.git 0.1.0
