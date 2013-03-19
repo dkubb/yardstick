@@ -21,7 +21,7 @@ end
 
 shared_examples_for 'displays coverage summary' do
   it 'should output the coverage summary' do
-    @output.should == "\nCoverage: 100.0%  Success: 20  Failed: 0  Total: 20\n"
+    @output.should == "\nYARD-Coverage: 100.0%  Success: 20  Failed: 0  Total: 20\n"
   end
 end
 

@@ -85,7 +85,7 @@ module Yardstick
       #
       # @api public
       def verify_measurements
-        puts "Coverage: #{total_coverage}% (threshold: #{@threshold}%)" if verbose
+        puts "YARD-Coverage: #{total_coverage}% (threshold: #{@threshold}%)" if verbose
         assert_meets_threshold
         assert_matches_threshold
       end
@@ -140,7 +140,7 @@ module Yardstick
       def assert_meets_threshold
         total_coverage = self.total_coverage
         if total_coverage < @threshold
-          raise "Coverage must be at least #{@threshold}% but was #{total_coverage}%"
+          raise "YARD-Coverage must be at least #{@threshold}% but was #{total_coverage}%"
         end
       end
 
@@ -155,7 +155,7 @@ module Yardstick
       def assert_matches_threshold
         total_coverage = self.total_coverage
         if @require_exact_threshold && total_coverage > @threshold
-          raise "Coverage has increased above the threshold of #{@threshold}% to #{total_coverage}%. You should update your threshold value."
+          raise "YARD-Coverage has increased above the threshold of #{@threshold}% to #{total_coverage}%. You should update your threshold value."
         end
       end
 

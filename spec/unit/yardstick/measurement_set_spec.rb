@@ -245,7 +245,7 @@ describe Yardstick::MeasurementSet do
 
       it 'should output the summary' do
         @output.should == "(stdin):1: #test: test measurement\n" \
-          "\nCoverage: 0.0%  Success: 0  Failed: 1  Total: 1\n"
+          "\nYARD-Coverage: 0.0%  Success: 0  Failed: 1  Total: 1\n"
       end
     end
 
@@ -259,7 +259,7 @@ describe Yardstick::MeasurementSet do
 
       it 'should output the summary' do
         @output.should == "(stdin):1: #test: test measurement\n" \
-          "\nCoverage: 0.0%  Success: 0  Failed: 1  Total: 1\n"
+          "\nYARD-Coverage: 0.0%  Success: 0  Failed: 1  Total: 1\n"
       end
     end
   end

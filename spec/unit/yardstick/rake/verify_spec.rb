@@ -60,7 +60,7 @@ describe Yardstick::Rake::Verify do
 
         capture_stdout { Rake::Task['verify_measurements'].execute }
 
-        @output.should == "Coverage: 100.0% (threshold: 100%)\n"
+        @output.should == "YARD-Coverage: 100.0% (threshold: 100%)\n"
       end
     end
 
@@ -96,7 +96,7 @@ describe Yardstick::Rake::Verify do
 
         capture_stdout { Rake::Task['custom_task_name'].execute }
 
-        @output.should == "Coverage: 100.0% (threshold: 100%)\n"
+        @output.should == "YARD-Coverage: 100.0% (threshold: 100%)\n"
       end
     end
 
@@ -184,7 +184,7 @@ describe Yardstick::Rake::Verify do
       end
 
       it 'should output coverage summary' do
-        @output.should == "Coverage: 100.0% (threshold: 100%)\n"
+        @output.should == "YARD-Coverage: 100.0% (threshold: 100%)\n"
       end
     end
 
@@ -201,10 +201,10 @@ describe Yardstick::Rake::Verify do
           capture_stdout do
             @task.verify_measurements
           end
-        }.should raise_error(RuntimeError, 'Coverage must be at least 101.0% but was 100.0%')
+        }.should raise_error(RuntimeError, 'YARD-Coverage must be at least 101.0% but was 100.0%')
 
         # check the stdout output
-        @output.should == "Coverage: 100.0% (threshold: 101.0%)\n"
+        @output.should == "YARD-Coverage: 100.0% (threshold: 101.0%)\n"
       end
     end
 
@@ -221,10 +221,10 @@ describe Yardstick::Rake::Verify do
           capture_stdout do
             @task.verify_measurements
           end
-        }.should raise_error(RuntimeError, 'Coverage has increased above the threshold of 99.9% to 100.0%. You should update your threshold value.')
+        }.should raise_error(RuntimeError, 'YARD-Coverage has increased above the threshold of 99.9% to 100.0%. You should update your threshold value.')
 
         # check the stdout output
-        @output.should == "Coverage: 100.0% (threshold: 99.9%)\n"
+        @output.should == "YARD-Coverage: 100.0% (threshold: 99.9%)\n"
       end
     end
   end

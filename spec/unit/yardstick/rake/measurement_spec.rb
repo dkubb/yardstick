@@ -27,7 +27,7 @@ shared_examples_for 'report writer' do
   it 'should write the report' do
     @task.path = 'lib/yardstick.rb'  # speed up execution
     execute_action
-    @output.read.should == "\nCoverage: 100.0%  Success: 20  Failed: 0  Total: 20\n"
+    @output.read.should == "\nYARD-Coverage: 100.0%  Success: 20  Failed: 0  Total: 20\n"
   end
 end
 

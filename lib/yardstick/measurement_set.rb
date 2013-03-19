@@ -95,7 +95,7 @@ module Yardstick
     #
     # @api private
     def coverage_text
-      'Coverage: %.1f%%' % (coverage * 100)
+      'YARD-Coverage: %.1f%%' % (coverage * 100)
     end
 
     # The text for the successful measurements to include in the summary
