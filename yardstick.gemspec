@@ -21,8 +21,8 @@ Gem::Specification.new do |gem|
   gem.extra_rdoc_files = %w[LICENSE README.md]
   gem.executables      = %w[yardstick]
 
-  gem.add_dependency 'backports', ['~> 3.0', '>= 3.0.3']
-  gem.add_dependency 'yard',      '~> 0.8.5'
+  gem.add_runtime_dependency('backports', '~> 3.3', '>= 3.3.0')
+  gem.add_runtime_dependency('yard',      '~> 0.8', '>= 0.8.6')
 
-  gem.add_development_dependency 'bundler', '~> 1.0'
+  gem.add_development_dependency('bundler', '~> 1.3', '>= 1.3.5')
 end
