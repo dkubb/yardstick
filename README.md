@@ -136,4 +136,4 @@ RUBY
 * Allow @return type to be "self" to specify the return value is
   the object itself.  Ask argv[0] if it can be made a YARD convention.
 
-Copyright (c) 2009 Dan Kubb. See LICENSE for details.
+Copyright (c) 2009-2013 Dan Kubb. See LICENSE for details.
