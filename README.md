@@ -1,9 +1,17 @@
 # Yardstick
 ===========
 
-[![Build Status](https://secure.travis-ci.org/dkubb/yardstick.png?branch=master)](http://travis-ci.org/dkubb/yardstick)
-[![Dependency Status](https://gemnasium.com/dkubb/yardstick.png)](https://gemnasium.com/dkubb/yardstick)
-[![Code Climate](https://codeclimate.com/github/dkubb/yardstick.png)](https://codeclimate.com/github/dkubb/yardstick)
+[![Gem Version](https://badge.fury.io/rb/yardstick.png)][gem]
+[![Build Status](https://secure.travis-ci.org/dkubb/yardstick.png?branch=master)][travis]
+[![Dependency Status](https://gemnasium.com/dkubb/yardstick.png)][gemnasium]
+[![Code Climate](https://codeclimate.com/github/dkubb/yardstick.png)][codeclimate]
+[![Coverage Status](https://coveralls.io/repos/dkubb/yardstick/badge.png?branch=master)][coveralls]
+
+[gem]: https://rubygems.org/gems/yardstick
+[travis]: https://travis-ci.org/dkubb/yardstick
+[gemnasium]: https://gemnasium.com/dkubb/yardstick
+[codeclimate]: https://codeclimate.com/github/dkubb/yardstick
+[coveralls]: https://coveralls.io/r/dkubb/yardstick
 
 Yardstick is a tool that verifies documentation coverage of Ruby code.  It will measure the source and provide feedback on what is missing from the documentation and what can be improved.
 
