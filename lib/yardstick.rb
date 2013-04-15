@@ -21,11 +21,6 @@ require 'yardstick/yard_ext'
 
 require 'yardstick/version'
 
-# Fix jruby-head to use the ruby 1.8 parser until their ripper port is ready
-if RUBY_VERSION == '1.9.3' && RUBY_ENGINE == 'jruby' && JRUBY_VERSION >= '1.7.4.dev'
-  YARD::Parser::SourceParser.parser_type = :ruby18
-end
-
 module Yardstick
   ROOT = Pathname(__FILE__).dirname.parent.expand_path.freeze
 
