@@ -42,7 +42,7 @@ module Yardstick
     def self.measurements
       measurements = MeasurementSet.new
       method_objects.each do |method_object|
-        measurements.merge(method_object.docstring.measure)
+        measurements.merge(Document.measure(method_object.docstring))
       end
       measurements
     end

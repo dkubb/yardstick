@@ -2,20 +2,23 @@
 
 require 'pathname'
 require 'rational'
+require 'delegate'
 
 require 'backports'
 require 'yard'
 
 require 'yardstick/ordered_set'
-require 'yardstick/rule_set'
 require 'yardstick/measurement'
+
+require 'yardstick/rule'
+require 'yardstick/rules/api_tag'
+require 'yardstick/rules/example_tag'
+require 'yardstick/rules/summary'
+require 'yardstick/rules/return_tag'
 
 require 'yardstick/measurement_set'
 require 'yardstick/processor'
-require 'yardstick/rule'
-
-require 'yardstick/measurable'
-require 'yardstick/method'
+require 'yardstick/document'
 
 require 'yardstick/yard_ext'
 

@@ -1,65 +1,64 @@
-# encoding: utf-8
+require 'delegate'
 
 module Yardstick
-
-  # A constraint on the docs
+  # Base class of every rule
+  #
+  # @abstract
   class Rule
+    extend Forwardable
 
-    # Return a Rule instance
-    #
-    # @param [#to_str] description
-    #   the description of the Rule
-    #
-    # @yield []
-    #   the measurement for the rule
-    #
-    # @return [Rule]
-    #   the rule instance
-    #
-    # @api private
-    def initialize(description, &block)
-      @description = description.to_str
-      @block       = block
+    class << self
+      # Description of the rule
+      #
+      # This is shown when a rule is invalid
+      #
+      # @return [String]
+      #
+      # @api private
+      attr_accessor :description
     end
 
-    # Return a Measurement for a docstring
+    # Return document
     #
-    # @param [YARD::Docstring] docstring
-    #   the docstring to measure
-    #
-    # @return [Measurement]
-    #   the measurement
+    # @return [Document]
     #
     # @api private
-    def measure(docstring)
-      Measurement.new(@description, docstring, &@block)
+    attr_reader :document
+
+    # Initializes a rule
+    #
+    # @param [Document] document
+    #
+    # @return [Rule]
+    #
+    # @api private
+    def initialize(document)
+      @document = document
+    end
+
+    def_delegators :@document, :has_tag?, :api?, :tag_types, :tag_text, :summary_text, :visibility
+
+    # Checks if the rule is validatable for given document
+    #
+    # @return [Boolean]
+    #
+    # @api private
+    def validatable?
+      true
     end
 
     # Test if Rule is equal to another rule
     #
-    # @example
-    #   rule == equal_rule  # => true
-    #
     # @param [Rule] other
-    #   the other Rule
+    #   the other rule
     #
     # @return [Boolean]
     #   true if the Rule is equal to the other, false if not
     #
-    # @api semipublic
-    def eql?(other)
-      @description.eql?(other.instance_variable_get(:@description))
-    end
-
-    # Return hash identifier for the Rule
-    #
-    # @return [Integer]
-    #   the hash identifier
-    #
     # @api private
-    def hash
-      @description.hash
+    def eql?(other)
+      self.class == other.class &&
+        document == other.document
     end
-
-  end # class Rule
-end # module Yardstick
+  end
+end

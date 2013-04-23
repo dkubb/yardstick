@@ -4,25 +4,19 @@ require 'spec_helper'
 
 shared_examples_for 'measurement is successful' do
   before do
-    @measurement = Yardstick::Measurement.new('successful', @docstring) { true }
+    @measurement = Yardstick::Measurement.new(@document, ValidRule)
   end
 end
 
 shared_examples_for 'measurement is skipped' do
   before do
-    @measurement = Yardstick::Measurement.new('skipped', @docstring) { skip }
+    @measurement = Yardstick::Measurement.new(@document, NotValidatableRule)
   end
 end
 
 shared_examples_for 'measurement is not successful' do
   before do
-    @measurement = Yardstick::Measurement.new('not successful', @docstring) { false }
-  end
-end
-
-shared_examples_for 'measurement is not implemented' do
-  before do
-    @measurement = Yardstick::Measurement.new('not implemented', @docstring) { todo }
+    @measurement = Yardstick::Measurement.new(@document, InvalidRule)
   end
 end
 
@@ -50,12 +44,13 @@ describe Yardstick::Measurement do
       end
     RUBY
 
-    @docstring = YARD::Registry.all(:method).first.docstring
+    docstring = YARD::Registry.all(:method).first.docstring
+    @document = Yardstick::Document.new(docstring)
   end
 
   describe '.new' do
     before do
-      @measurement = Yardstick::Measurement.new('test measurement', @docstring) { true }
+      @measurement = Yardstick::Measurement.new(@document, ValidRule)
     end
 
     it 'should return a Measurement' do
@@ -65,13 +60,11 @@ describe Yardstick::Measurement do
 
   describe '#description' do
     before do
-      @description = 'test measurement'
-
-      @measurement = Yardstick::Measurement.new(@description, @docstring) { true }
+      @measurement = Yardstick::Measurement.new(@document, ValidRule)
     end
 
     it 'should return the expected description' do
-      @measurement.description.should equal(@description)
+      @measurement.description.should equal(ValidRule.description)
     end
   end
 
@@ -94,14 +87,6 @@ describe Yardstick::Measurement do
 
     describe 'when the measurement is not successful' do
       it_should_behave_like 'measurement is not successful'
-
-      it 'should return false' do
-        @measurement.ok?.should be_false
-      end
-    end
-
-    describe 'when the measurement is not implemented' do
-      it_should_behave_like 'measurement is not implemented'
 
       it 'should return false' do
         @measurement.ok?.should be_false
@@ -131,48 +116,6 @@ describe Yardstick::Measurement do
 
       it 'should return false' do
         @measurement.skip?.should be_false
-      end
-    end
-
-    describe 'when the measurement is not implemented' do
-      it_should_behave_like 'measurement is not implemented'
-
-      it 'should return false' do
-        @measurement.skip?.should be_false
-      end
-    end
-  end
-
-  describe '#todo?' do
-    describe 'when the measurement is successful' do
-      it_should_behave_like 'measurement is successful'
-
-      it 'should return false' do
-        @measurement.todo?.should be_false
-      end
-    end
-
-    describe 'when the measurement is skipped' do
-      it_should_behave_like 'measurement is skipped'
-
-      it 'should return false' do
-        @measurement.todo?.should be_false
-      end
-    end
-
-    describe 'when the measurement is not successful' do
-      it_should_behave_like 'measurement is not successful'
-
-      it 'should return false' do
-        @measurement.todo?.should be_false
-      end
-    end
-
-    describe 'when the measurement is not implemented' do
-      it_should_behave_like 'measurement is not implemented'
-
-      it 'should return true' do
-        @measurement.todo?.should be_true
       end
     end
   end
@@ -205,15 +148,6 @@ describe Yardstick::Measurement do
           @output.should == "(stdin):2: MeasurementTest#test: not successful\n"
         end
       end
-
-      describe 'when the measurement is not implemented' do
-        it_should_behave_like 'measurement is not implemented'
-        it_should_behave_like 'measurement is displayed'
-
-        it 'should display output' do
-          @output.should == "(stdin):2: MeasurementTest#test: not implemented\n"
-        end
-      end
     end
 
     describe 'with an object implementing #puts' do
@@ -241,15 +175,6 @@ describe Yardstick::Measurement do
 
         it 'should display output' do
           @output.should == "(stdin):2: MeasurementTest#test: not successful\n"
-        end
-      end
-
-      describe 'when the measurement is not implemented' do
-        it_should_behave_like 'measurement is not implemented'
-        it_should_behave_like 'measurement is sent to object'
-
-        it 'should display output' do
-          @output.should == "(stdin):2: MeasurementTest#test: not implemented\n"
         end
       end
     end

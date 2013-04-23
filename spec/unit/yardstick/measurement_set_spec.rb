@@ -6,10 +6,10 @@ describe Yardstick::MeasurementSet do
   before do
     YARD.parse_string('def test; end')
 
-    @description  = 'test measurement'
-    @docstring    = YARD::Registry.all(:method).first.docstring
+    @document   = mock('document')
+    @rule_class = ValidRule
 
-    @measurement  = Yardstick::Measurement.new(@description, @docstring) { true }
+    @measurement  = Yardstick::Measurement.new(@document, @rule_class)
     @measurements = Yardstick::MeasurementSet.new
   end
 
@@ -67,7 +67,7 @@ describe Yardstick::MeasurementSet do
         @measurements << @measurement
         @measurements.to_a.should == [ @measurement ]
 
-        @response = @measurements << Yardstick::Measurement.new(@description, @docstring) { true }
+        @response = @measurements << Yardstick::Measurement.new(@document, ValidRule)
       end
 
       it 'should return self' do
@@ -235,7 +235,11 @@ describe Yardstick::MeasurementSet do
 
   describe '#puts' do
     before do
-      @measurements << Yardstick::Measurement.new(@description, @docstring) { false }
+      @document.stub(:file) { "(stdin)" }
+      @document.stub(:line) { 1 }
+      @document.stub(:path) { "#test" }
+
+      @measurements << Yardstick::Measurement.new(@document, InvalidRule)
     end
 
     describe 'with no arguments' do
@@ -244,7 +248,7 @@ describe Yardstick::MeasurementSet do
       end
 
       it 'should output the summary' do
-        @output.should == "(stdin):1: #test: test measurement\n" \
+        @output.should == "(stdin):1: #test: not successful\n" \
           "\nYARD-Coverage: 0.0%  Success: 0  Failed: 1  Total: 1\n"
       end
     end
@@ -258,7 +262,7 @@ describe Yardstick::MeasurementSet do
       end
 
       it 'should output the summary' do
-        @output.should == "(stdin):1: #test: test measurement\n" \
+        @output.should == "(stdin):1: #test: not successful\n" \
           "\nYARD-Coverage: 0.0%  Success: 0  Failed: 1  Total: 1\n"
       end
     end

@@ -28,6 +28,7 @@ doc
 log
 .yardoc
 measurements
+tags
 
 ## BUNDLER
 .bundle

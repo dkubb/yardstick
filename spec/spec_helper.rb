@@ -19,6 +19,7 @@ end
 
 require 'yardstick'
 require 'spec'
+require 'rake'
 require 'spec/autorun' if RUBY_VERSION < '1.9'
 
 # require spec support files and shared behavior
