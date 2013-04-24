@@ -14,7 +14,7 @@ module Yardstick
     # Return a Measurement instance
     #
     # @example
-    #   measurement = Measurement.new('The description', docstring, :successful_method)
+    #   measurement = Measurement.new(document, rule)
     #
     # @param [Document] document
     # @param [Rule] rule
