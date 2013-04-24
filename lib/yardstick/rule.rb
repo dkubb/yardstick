@@ -1,5 +1,3 @@
-require 'delegate'
-
 module Yardstick
   # Base class of every rule
   #
@@ -32,11 +30,23 @@ module Yardstick
     # @return [Rule]
     #
     # @api private
-    def initialize(document)
+    def initialize(document, options = {})
       @document = document
+      @options  = options
     end
 
     def_delegators :@document, :has_tag?, :api?, :tag_types, :tag_text, :summary_text, :visibility
+
+    # Checks if rule is enabled in current context
+    #
+    # @return [Boolean]
+    #   true if enabled
+    #
+    # @api private
+    def enabled?
+      @options.fetch(:enabled, true) &&
+        !@options.fetch(:exclude, []).include?(@document.path)
+    end
 
     # Checks if the rule is validatable for given document
     #
