@@ -17,15 +17,15 @@ module Yardstick
     #   measurement = Measurement.new('The description', docstring, :successful_method)
     #
     # @param [Document] document
-    # @param [Class] rule_class
+    # @param [Rule] rule
     #
     # @return [Yardstick::Measurement]
     #   the measurement instance
     #
     # @api public
-    def initialize(document, rule_class)
+    def initialize(document, rule)
       @document = document
-      @rule     = rule_class.new(document)
+      @rule     = rule
       @result   = measure
     end
 

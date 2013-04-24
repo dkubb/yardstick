@@ -14,9 +14,7 @@ namespace :metrics do
     Yardstick::Rake::Measurement.new
 
     # verify_measurements task
-    Yardstick::Rake::Verify.new do |verify|
-      verify.threshold = config.fetch('threshold')
-    end
+    Yardstick::Rake::Verify.new(config)
   rescue LoadError
     %w[ yardstick_measure verify_measurements ].each do |name|
       task name.to_s do

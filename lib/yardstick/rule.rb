@@ -26,6 +26,8 @@ module Yardstick
     # Initializes a rule
     #
     # @param [Document] document
+    # @param [Hash] options
+    #   optional configuration
     #
     # @return [Rule]
     #

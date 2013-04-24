@@ -11,34 +11,6 @@ module Yardstick
     # A rake task for verifying the doc thresholds
     class Verify < ::Rake::TaskLib
 
-      # Set the threshold
-      #
-      # @return [undefined]
-      #
-      # @api public
-      attr_writer :threshold
-
-      # Specify if the threshold should match the coverage
-      #
-      # @return [undefined]
-      #
-      # @api public
-      attr_writer :require_exact_threshold
-
-      # List of paths to measure
-      #
-      # @return [undefined]
-      #
-      # @api public
-      attr_writer :path
-
-      # Specify if the coverage summary should be displayed
-      #
-      # @return [undefined]
-      #
-      # @api public
-      attr_writer :verbose
-
       # Initialize a Verify task
       #
       # @example
@@ -46,11 +18,13 @@ module Yardstick
       #     task.threshold = 100
       #   end
       #
+      # @param [Hash] options
+      #   optional configuration
       # @param [Symbol] name
       #   optional task name
       #
       # @yield [task]
-      #   yield to self
+      #   yield to Config
       #
       # @yieldparam [Yardstick::Rake::Verify] task
       #   the verification task
@@ -59,13 +33,9 @@ module Yardstick
       #   the verification task instance
       #
       # @api public
-      def initialize(name = :verify_measurements)
-        @name                    = name
-        @require_exact_threshold = true
-        @path                    = 'lib/**/*.rb'
-        @verbose                 = true
-
-        yield self
+      def initialize(options = {}, name = :verify_measurements, &block)
+        @name   = name
+        @config = Config.new(options, &block)
 
         assert_threshold
         define
@@ -85,7 +55,7 @@ module Yardstick
       #
       # @api public
       def verify_measurements
-        puts "YARD-Coverage: #{total_coverage}% (threshold: #{@threshold}%)" if verbose
+        puts "YARD-Coverage: #{total_coverage}% (threshold: #{@config.threshold}%)" if @config.verbose
         assert_meets_threshold
         assert_matches_threshold
       end
@@ -99,7 +69,7 @@ module Yardstick
       #
       # @api private
       def total_coverage
-        measurements = Yardstick.measure(@path)
+        measurements = Yardstick.measure(@config.path, @config)
         self.class.round_percentage(measurements.coverage * 100)
       end
 
@@ -111,7 +81,7 @@ module Yardstick
       #
       # @api private
       def define
-        desc "Verify that yardstick coverage is at least #{@threshold}%"
+        desc "Verify that yardstick coverage is at least #{@config.threshold}%"
         task(@name) { verify_measurements }
       end
 
@@ -124,7 +94,7 @@ module Yardstick
       #
       # @api private
       def assert_threshold
-        if @threshold.nil?
+        if @config.threshold.nil?
           raise 'threshold must be set'
         end
       end
@@ -139,8 +109,10 @@ module Yardstick
       # @api private
       def assert_meets_threshold
         total_coverage = self.total_coverage
-        if total_coverage < @threshold
-          raise "YARD-Coverage must be at least #{@threshold}% but was #{total_coverage}%"
+        threshold = @config.threshold
+
+        if total_coverage < threshold
+          raise "YARD-Coverage must be at least #{threshold}% but was #{total_coverage}%"
         end
       end
 
@@ -154,8 +126,10 @@ module Yardstick
       # @api private
       def assert_matches_threshold
         total_coverage = self.total_coverage
-        if @require_exact_threshold && total_coverage > @threshold
-          raise "YARD-Coverage has increased above the threshold of #{@threshold}% to #{total_coverage}%. You should update your threshold value."
+        threshold = @config.threshold
+
+        if @config.require_exact_threshold && total_coverage > threshold
+          raise "YARD-Coverage has increased above the threshold of #{threshold}% to #{total_coverage}%. You should update your threshold value."
         end
       end
 

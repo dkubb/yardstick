@@ -35,6 +35,8 @@ module Yardstick
         end
       end
 
+      # Checks if protected method has correct @api visibility
+      #
       class ProtectedMethod < Rule
         self.description = 'A method with protected visibility must have an @api tag of semipublic or private'
 
@@ -59,6 +61,8 @@ module Yardstick
         end
       end
 
+      # Checks if private method has correct @api visibility
+      #
       class PrivateMethod < Rule
         self.description = 'A method with private visibility must have an @api tag of private'
 

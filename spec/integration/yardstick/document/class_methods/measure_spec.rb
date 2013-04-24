@@ -2,7 +2,7 @@ require 'spec_helper'
 
 shared_examples_for 'method is measured' do
   before do
-    @measurements = Yardstick::Document.measure(docstring)
+    @measurements = Yardstick::Document.measure(docstring, @config || Yardstick::Config.new)
   end
 
   it 'should return a MeasurementSet' do
@@ -54,6 +54,19 @@ describe Yardstick::Document, '.measure' do
 
     it 'should have an incorrect measurement' do
       @measurements.detect { |measurement| measurement.description == 'The method summary should be specified' }.should_not be_ok
+    end
+  end
+
+  describe 'without a method summary when validations are turned off' do
+    before do
+      @config = Yardstick::Config.new(:rules => {:"Summary::Presence" => {:enabled => false}})
+      YARD.parse_string('def test(value); end')
+    end
+
+    it_should_behave_like 'method is measured'
+
+    it 'should have a correct measurement' do
+      @measurements.detect { |measurement| measurement.description == 'The method summary should be specified' }.should be_ok
     end
   end
 

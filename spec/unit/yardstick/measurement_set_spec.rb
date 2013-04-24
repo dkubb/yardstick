@@ -7,9 +7,9 @@ describe Yardstick::MeasurementSet do
     YARD.parse_string('def test; end')
 
     @document   = DocumentMock.new
-    @rule_class = ValidRule
+    @rule       = ValidRule.new(@document)
 
-    @measurement  = Yardstick::Measurement.new(@document, @rule_class)
+    @measurement  = Yardstick::Measurement.new(@document, @rule)
     @measurements = Yardstick::MeasurementSet.new
   end
 
@@ -67,7 +67,9 @@ describe Yardstick::MeasurementSet do
         @measurements << @measurement
         @measurements.to_a.should == [ @measurement ]
 
-        @response = @measurements << Yardstick::Measurement.new(@document, ValidRule)
+        rule = ValidRule.new(@document)
+
+        @response = @measurements << Yardstick::Measurement.new(@document, rule)
       end
 
       it 'should return self' do
@@ -239,7 +241,9 @@ describe Yardstick::MeasurementSet do
       @document.stub(:line) { 1 }
       @document.stub(:path) { "#test" }
 
-      @measurements << Yardstick::Measurement.new(@document, InvalidRule)
+      rule = InvalidRule.new(@document)
+
+      @measurements << Yardstick::Measurement.new(@document, rule)
     end
 
     describe 'with no arguments' do

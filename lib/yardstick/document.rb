@@ -5,11 +5,14 @@ module Yardstick
     # Measures docstring againg enabled rules
     #
     # @param [Yard::Docstring] docstring
+    #   docstring that will be measured
+    # @param [Config] config
+    #   a configuration
     #
     # @return [MeasurementSet]
     #
     # @api private
-    def self.measure(docstring)
+    def self.measure(docstring, config)
       document = new(docstring)
 
       enabled_rules = [
@@ -26,7 +29,7 @@ module Yardstick
       ]
 
       MeasurementSet.new(enabled_rules.map { |rule_class|
-        Measurement.new(document, rule_class)
+        Measurement.new(document, rule_class.new(document, config.options(rule_class)))
       })
     end
 

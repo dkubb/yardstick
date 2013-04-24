@@ -1,24 +1,24 @@
 require 'spec_helper'
 
 describe Yardstick::Measurement, 'skip?' do
-  subject { described_class.new(document, rule_class).skip? }
+  subject { described_class.new(document, rule).skip? }
 
   let(:document) { DocumentMock.new }
 
   context 'when rule is enabled' do
-    let(:rule_class) { ValidRule }
+    let(:rule) { ValidRule.new(document) }
 
     it { should be(false) }
   end
 
   context 'when rule is not validatable' do
-    let(:rule_class) { NotValidatableRule }
+    let(:rule) { NotValidatableRule.new(document) }
 
     it { should be(true) }
   end
 
   context 'when rule is disabled' do
-    let(:rule_class) { DisabledRule }
+    let(:rule) { DisabledRule.new(document) }
 
     it { should be(true) }
   end

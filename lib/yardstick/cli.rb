@@ -30,7 +30,7 @@ module Yardstick
     # @param [Array<String>] args
     #   the command-line options
     #
-    # @return [Array(Array<String>, Hash)]
+    # @return [Array(Array<String>, Config)]
     #   the list of files, and options parsed from the command-line
     #
     # @api private
@@ -38,7 +38,7 @@ module Yardstick
       args << '--help' if args.empty?
       options = {}
       option_parser(options).parse!(args)
-      [ args, options ]
+      [ args, Config.new(options) ]
     rescue OptionParser::InvalidOption => error
       display_exit(error.message)
     end
