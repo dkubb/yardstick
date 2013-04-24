@@ -12,3 +12,8 @@ class InvalidRule < ValidRule
   self.description = 'not successful'
   def valid?; false; end
 end
+
+class DisabledRule < ValidRule
+  self.description = 'not enabled'
+  def enabled?; false; end
+end

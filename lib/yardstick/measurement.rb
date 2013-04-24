@@ -127,7 +127,7 @@ module Yardstick
     #
     # @api private
     def measure
-      return :skip unless @rule.validatable?
+      return :skip if !@rule.enabled? || !@rule.validatable?
       @rule.valid?
     end
 

@@ -6,7 +6,7 @@ describe Yardstick::MeasurementSet do
   before do
     YARD.parse_string('def test; end')
 
-    @document   = mock('document')
+    @document   = DocumentMock.new
     @rule_class = ValidRule
 
     @measurement  = Yardstick::Measurement.new(@document, @rule_class)
