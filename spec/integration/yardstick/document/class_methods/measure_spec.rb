@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 require 'spec_helper'
 
 shared_examples_for 'method is measured' do
@@ -33,7 +31,7 @@ shared_examples_for 'a valid method' do
   end
 end
 
-describe "Measure" do
+describe Yardstick::Document, '.measure' do
   def docstring
     YARD::Registry.all(:method).first.docstring
   end
