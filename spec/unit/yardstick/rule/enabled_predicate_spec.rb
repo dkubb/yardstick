@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Yardstick::Rule, '#enabled?' do
   subject { described_class.new(document, options).enabled? }
 
-  let(:document) { mock('document', path: 'Foo#bar') }
+  let(:document) { mock('document', :path => 'Foo#bar') }
   let(:options)  { {}                                }
 
   context 'when no options' do
