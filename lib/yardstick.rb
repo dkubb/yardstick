@@ -44,8 +44,7 @@ module Yardstick
   #
   # @api public
   def self.measure(config = Config.new)
-    path = config.path
-    Processor.process_path(path, config)
+    Processor.process_path(config)
   end
 
   # Measure a string of code and YARD documentation

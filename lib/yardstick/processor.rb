@@ -16,8 +16,8 @@ module Yardstick
     #   a collection of measurements
     #
     # @api private
-    def self.process_path(path, config)
-      YARD.parse(Array(path).map(&:to_s), [], YARD::Logger::ERROR)
+    def self.process_path(config)
+      YARD.parse(paths(config), [], YARD::Logger::ERROR)
       measurements(config)
     end
 
@@ -67,8 +67,17 @@ module Yardstick
       YARD::Registry.clear
     end
 
+    # Return config's possible paths
+    #
+    # @return [Array<String>]
+    #
+    # @api private
+    def self.paths(config)
+      Array(config.path).map(&:to_s)
+    end
+
     class << self
-      private :measurements, :method_objects
+      private :measurements, :method_objects, :paths
     end
 
   end # class Processor
