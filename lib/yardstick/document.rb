@@ -4,7 +4,21 @@ module Yardstick
   class Document
     extend Forwardable
 
-    # Measures docstring againg enabled rules
+    @registered_rules = Set.new
+
+    # Register rule with document
+    #
+    # @param [Class] rule_class
+    #   subclass of Yardstick::Rule
+    #
+    # @return [undefined]
+    #
+    # @api private
+    def self.register_rule(rule_class)
+      @registered_rules << rule_class
+    end
+
+    # Measures docstring against enabled rules
     #
     # @param [Yard::Docstring] docstring
     #   docstring that will be measured
@@ -17,20 +31,7 @@ module Yardstick
     def self.measure(docstring, config)
       document = new(docstring)
 
-      enabled_rules = [
-        Rules::Summary::Presence,
-        Rules::Summary::Length,
-        Rules::Summary::Delimiter,
-        Rules::Summary::SingleLine,
-        Rules::ExampleTag,
-        Rules::ApiTag::Presence,
-        Rules::ApiTag::Inclusion,
-        Rules::ApiTag::ProtectedMethod,
-        Rules::ApiTag::PrivateMethod,
-        Rules::ReturnTag
-      ]
-
-      MeasurementSet.new(enabled_rules.map { |rule_class|
+      MeasurementSet.new(@registered_rules.map { |rule_class|
         Measurement.new(document, rule_class.new(document, config.options(rule_class)))
       })
     end

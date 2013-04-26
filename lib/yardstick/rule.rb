@@ -18,10 +18,24 @@ module Yardstick
 
     # Return document
     #
+    # @param [Class] subclass
+    #   class that is inheriting from this class
+    #
     # @return [Document]
     #
     # @api private
     attr_reader :document
+
+    # Register rule in Document
+    #
+    # @param [Class] subclass
+    #
+    # @return [undefined]
+    #
+    # @api private
+    def self.inherited(subclass)
+      Document.register_rule(subclass)
+    end
 
     # Initializes a rule
     #

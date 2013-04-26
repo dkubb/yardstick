@@ -11,6 +11,7 @@ require 'yardstick/ordered_set'
 require 'yardstick/measurement'
 
 require 'yardstick/config'
+require 'yardstick/document'
 
 require 'yardstick/rule'
 require 'yardstick/rules/api_tag'
@@ -20,7 +21,6 @@ require 'yardstick/rules/return_tag'
 
 require 'yardstick/measurement_set'
 require 'yardstick/processor'
-require 'yardstick/document'
 
 require 'yardstick/yard_ext'
 

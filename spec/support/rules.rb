@@ -1,6 +1,16 @@
-class ValidRule < Yardstick::Rule
+class ValidRule
+  class << self
+    attr_accessor :description
+  end
+
+  def initialize(_)
+  end
+
   self.description = 'successful'
+
+  def enabled?; true; end
   def valid?; true; end
+  def validatable?; true; end
 end
 
 class NotValidatableRule < ValidRule
