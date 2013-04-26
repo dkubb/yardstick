@@ -58,19 +58,5 @@ module Yardstick
     def validatable?
       true
     end
-
-    # Test if Rule is equal to another rule
-    #
-    # @param [Rule] other
-    #   the other rule
-    #
-    # @return [Boolean]
-    #   true if the Rule is equal to the other, false if not
-    #
-    # @api private
-    def eql?(other)
-      self.class == other.class &&
-        document == other.document
-    end
   end
 end

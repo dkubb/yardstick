@@ -78,32 +78,6 @@ module Yardstick
       end
     end
 
-    # Test if Measurement is equal to another measurement
-    #
-    # @example
-    #   measurement == equal_measurement  # => true
-    #
-    # @param [Yardstick::Measurement] other
-    #   the other Measurement
-    #
-    # @return [Boolean]
-    #   true if the Measurement is equal to the other, false if not
-    #
-    # @api semipublic
-    def eql?(other)
-      @rule.eql?(other.rule)
-    end
-
-    # Return hash identifier for the Measurement
-    #
-    # @return [Integer]
-    #   the hash identifier
-    #
-    # @api private
-    def hash
-      description.hash ^ @document.hash
-    end
-
     # Return the Measurement description
     #
     # @example

@@ -48,37 +48,16 @@ describe Yardstick::MeasurementSet do
   end
 
   describe '#<<' do
-    describe 'with a new Measurement' do
-      before do
-        @response = @measurements << @measurement
-      end
-
-      it 'should return self' do
-        @response.should be_equal(@measurements)
-      end
-
-      it 'should append the Measurement' do
-        @measurements.to_a.last.should equal(@measurement)
-      end
+    before do
+      @response = @measurements << @measurement
     end
 
-    describe 'with an equivalent Measurement' do
-      before do
-        @measurements << @measurement
-        @measurements.to_a.should == [ @measurement ]
+    it 'should return self' do
+      @response.should be_equal(@measurements)
+    end
 
-        rule = ValidRule.new(@document)
-
-        @response = @measurements << Yardstick::Measurement.new(@document, rule)
-      end
-
-      it 'should return self' do
-        @response.should be_equal(@measurements)
-      end
-
-      it 'should not append the Measurement again' do
-        @measurements.to_a.should == [ @measurement ]
-      end
+    it 'should append the Measurement' do
+      @measurements.to_a.last.should equal(@measurement)
     end
   end
 
