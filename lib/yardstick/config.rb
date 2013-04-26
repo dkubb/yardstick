@@ -60,6 +60,21 @@ module Yardstick
     # @api private
     attr_reader :verbose
 
+    # Coverts string keys into symbol keys
+    #
+    # @param [Hash] hash
+    #
+    # @return [Hash]
+    #   normalized hash
+    #
+    # @api private
+    def self.normalize_hash(hash)
+      hash.each_with_object({}) { |(key, value), normalized_hash|
+        normalized_value = value.is_a?(Hash) ? normalize_hash(value) : value
+        normalized_hash[key.to_sym] = normalized_value
+      }
+    end
+
     # Initializes new config
     #
     # @param [Hash] options
@@ -69,7 +84,7 @@ module Yardstick
     #
     # @api private
     def initialize(options = {}, &block)
-      @options = HashWithIndifferentAccess.new(options)
+      @options = self.class.normalize_hash(options)
       @rules   = @options.fetch(:rules, {})
 
       @threshold               = @options.fetch(:threshold, nil)
@@ -90,31 +105,6 @@ module Yardstick
     def options(rule_class)
       key = rule_class.to_s[NAMESPACE_PREFIX.length..-1].to_sym
       @rules.fetch(key, {})
-    end
-
-    # Treats symbols and strings as equals
-    #
-    class HashWithIndifferentAccess
-      # Initialize a new hash object
-      #
-      # @param [Hash] hash
-      #
-      # @return [undefined]
-      #
-      # @api private
-      def initialize(hash)
-        @hash = hash
-      end
-
-      # @see Hash#fetch
-      #
-      # @return [Object, Exception]
-      #
-      # @api private
-      def fetch(key, *args)
-        result = @hash.has_key?(key) ? @hash[key] : @hash.fetch(key.to_s, *args)
-        result.is_a?(Hash) ? self.class.new(result) : result
-      end
     end
   end
 end
