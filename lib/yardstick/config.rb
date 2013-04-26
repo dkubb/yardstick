@@ -2,6 +2,8 @@ module Yardstick
   # Handles Yardstick configuration
   #
   class Config
+    NAMESPACE_PREFIX = 'Yardstick::Rules::'.freeze
+
     # Set the threshold
     #
     # @return [undefined]
@@ -86,7 +88,7 @@ module Yardstick
     #
     # @api private
     def options(rule_class)
-      key = rule_class.to_s.gsub(/Yardstick::Rules::/, '').to_sym
+      key = rule_class.to_s[NAMESPACE_PREFIX.length..-1].to_sym
       @rules.fetch(key, {})
     end
 
