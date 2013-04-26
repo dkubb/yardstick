@@ -38,7 +38,7 @@ module Yardstick
 
     # Initializes Document object with docstring
     #
-    # @param [Yard::Docstirng]
+    # @param [Yard::Docstring]
     #
     # @return [undefined]
     #
@@ -69,7 +69,7 @@ module Yardstick
     #
     # @api private
     def tag_text(tag_name)
-      @docstring.tag(tag_name).text if has_tag?(tag_name)
+      tag(tag_name).text
     end
 
     # The types for a specified tag
@@ -77,12 +77,12 @@ module Yardstick
     # @param [String] tag_name
     #   the name of the tag
     #
-    # @return [Array<String>, nil]
-    #   a collection of tag types if the tag exists
+    # @return [Array<String>]
+    #   a collection of tag types
     #
     # @api private
     def tag_types(tag_name)
-      @docstring.tag(tag_name).types if has_tag?(tag_name)
+      tag(tag_name).types
     end
 
     # The method visibility: public, protected or private
@@ -148,6 +148,41 @@ module Yardstick
     # @api private
     def object
       @docstring.object
+    end
+
+    # Finds tag by tag name
+    #
+    # @param [String] name
+    #   the name of the tag
+    #
+    # @return [YARD::Tags::Tag, NullTag]
+    #
+    # @api private
+    def tag(name)
+      @docstring.tag(name) || NullTag.new
+    end
+
+    # Null object for YARD::Tags::Tag
+    #
+    class NullTag
+      # Empty text
+      #
+      # @return [nil]
+      #
+      # @api private
+      def text
+        nil
+      end
+
+      # Empty list of types
+      #
+      # @return [Array]
+      #   an empty array
+      #
+      # @api private
+      def types
+        []
+      end
     end
   end
 end
