@@ -34,7 +34,8 @@ module Yardstick
     # @api private
     def initialize(document, options = {})
       @document = document
-      @options  = options
+      @enabled  = options.fetch(:enabled, true)
+      @exclude  = options.fetch(:exclude, [])
     end
 
     def_delegators :@document, :has_tag?, :api?, :tag_types, :tag_text, :summary_text, :visibility
@@ -46,8 +47,7 @@ module Yardstick
     #
     # @api private
     def enabled?
-      @options.fetch(:enabled, true) &&
-        !@options.fetch(:exclude, []).include?(@document.path)
+      @enabled && !@exclude.include?(@document.path)
     end
 
     # Checks if the rule is validatable for given document

@@ -87,7 +87,7 @@ module Yardstick
       @options = self.class.normalize_hash(options)
       @rules   = @options.fetch(:rules, {})
 
-      @threshold               = @options.fetch(:threshold, nil)
+      @threshold               = @options[:threshold]
       @verbose                 = true
       @path                    = 'lib/**/*.rb'
       @require_exact_threshold = true
