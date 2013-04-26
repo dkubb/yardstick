@@ -59,7 +59,7 @@ module Yardstick
         #
         # @api private
         def valid?
-          summary_text[-1] != '.'
+          summary_text[-1, 1] != '.'
         end
       end
 
