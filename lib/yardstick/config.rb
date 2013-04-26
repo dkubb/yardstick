@@ -25,13 +25,6 @@ module Yardstick
     # @api public
     attr_writer :require_exact_threshold
 
-    # Return if the threshold should match the coverage
-    #
-    # @return [Boolean]
-    #
-    # @api private
-    attr_reader :require_exact_threshold
-
     # List of paths to measure
     #
     # @return [undefined]
@@ -52,13 +45,6 @@ module Yardstick
     #
     # @api public
     attr_writer :verbose
-
-    # Specify if the coverage summary should be displayed
-    #
-    # @return [Boolean]
-    #
-    # @api private
-    attr_reader :verbose
 
     # Coverts string keys into symbol keys
     #
@@ -105,6 +91,24 @@ module Yardstick
     def options(rule_class)
       key = rule_class.to_s[NAMESPACE_PREFIX.length..-1].to_sym
       @rules.fetch(key, {})
+    end
+
+    # Specify if the coverage summary should be displayed
+    #
+    # @return [Boolean]
+    #
+    # @api private
+    def verbose?
+      @verbose
+    end
+
+    # Return if the threshold should match the coverage
+    #
+    # @return [Boolean]
+    #
+    # @api private
+    def require_exact_threshold?
+      @require_exact_threshold
     end
   end
 end

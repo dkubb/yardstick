@@ -12,7 +12,7 @@ end
 shared_examples_for 'set default require_exact_threshold for verify task' do
   it 'should set require_exact_threshold to true' do
     config = @task.instance_variable_get(:@config)
-    config.require_exact_threshold.should be_true
+    config.require_exact_threshold?.should be_true
   end
 end
 
@@ -28,7 +28,7 @@ end
 shared_examples_for 'set default verbose for verify task' do
   it 'should set verbose to true' do
     config = @task.instance_variable_get(:@config)
-    config.verbose.should be_true
+    config.should be_verbose
   end
 end
 

@@ -55,7 +55,7 @@ module Yardstick
       #
       # @api public
       def verify_measurements
-        puts "YARD-Coverage: #{total_coverage}% (threshold: #{@config.threshold}%)" if @config.verbose
+        puts "YARD-Coverage: #{total_coverage}% (threshold: #{@config.threshold}%)" if @config.verbose?
         assert_meets_threshold
         assert_matches_threshold
       end
@@ -94,7 +94,7 @@ module Yardstick
       #
       # @api private
       def assert_threshold
-        if @config.threshold.nil?
+        unless @config.threshold
           raise 'threshold must be set'
         end
       end
@@ -128,7 +128,7 @@ module Yardstick
         total_coverage = self.total_coverage
         threshold = @config.threshold
 
-        if @config.require_exact_threshold && total_coverage > threshold
+        if @config.require_exact_threshold? && total_coverage > threshold
           raise "YARD-Coverage has increased above the threshold of #{threshold}% to #{total_coverage}%. You should update your threshold value."
         end
       end
