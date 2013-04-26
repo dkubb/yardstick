@@ -1,4 +1,6 @@
 module Yardstick
+  # Wraps a yard docstring to make a nicer interface
+  #
   class Document
     extend Forwardable
 
