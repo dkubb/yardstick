@@ -43,7 +43,8 @@ module Yardstick
   #   the measurements for each file
   #
   # @api public
-  def self.measure(path = 'lib/**/*.rb', config = Config.new)
+  def self.measure(config = Config.new)
+    path = config.path
     Processor.process_path(path, config)
   end
 

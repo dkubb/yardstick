@@ -46,6 +46,13 @@ module Yardstick
     # @api public
     attr_writer :verbose
 
+    # The path to the file where the measurements will be written
+    #
+    # @return [Pathname]
+    #
+    # @api private
+    attr_reader :output
+
     # Coverts string keys into symbol keys
     #
     # @param [Hash] hash
@@ -73,10 +80,7 @@ module Yardstick
       @options = self.class.normalize_hash(options)
       @rules   = @options.fetch(:rules, {})
 
-      @threshold               = @options[:threshold]
-      @verbose                 = true
-      @path                    = 'lib/**/*.rb'
-      @require_exact_threshold = true
+      set_defaults
 
       yield(self) if block_given?
     end
@@ -109,6 +113,33 @@ module Yardstick
     # @api private
     def require_exact_threshold?
       @require_exact_threshold
+    end
+
+    # The path to the file where the measurements will be written
+    #
+    # @param [String, Pathname] output
+    #   optional output path for measurements
+    #
+    # @return [undefined]
+    #
+    # @api public
+    def output=(output)
+      @output = Pathname(output)
+    end
+
+    private
+
+    # Sets default options
+    #
+    # @return [undefined]
+    #
+    # @api private
+    def set_defaults
+      @threshold               = @options[:threshold]
+      @verbose                 = true
+      @path                    = @options[:path] || 'lib/**/*.rb'
+      @require_exact_threshold = true
+      self.output              = 'measurements/report.txt'
     end
   end
 end

@@ -34,8 +34,9 @@ module Yardstick
       #
       # @api public
       def initialize(options = {}, name = :verify_measurements, &block)
-        @name   = name
-        @config = Config.new(options, &block)
+        @name      = name
+        @config    = Config.new(options, &block)
+        @threshold = @config.threshold
 
         assert_threshold
         define
@@ -55,7 +56,7 @@ module Yardstick
       #
       # @api public
       def verify_measurements
-        puts "YARD-Coverage: #{total_coverage}% (threshold: #{@config.threshold}%)" if @config.verbose?
+        puts "YARD-Coverage: #{total_coverage}% (threshold: #{@threshold}%)" if @config.verbose?
         assert_meets_threshold
         assert_matches_threshold
       end
@@ -69,7 +70,7 @@ module Yardstick
       #
       # @api private
       def total_coverage
-        measurements = Yardstick.measure(@config.path, @config)
+        measurements = Yardstick.measure(@config)
         self.class.round_percentage(measurements.coverage * 100)
       end
 
@@ -81,7 +82,7 @@ module Yardstick
       #
       # @api private
       def define
-        desc "Verify that yardstick coverage is at least #{@config.threshold}%"
+        desc "Verify that yardstick coverage is at least #{@threshold}%"
         task(@name) { verify_measurements }
       end
 
@@ -94,7 +95,7 @@ module Yardstick
       #
       # @api private
       def assert_threshold
-        unless @config.threshold
+        unless @threshold
           raise 'threshold must be set'
         end
       end
@@ -108,11 +109,8 @@ module Yardstick
       #
       # @api private
       def assert_meets_threshold
-        total_coverage = self.total_coverage
-        threshold = @config.threshold
-
-        if total_coverage < threshold
-          raise "YARD-Coverage must be at least #{threshold}% but was #{total_coverage}%"
+        if lower_coverage?
+          raise "YARD-Coverage must be at least #{@threshold}% but was #{total_coverage}%"
         end
       end
 
@@ -125,12 +123,29 @@ module Yardstick
       #
       # @api private
       def assert_matches_threshold
-        total_coverage = self.total_coverage
-        threshold = @config.threshold
-
-        if @config.require_exact_threshold? && total_coverage > threshold
-          raise "YARD-Coverage has increased above the threshold of #{threshold}% to #{total_coverage}%. You should update your threshold value."
+        if @config.require_exact_threshold? && higher_coverage?
+          raise "YARD-Coverage has increased above the threshold of #{@threshold}% to #{total_coverage}%. You should update your threshold value."
         end
+      end
+
+      # Checks if total coverage is lower than the threshold
+      #
+      # @return [Boolean]
+      #   true if current coverage is lower
+      #
+      # @api private
+      def lower_coverage?
+        total_coverage < @threshold
+      end
+
+      # Checks if total coverage is higher than the threshold
+      #
+      # @return [Boolean]
+      #   true if current coverage is higher
+      #
+      # @api private
+      def higher_coverage?
+        total_coverage > @threshold
       end
 
       # Round percentage to 1/10th of a percent
