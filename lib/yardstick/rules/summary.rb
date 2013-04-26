@@ -21,7 +21,7 @@ module Yardstick
         # @see class description
         #
         # @return [Boolean]
-        #   true if has api tag semipublic or private
+        #   true if summary text is not empty
         #
         # @api private
         def valid?
@@ -37,7 +37,7 @@ module Yardstick
         # @see class description
         #
         # @return [Boolean]
-        #   true if has api tag semipublic or private
+        #   true if summary length is below 80 characters
         #
         # @api private
         def valid?
@@ -53,7 +53,7 @@ module Yardstick
         # @see class description
         #
         # @return [Boolean]
-        #   true if has api tag semipublic or private
+        #   true if summary text does not end with a period
         #
         # @api private
         def valid?
@@ -69,7 +69,7 @@ module Yardstick
         # @see class description
         #
         # @return [Boolean]
-        #   true if has api tag semipublic or private
+        #   true if summary text does not include a new line
         #
         # @api private
         def valid?

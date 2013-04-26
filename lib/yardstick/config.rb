@@ -55,7 +55,7 @@ module Yardstick
 
     # Specify if the coverage summary should be displayed
     #
-    # @return [undefined]
+    # @return [Boolean]
     #
     # @api private
     attr_reader :verbose

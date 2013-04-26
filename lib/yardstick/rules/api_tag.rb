@@ -53,7 +53,7 @@ module Yardstick
         # @see class description
         #
         # @return [Boolean]
-        #   true if has api tag semipublic or private
+        #   true if api tag is semipublic or private
         #
         # @api private
         def valid?
@@ -79,7 +79,7 @@ module Yardstick
         # @see class description
         #
         # @return [Boolean]
-        #   true if validatable
+        #   true if api tag is private
         #
         # @api private
         def valid?

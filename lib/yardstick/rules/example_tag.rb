@@ -20,7 +20,7 @@ module Yardstick
       # @see class description
       #
       # @return [Boolean]
-      #   true if has api tag semipublic or private
+      #   true if has example tag
       #
       # @api private
       def valid?
