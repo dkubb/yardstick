@@ -25,13 +25,15 @@ module Yardstick
         #
         # @api private
         def valid?
-          summary_text != ''
+          !summary_text.empty?
         end
       end
 
       # Checks that method summary length doesn't go over 80 characters
       #
       class Length < Rule
+        MAXIMUM_LINE_LENGTH = 80
+
         self.description = 'The method summary should be less than 80 characters in length'
 
         # @see class description
@@ -41,7 +43,7 @@ module Yardstick
         #
         # @api private
         def valid?
-          summary_text.split(//).length <= 80
+          summary_text.split(//).length <= MAXIMUM_LINE_LENGTH
         end
       end
 
@@ -57,13 +59,15 @@ module Yardstick
         #
         # @api private
         def valid?
-          summary_text[-1, 1] != '.'
+          summary_text[-1] != '.'
         end
       end
 
       # Checks that method summary length is exactly one line
       #
       class SingleLine < Rule
+        LINE_BREAK_CHARACTER = "\n"
+
         self.description = 'The method summary should be a single line'
 
         # @see class description
@@ -73,7 +77,7 @@ module Yardstick
         #
         # @api private
         def valid?
-          !summary_text.include?("\n")
+          !summary_text.include?(LINE_BREAK_CHARACTER)
         end
       end
     end
