@@ -20,11 +20,8 @@ module Yardstick
       # @param [Symbol] name
       #   optional task name
       #
-      # @yield [task]
-      #   yield to self
-      #
-      # @yieldparam [Yardstick::Rake::Measurement] task
-      #   the measurement task
+      # @yieldparam [Yardstick::Config] config
+      #   the config object
       #
       # @return [Yardstick::Rake::Measurement]
       #   the measurement task
@@ -32,7 +29,7 @@ module Yardstick
       # @api public
       def initialize(options = {}, name = :yardstick_measure, &block)
         @name   = name
-        @config = Config.new(options, &block)
+        @config = Config.coerce(options, &block)
 
         define
       end

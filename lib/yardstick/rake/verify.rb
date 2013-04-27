@@ -23,11 +23,8 @@ module Yardstick
       # @param [Symbol] name
       #   optional task name
       #
-      # @yield [task]
-      #   yield to Config
-      #
-      # @yieldparam [Yardstick::Rake::Verify] task
-      #   the verification task
+      # @yieldparam [Yardstick::Config] config
+      #   the config object
       #
       # @return [Yardstick::Rake::Verify] task
       #   the verification task instance
@@ -35,7 +32,7 @@ module Yardstick
       # @api public
       def initialize(options = {}, name = :verify_measurements, &block)
         @name      = name
-        @config    = Config.new(options, &block)
+        @config    = Config.coerce(options, &block)
         @threshold = @config.threshold
 
         assert_threshold

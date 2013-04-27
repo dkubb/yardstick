@@ -53,6 +53,20 @@ module Yardstick
     # @api private
     attr_reader :output
 
+    # Coerces hash into a config object
+    #
+    # @param [Hash] hash
+    #
+    # @yieldparam [Yardstick::Config] config
+    #   the config object
+    #
+    # @return [Config]
+    #
+    # @api private
+    def self.coerce(hash, &block)
+      new(normalize_hash(hash), &block)
+    end
+
     # Coverts string keys into symbol keys
     #
     # @param [Hash] hash
@@ -73,11 +87,14 @@ module Yardstick
     # @param [Hash] options
     #   optional configuration
     #
+    # @yieldparam [Yardstick::Config] config
+    #   the config object
+    #
     # @return [Yardstick::Config]
     #
     # @api private
     def initialize(options = {}, &block)
-      @options = self.class.normalize_hash(options)
+      @options = options
       @rules   = @options.fetch(:rules, {})
 
       set_defaults
