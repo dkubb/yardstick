@@ -6,7 +6,7 @@ describe Yardstick::Config, '#output' do
   context 'when default options' do
     let(:options) { {} }
 
-    it { should be_instance_of(Pathname) }
+    it { should be_instance_of(Yardstick::ReportOutput) }
 
     its(:to_s) { should == 'measurements/report.txt' }
   end

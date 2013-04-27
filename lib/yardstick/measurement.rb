@@ -4,13 +4,6 @@ module Yardstick
 
   # A measurement given a constraint on the docs
   class Measurement
-    # Return measurable rule
-    #
-    # @return [Rules::Rule]
-    #
-    # @api private
-    attr_reader :rule
-
     # Return a Measurement instance
     #
     # @example

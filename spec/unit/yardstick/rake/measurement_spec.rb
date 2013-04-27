@@ -11,7 +11,6 @@ end
 
 shared_examples_for 'report writer' do
   it 'should write the report' do
-    @task.instance_variable_set(:@path, 'lib/yardstick.rb')  # speed up execution
     execute_action
     @output.read.should == "\nYARD-Coverage: 100.0%  Success: 20  Failed: 0  Total: 20\n"
   end

@@ -48,7 +48,7 @@ module Yardstick
 
     # The path to the file where the measurements will be written
     #
-    # @return [Pathname]
+    # @return [Yardstick::ReportOutput]
     #
     # @api private
     attr_reader :output
@@ -141,7 +141,7 @@ module Yardstick
     #
     # @api public
     def output=(output)
-      @output = Pathname(output)
+      @output = ReportOutput.coerce(output)
     end
 
     private

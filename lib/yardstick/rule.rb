@@ -14,21 +14,14 @@ module Yardstick
       #
       # @api private
       attr_accessor :description
-    end
 
-    # Return document
-    #
-    # @param [Class] subclass
-    #   class that is inheriting from this class
-    #
-    # @return [Document]
-    #
-    # @api private
-    attr_reader :document
+      private :description=
+    end
 
     # Register rule in Document
     #
     # @param [Class] subclass
+    #   class that is inheriting from this class
     #
     # @return [undefined]
     #

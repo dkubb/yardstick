@@ -70,10 +70,7 @@ module Yardstick
       #
       # @api private
       def write_report(&block)
-        output = @config.output
-
-        output.dirname.mkpath
-        output.open('w', &block)
+        @config.output.write(&block)
       end
 
     end # class Measurement

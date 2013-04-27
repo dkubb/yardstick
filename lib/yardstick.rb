@@ -11,6 +11,7 @@ require 'yardstick/ordered_set'
 require 'yardstick/measurement'
 
 require 'yardstick/config'
+require 'yardstick/report_output'
 require 'yardstick/document'
 
 require 'yardstick/rule'
