@@ -158,5 +158,9 @@ module Yardstick
       @require_exact_threshold = true
       self.output              = 'measurements/report.txt'
     end
+
+    class << self
+      private :normalize_hash
+    end
   end
 end
