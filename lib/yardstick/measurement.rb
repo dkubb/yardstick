@@ -9,8 +9,8 @@ module Yardstick
     # @example
     #   measurement = Measurement.new(document, rule)
     #
-    # @param [Document] document
-    # @param [Rule] rule
+    # @param [Yardstick::Document] document
+    # @param [Yardstick::Rule] rule
     #
     # @return [Yardstick::Measurement]
     #   the measurement instance

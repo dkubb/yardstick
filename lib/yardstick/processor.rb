@@ -9,7 +9,7 @@ module Yardstick
     #
     # @param [Array<#to_s>, #to_s] path
     #   the files to measure
-    # @param [Config] config
+    # @param [Yardstick::Config] config
     #   a configuration
     #
     # @return [Yardstick::MeasurementSet]
@@ -25,7 +25,7 @@ module Yardstick
     #
     # @param [#to_str] string
     #   the string to measure
-    # @param [Config] config
+    # @param [Yardstick::Config] config
     #   a configuration
     #
     # @return [Yardstick::MeasurementSet]
@@ -41,7 +41,7 @@ module Yardstick
     #
     # @return [Yardstick::MeasurementSet]
     #   a collection of measurements
-    # @param [Config] config
+    # @param [Yardstick::Config] config
     #   a configuration
     #
     # @api private
