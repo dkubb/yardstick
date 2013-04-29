@@ -9,40 +9,46 @@ module Yardstick
     #
     # @param [Array<#to_s>, #to_s] path
     #   the files to measure
+    # @param [Yardstick::Config] config
+    #   a configuration
     #
     # @return [Yardstick::MeasurementSet]
     #   a collection of measurements
     #
     # @api private
-    def self.process_path(path)
-      YARD.parse(Array(path).map(&:to_s), [], YARD::Logger::ERROR)
-      measurements
+    def self.process_path(config)
+      YARD.parse(paths(config), [], YARD::Logger::ERROR)
+      measurements(config)
     end
 
     # Measure string provided
     #
     # @param [#to_str] string
     #   the string to measure
+    # @param [Yardstick::Config] config
+    #   a configuration
     #
     # @return [Yardstick::MeasurementSet]
     #   a collection of measurements
     #
     # @api private
-    def self.process_string(string)
+    def self.process_string(string, config)
       YARD.parse_string(string.to_str)
-      measurements
+      measurements(config)
     end
 
     # Measure method objects in YARD registry
     #
     # @return [Yardstick::MeasurementSet]
     #   a collection of measurements
+    # @param [Yardstick::Config] config
+    #   a configuration
     #
     # @api private
-    def self.measurements
+    def self.measurements(config)
       measurements = MeasurementSet.new
       method_objects.each do |method_object|
-        measurements.merge(method_object.docstring.measure)
+        measurements.merge(Document.measure(method_object.docstring, config))
       end
       measurements
     end
@@ -61,8 +67,17 @@ module Yardstick
       YARD::Registry.clear
     end
 
+    # Return config's possible paths
+    #
+    # @return [Array<String>]
+    #
+    # @api private
+    def self.paths(config)
+      Array(config.path).map(&:to_s)
+    end
+
     class << self
-      private :measurements, :method_objects
+      private :measurements, :method_objects, :paths
     end
 
   end # class Processor

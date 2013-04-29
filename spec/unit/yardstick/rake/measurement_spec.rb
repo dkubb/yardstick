@@ -9,23 +9,8 @@ shared_examples_for 'set default name for measurement task' do
   end
 end
 
-shared_examples_for 'set default path for measurement task' do
-  path = 'lib/**/*.rb'
-
-  it "should set path to #{path.inspect}" do
-    @task.instance_variable_get(:@path).should == path
-  end
-end
-
-shared_examples_for 'set default output for measurement task' do
-  it 'should set output to "measurements/report.txt"' do
-    @task.instance_variable_get(:@output).should == @output
-  end
-end
-
 shared_examples_for 'report writer' do
   it 'should write the report' do
-    @task.path = 'lib/yardstick.rb'  # speed up execution
     execute_action
     @output.read.should == "\nYARD-Coverage: 100.0%  Success: 20  Failed: 0  Total: 20\n"
   end
@@ -40,7 +25,9 @@ describe Yardstick::Rake::Measurement do
   describe '.new' do
     describe 'with no arguments' do
       before do
-        @task = Yardstick::Rake::Measurement.new
+        @task = Yardstick::Rake::Measurement.new { |config|
+          config.path = 'lib/yardstick.rb'
+        }
       end
 
       it 'should initialize a Measurement instance' do
@@ -48,15 +35,13 @@ describe Yardstick::Rake::Measurement do
       end
 
       it_should_behave_like 'set default name for measurement task'
-      it_should_behave_like 'set default path for measurement task'
-      it_should_behave_like 'set default output for measurement task'
 
       it 'should create a task named yardstick_measure' do
         Rake::Task['yardstick_measure'].should be_kind_of(Rake::Task)
       end
 
       it 'should include the path in the task name' do
-        Rake.application.last_description.should == 'Measure docs in lib/**/*.rb with yardstick'
+        Rake.application.last_description.should == 'Measure docs in lib/yardstick.rb with yardstick'
       end
 
       def execute_action
@@ -68,7 +53,7 @@ describe Yardstick::Rake::Measurement do
 
     describe 'with name provided' do
       before do
-        @task = Yardstick::Rake::Measurement.new(:custom_task_name)
+        @task = Yardstick::Rake::Measurement.new({:path => 'lib/yardstick.rb'}, :custom_task_name)
       end
 
       it 'should initialize a Measurement instance' do
@@ -79,15 +64,12 @@ describe Yardstick::Rake::Measurement do
         @task.instance_variable_get(:@name).should == :custom_task_name
       end
 
-      it_should_behave_like 'set default path for measurement task'
-      it_should_behave_like 'set default output for measurement task'
-
       it 'should create a task named custom_task_name' do
         Rake::Task['custom_task_name'].should be_kind_of(Rake::Task)
       end
 
       it 'should include the path in the task name' do
-        Rake.application.last_description.should == 'Measure docs in lib/**/*.rb with yardstick'
+        Rake.application.last_description.should == 'Measure docs in lib/yardstick.rb with yardstick'
       end
 
       def execute_action
@@ -99,8 +81,9 @@ describe Yardstick::Rake::Measurement do
 
     describe 'with block provided' do
       before do
-        @task = Yardstick::Rake::Measurement.new do |*args|
-          @yield = args
+        @task = Yardstick::Rake::Measurement.new do |config|
+          config.path = 'lib/yardstick.rb'
+          @yield = config
         end
       end
 
@@ -109,12 +92,9 @@ describe Yardstick::Rake::Measurement do
       end
 
       it_should_behave_like 'set default name for measurement task'
-      it_should_behave_like 'set default path for measurement task'
-      it_should_behave_like 'set default output for measurement task'
 
-      it 'should yield to self' do
-        @yield.should == [ @task ]
-        @yield.first.should equal(@task)
+      it 'should yield to Config' do
+        @yield.should be_instance_of(Yardstick::Config)
       end
 
       it 'should create a task named yardstick_measure' do
@@ -122,7 +102,7 @@ describe Yardstick::Rake::Measurement do
       end
 
       it 'should include the path in the task name' do
-        Rake.application.last_description.should == 'Measure docs in lib/**/*.rb with yardstick'
+        Rake.application.last_description.should == 'Measure docs in lib/yardstick.rb with yardstick'
       end
 
       def execute_action
@@ -133,36 +113,11 @@ describe Yardstick::Rake::Measurement do
     end
   end
 
-  describe '#path=' do
-    before do
-      @path = 'lib/yardstick.rb'
-
-      @task = Yardstick::Rake::Measurement.new do |measurement|
-        measurement.path = @path
-      end
-    end
-
-    it 'should set path' do
-      @task.instance_variable_get(:@path).should equal(@path)
-    end
-  end
-
-  describe '#output=' do
-    before do
-      @task = Yardstick::Rake::Measurement.new do |measurement|
-        measurement.output = @output
-      end
-    end
-
-    it 'should set output' do
-      @task.instance_variable_get(:@output).should eql(@output)
-    end
-  end
-
   describe '#yardstick_measure' do
     before do
-      @task = Yardstick::Rake::Measurement.new do |task|
-        task.output = @output
+      @task = Yardstick::Rake::Measurement.new do |config|
+        config.path   = 'lib/yardstick.rb'
+        config.output = @output
       end
     end
 

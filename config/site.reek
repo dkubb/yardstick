@@ -2,9 +2,8 @@
 Attribute:
   enabled: true
   exclude:
-  - Yardstick::Rake::Verify
-  - Yardstick::Rake::Measurement
-  - Yardstick::Measurement
+  - Yardstick::Config
+  - Yardstick::Rule
 BooleanParameter:
   enabled: true
   exclude: []
@@ -29,25 +28,22 @@ FeatureEnvy:
   exclude: []
 IrresponsibleModule:
   enabled: true
-  exclude:
-  - YARD::Docstring
+  exclude: []
 LargeClass:
   enabled: true
   exclude:
-  - Yardstick::Measurement
-  - Yardstick::Rake::Verify
+  - Yardstick::Document
+  - Yardstick::Config
   max_instance_variables: 3
   max_methods: 10
 LongMethod:
   enabled: true
   exclude:
   - Yardstick::CLI#self.option_parser
-  - Yardstick::CLI#self.parse_options
-  - Yardstick::CLI#self.run
-  - Yardstick::OrderedSet#<<
-  - Yardstick::Processor#self.measurements
-  - Yardstick::Rake::Verify#verify_measurements
-  max_statements: 2
+  - Yardstick::CLI#self.parse_config
+  - Yardstick::Config#self.normalize_hash
+  - Yardstick::Config#set_defaults
+  max_statements: 3
 LongParameterList:
   enabled: true
   exclude: []
