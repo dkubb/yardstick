@@ -36,7 +36,10 @@ group :metrics do
   gem 'flog',            '~> 2.5.3'
   gem 'roodi',           '~> 2.2.0'
   gem 'simplecov',       '~> 0.7.1'
-  gem 'yard-spellcheck', '~> 0.1.5'
+
+  platforms :ruby_19 do
+    gem 'yard-spellcheck', '~> 0.1.5'
+  end
 
   platforms :mri_18 do
     gem 'arrayfields',          '~> 4.7.4'  # for metric_fu
