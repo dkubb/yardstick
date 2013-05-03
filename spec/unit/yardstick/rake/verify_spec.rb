@@ -11,7 +11,8 @@ end
 
 shared_examples_for 'set default require_exact_threshold for verify task' do
   it 'should set require_exact_threshold to true' do
-    @task.instance_variable_get(:@require_exact_threshold).should be_true
+    config = @task.instance_variable_get(:@config)
+    config.require_exact_threshold?.should be_true
   end
 end
 
@@ -19,13 +20,15 @@ shared_examples_for 'set default path for verify task' do
   path = 'lib/**/*.rb'
 
   it "should set path to #{path.inspect}" do
-    @task.instance_variable_get(:@path).should == path
+    config = @task.instance_variable_get(:@config)
+    config.path.should == path
   end
 end
 
 shared_examples_for 'set default verbose for verify task' do
   it 'should set verbose to true' do
-    @task.instance_variable_get(:@verbose).should be_true
+    config = @task.instance_variable_get(:@config)
+    config.should be_verbose
   end
 end
 
@@ -56,7 +59,8 @@ describe Yardstick::Rake::Verify do
       end
 
       it 'should display coverage summary when executed' do
-        @task.path = 'lib/yardstick.rb'  # speed up execution
+        config = @task.instance_variable_get(:@config)
+        config.path = 'lib/yardstick.rb'
 
         capture_stdout { Rake::Task['verify_measurements'].execute }
 
@@ -66,7 +70,7 @@ describe Yardstick::Rake::Verify do
 
     describe 'with name provided' do
       before do
-        @task = Yardstick::Rake::Verify.new(:custom_task_name) do |verify|
+        @task = Yardstick::Rake::Verify.new({}, :custom_task_name) do |verify|
           verify.threshold = 100
         end
       end
@@ -92,7 +96,8 @@ describe Yardstick::Rake::Verify do
       end
 
       it 'should display coverage summary when executed' do
-        @task.path = 'lib/yardstick.rb'  # speed up execution
+        config = @task.instance_variable_get(:@config)
+        config.path = 'lib/yardstick.rb'
 
         capture_stdout { Rake::Task['custom_task_name'].execute }
 
@@ -106,67 +111,6 @@ describe Yardstick::Rake::Verify do
           Yardstick::Rake::Verify.new {}
         }.should raise_error(RuntimeError, 'threshold must be set')
       end
-    end
-
-    describe 'with no block provided' do
-      it 'should raise an exception' do
-        lambda {
-          Yardstick::Rake::Verify.new
-        }.should raise_error(LocalJumpError)
-      end
-    end
-  end
-
-  describe '#threshold=' do
-    before do
-      @task = Yardstick::Rake::Verify.new do |verify|
-        verify.threshold = 100
-      end
-    end
-
-    it 'should set threshold' do
-      @task.instance_variable_get(:@threshold).should == 100
-    end
-  end
-
-  describe '#require_exact_threshold=' do
-    before do
-      @task = Yardstick::Rake::Verify.new do |verify|
-        verify.threshold               = 100
-        verify.require_exact_threshold = false
-      end
-    end
-
-    it 'should set require_exact_threshold' do
-      @task.instance_variable_get(:@require_exact_threshold).should == false
-    end
-  end
-
-  describe '#path=' do
-    before do
-      @path = 'lib/yardstick.rb'
-
-      @task = Yardstick::Rake::Verify.new do |verify|
-        verify.threshold = 100
-        verify.path      = @path
-      end
-    end
-
-    it 'should set path' do
-      @task.instance_variable_get(:@path).should equal(@path)
-    end
-  end
-
-  describe '#verbose=' do
-    before do
-      @task = Yardstick::Rake::Verify.new do |verify|
-        verify.threshold = 100
-        verify.verbose   = false
-      end
-    end
-
-    it 'should set verbose' do
-      @task.instance_variable_get(:@verbose).should be_false
     end
   end
 

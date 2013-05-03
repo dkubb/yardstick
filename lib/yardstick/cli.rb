@@ -20,7 +20,7 @@ module Yardstick
     #
     # @api public
     def self.run(*args)
-      measurements = Yardstick.measure(*parse_options(args))
+      measurements = Yardstick.measure(parse_config(args))
       measurements.puts
       measurements
     end
@@ -30,15 +30,15 @@ module Yardstick
     # @param [Array<String>] args
     #   the command-line options
     #
-    # @return [Array(Array<String>, Hash)]
+    # @return [Config]
     #   the list of files, and options parsed from the command-line
     #
     # @api private
-    def self.parse_options(args)
+    def self.parse_config(args)
       args << '--help' if args.empty?
       options = {}
       option_parser(options).parse!(args)
-      [ args, options ]
+      Config.new(options.merge(:path => args))
     rescue OptionParser::InvalidOption => error
       display_exit(error.message)
     end
@@ -73,7 +73,7 @@ module Yardstick
     end
 
     class << self
-      private :option_parser, :parse_options, :display_exit
+      private :option_parser, :parse_config, :display_exit
     end
 
   end # module CLI

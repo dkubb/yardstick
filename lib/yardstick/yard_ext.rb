@@ -9,8 +9,4 @@ module YARD  #:nodoc: all
   # Fix jruby-head to use the ruby 1.8 parser until their ripper port is working
   Parser::SourceParser.parser_type = :ruby18 if JRUBY_HEAD
 
-  # Extend docstring with yardstick methods
-  class Docstring
-    include Yardstick::Method
-  end # class Docstring
 end # module YARD

@@ -6,10 +6,10 @@ describe Yardstick::MeasurementSet do
   before do
     YARD.parse_string('def test; end')
 
-    @description  = 'test measurement'
-    @docstring    = YARD::Registry.all(:method).first.docstring
+    @document   = DocumentMock.new
+    @rule       = ValidRule.new(@document)
 
-    @measurement  = Yardstick::Measurement.new(@description, @docstring) { true }
+    @measurement  = Yardstick::Measurement.new(@document, @rule)
     @measurements = Yardstick::MeasurementSet.new
   end
 
@@ -48,35 +48,16 @@ describe Yardstick::MeasurementSet do
   end
 
   describe '#<<' do
-    describe 'with a new Measurement' do
-      before do
-        @response = @measurements << @measurement
-      end
-
-      it 'should return self' do
-        @response.should be_equal(@measurements)
-      end
-
-      it 'should append the Measurement' do
-        @measurements.to_a.last.should equal(@measurement)
-      end
+    before do
+      @response = @measurements << @measurement
     end
 
-    describe 'with an equivalent Measurement' do
-      before do
-        @measurements << @measurement
-        @measurements.to_a.should == [ @measurement ]
+    it 'should return self' do
+      @response.should be_equal(@measurements)
+    end
 
-        @response = @measurements << Yardstick::Measurement.new(@description, @docstring) { true }
-      end
-
-      it 'should return self' do
-        @response.should be_equal(@measurements)
-      end
-
-      it 'should not append the Measurement again' do
-        @measurements.to_a.should == [ @measurement ]
-      end
+    it 'should append the Measurement' do
+      @measurements.to_a.last.should equal(@measurement)
     end
   end
 
@@ -235,7 +216,13 @@ describe Yardstick::MeasurementSet do
 
   describe '#puts' do
     before do
-      @measurements << Yardstick::Measurement.new(@description, @docstring) { false }
+      @document.stub(:file) { "(stdin)" }
+      @document.stub(:line) { 1 }
+      @document.stub(:path) { "#test" }
+
+      rule = InvalidRule.new(@document)
+
+      @measurements << Yardstick::Measurement.new(@document, rule)
     end
 
     describe 'with no arguments' do
@@ -244,7 +231,7 @@ describe Yardstick::MeasurementSet do
       end
 
       it 'should output the summary' do
-        @output.should == "(stdin):1: #test: test measurement\n" \
+        @output.should == "(stdin):1: #test: not successful\n" \
           "\nYARD-Coverage: 0.0%  Success: 0  Failed: 1  Total: 1\n"
       end
     end
@@ -258,7 +245,7 @@ describe Yardstick::MeasurementSet do
       end
 
       it 'should output the summary' do
-        @output.should == "(stdin):1: #test: test measurement\n" \
+        @output.should == "(stdin):1: #test: not successful\n" \
           "\nYARD-Coverage: 0.0%  Success: 0  Failed: 1  Total: 1\n"
       end
     end

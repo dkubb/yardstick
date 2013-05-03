@@ -1,65 +1,69 @@
-# encoding: utf-8
-
 module Yardstick
-
-  # A constraint on the docs
+  # Base class of every rule
+  #
+  # @abstract
   class Rule
+    extend Forwardable
 
-    # Return a Rule instance
+    class << self
+      # Description of the rule
+      #
+      # This is shown when a rule is invalid
+      #
+      # @return [String]
+      #
+      # @api private
+      attr_accessor :description
+
+      private :description=
+    end
+
+    # Register rule in Document
     #
-    # @param [#to_str] description
-    #   the description of the Rule
+    # @param [Class] subclass
+    #   class that is inheriting from this class
     #
-    # @yield []
-    #   the measurement for the rule
+    # @return [undefined]
+    #
+    # @api private
+    def self.inherited(subclass)
+      Document.register_rule(subclass)
+    end
+
+    # Initializes a rule
+    #
+    # @param [Document] document
+    # @param [Hash] options
+    #   optional configuration
     #
     # @return [Rule]
-    #   the rule instance
     #
     # @api private
-    def initialize(description, &block)
-      @description = description.to_str
-      @block       = block
+    def initialize(document, options = {})
+      @document = document
+      @enabled  = options.fetch(:enabled, true)
+      @exclude  = options.fetch(:exclude, [])
     end
 
-    # Return a Measurement for a docstring
-    #
-    # @param [YARD::Docstring] docstring
-    #   the docstring to measure
-    #
-    # @return [Measurement]
-    #   the measurement
-    #
-    # @api private
-    def measure(docstring)
-      Measurement.new(@description, docstring, &@block)
-    end
+    def_delegators :@document, :has_tag?, :api?, :tag_types, :tag_text, :summary_text, :visibility
 
-    # Test if Rule is equal to another rule
-    #
-    # @example
-    #   rule == equal_rule  # => true
-    #
-    # @param [Rule] other
-    #   the other Rule
+    # Checks if rule is enabled in current context
     #
     # @return [Boolean]
-    #   true if the Rule is equal to the other, false if not
-    #
-    # @api semipublic
-    def eql?(other)
-      @description.eql?(other.instance_variable_get(:@description))
-    end
-
-    # Return hash identifier for the Rule
-    #
-    # @return [Integer]
-    #   the hash identifier
+    #   true if enabled
     #
     # @api private
-    def hash
-      @description.hash
+    def enabled?
+      @enabled && !@exclude.include?(@document.path)
     end
 
-  end # class Rule
-end # module Yardstick
+    # Checks if the rule is validatable for given document
+    #
+    # @return [Boolean]
+    #
+    # @api private
+    def validatable?
+      true
+    end
+  end
+end
