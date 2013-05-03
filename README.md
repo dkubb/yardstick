@@ -1,5 +1,5 @@
-# Yardstick
-===========
+yardstick
+=========
 
 [![Gem Version](https://badge.fury.io/rb/yardstick.png)][gem]
 [![Build Status](https://secure.travis-ci.org/dkubb/yardstick.png?branch=master)][travis]
@@ -15,45 +15,34 @@
 
 Yardstick is a tool that verifies documentation coverage of Ruby code.  It will measure the source and provide feedback on what is missing from the documentation and what can be improved.
 
-* [Homepage](http://yardstick.rubyforge.org/)
-* [Git](http://github.com/dkubb/yardstick)
-* [Bug Tracker](http://github.com/dkubb/yardstick/issues)
-* [Mailing List](http://groups.google.com/group/yardstick)
-* [IRC](irc://irc.freenode.net/yardstick)
+* [Git](https://github.com/dkubb/yardstick)
+* [Bug Tracker](https://github.com/dkubb/yardstick/issues)
 
 Installation
 ------------
 
 With Rubygems:
 
-```
-$ sudo gem install yardstick
+```bash
+$ gem install yardstick
 $ irb -rubygems
->> require 'yardstick'
-=> true
-```
-
-With the [Rip package manager](http://hellorip.com/):
-
-```
-$ rip install git://github.com/dkubb/yardstick.git 0.1.0
-$ irb -rrip
 >> require 'yardstick'
 => true
 ```
 
 With git and local working copy:
 
-```
+```bash
 $ git clone git://github.com/dkubb/yardstick.git
 $ cd yardstick
-$ rake build && sudo rake install
+$ rake install
 $ irb -rubygems
 >> require 'yardstick'
 => true
 ```
 
-## Usage
+Usage
+-----
 
 Yardstick may be used three ways:
 
@@ -121,7 +110,8 @@ measurements = Yardstick.measure_string <<-RUBY
 RUBY
 ```
 
-## TODO
+TODO
+----
 
 * Add more measurements, especially for @param, @yield and type
   validation
@@ -131,9 +121,7 @@ RUBY
 * Specify method_missing to allow public, semipublic or private even
   if its visibility is private
 * Allow initialize to be public, semipublic or private regardless of
-  its visibility.  A constructor may not necessarily be public, and may
+  its visibility. A constructor may not necessarily be public, and may
   not be used externally.
-* Allow @return type to be "self" to specify the return value is
-  the object itself.  Ask argv[0] if it can be made a YARD convention.
 
 Copyright (c) 2009-2013 Dan Kubb. See LICENSE for details.
