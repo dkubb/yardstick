@@ -22,7 +22,7 @@ module Yardstick
     #
     # @param [Yard::Docstring] docstring
     #   docstring that will be measured
-    # @param [Config] config
+    # @param [Yardstick::Config] config
     #   a configuration
     #
     # @return [MeasurementSet]
@@ -32,7 +32,7 @@ module Yardstick
       document = new(docstring)
 
       MeasurementSet.new(@registered_rules.map { |rule_class|
-        Measurement.new(document, rule_class.new(document, config.options(rule_class)))
+        Measurement.new(rule_class.prepare(document, config))
       })
     end
 

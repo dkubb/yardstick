@@ -9,7 +9,7 @@ describe Yardstick::MeasurementSet do
     @document   = DocumentMock.new
     @rule       = ValidRule.new(@document)
 
-    @measurement  = Yardstick::Measurement.new(@document, @rule)
+    @measurement  = Yardstick::Measurement.new(@rule)
     @measurements = Yardstick::MeasurementSet.new
   end
 
@@ -222,7 +222,7 @@ describe Yardstick::MeasurementSet do
 
       rule = InvalidRule.new(@document)
 
-      @measurements << Yardstick::Measurement.new(@document, rule)
+      @measurements << Yardstick::Measurement.new(rule)
     end
 
     describe 'with no arguments' do

@@ -30,6 +30,27 @@ module Yardstick
       Document.register_rule(subclass)
     end
 
+    # Makes a new instance of rule using given config
+    #
+    # @param [Yardstick::Document] document
+    #   document that will be measured
+    # @param [Yardstick::Config] config
+    #   a configuration
+    #
+    # @return [Yardstick::Rule]
+    #
+    # @api private
+    def self.prepare(document, config)
+      new(document, config.options(self))
+    end
+
+    # Return document that current rule is using
+    #
+    # @return [Document]
+    #
+    # @api private
+    attr_reader :document
+
     # Initializes a rule
     #
     # @param [Document] document
