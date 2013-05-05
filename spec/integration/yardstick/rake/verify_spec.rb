@@ -70,7 +70,7 @@ describe Yardstick::Rake::Verify do
 
     describe 'with name provided' do
       before do
-        @task = Yardstick::Rake::Verify.new({}, :custom_task_name) do |verify|
+        @task = Yardstick::Rake::Verify.new(:custom_task_name, {}) do |verify|
           verify.threshold = 100
         end
       end

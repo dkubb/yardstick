@@ -30,7 +30,7 @@ module Yardstick
       #   the verification task instance
       #
       # @api public
-      def initialize(options = {}, name = :verify_measurements, &block)
+      def initialize(name = :verify_measurements, options = {}, &block)
         @name      = name
         @config    = Config.coerce(options, &block)
         @threshold = @config.threshold

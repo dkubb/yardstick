@@ -53,7 +53,7 @@ describe Yardstick::Rake::Measurement do
 
     describe 'with name provided' do
       before do
-        @task = Yardstick::Rake::Measurement.new({:path => 'lib/yardstick.rb'}, :custom_task_name)
+        @task = Yardstick::Rake::Measurement.new(:custom_task_name, {:path => 'lib/yardstick.rb'})
       end
 
       it 'should initialize a Measurement instance' do

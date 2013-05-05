@@ -18,16 +18,9 @@ if ENV['COVERAGE'] == 'true'
 end
 
 require 'yardstick'
-require 'spec'
-require 'rake'
-require 'spec/autorun' if RUBY_VERSION < '1.9'
+require 'devtools/spec_helper'
 
-# require spec support files and shared behavior
-Dir[File.expand_path('../{support,shared}/**/*.rb', __FILE__)].each do |file|
-  require file
-end
-
-Spec::Runner.configure do |config|
+RSpec.configure do |config|
   clear_tasks = proc { Rake::Task.clear }
 
   config.before(:all, &clear_tasks)

@@ -27,7 +27,7 @@ module Yardstick
       #   the measurement task
       #
       # @api public
-      def initialize(options = {}, name = :yardstick_measure, &block)
+      def initialize(name = :yardstick_measure, options = {}, &block)
         @name   = name
         @config = Config.coerce(options, &block)
 
