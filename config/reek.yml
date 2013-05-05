@@ -10,7 +10,7 @@ BooleanParameter:
 ClassVariable:
   enabled: true
   exclude: []
-ControlCouple:
+ControlParameter:
   enabled: true
   exclude: []
 DataClump:
@@ -18,7 +18,7 @@ DataClump:
   exclude: []
   max_copies: 2
   min_clump_size: 2
-Duplication:
+DuplicateMethodCall:
   enabled: true
   exclude: []
   max_calls: 1
@@ -29,21 +29,6 @@ FeatureEnvy:
 IrresponsibleModule:
   enabled: true
   exclude: []
-LargeClass:
-  enabled: true
-  exclude:
-  - Yardstick::Document
-  - Yardstick::Config
-  max_instance_variables: 3
-  max_methods: 10
-LongMethod:
-  enabled: true
-  exclude:
-  - Yardstick::CLI#self.option_parser
-  - Yardstick::CLI#self.parse_config
-  - Yardstick::Config#self.normalize_hash
-  - Yardstick::Config#set_defaults
-  max_statements: 3
 LongParameterList:
   enabled: true
   exclude: []
@@ -60,10 +45,31 @@ NestedIterators:
   exclude: []
   max_allowed_nesting: 1
   ignore_iterators: []
-SimulatedPolymorphism:
+NilCheck:
+  enabled: true
+  exclude: []
+RepeatedConditional:
   enabled: true
   exclude: []
   max_ifs: 1
+TooManyInstanceVariables:
+  enabled: true
+  exclude:
+  - Yardstick::Config
+  max_instance_variables: 3
+TooManyMethods:
+  enabled: true
+  exclude:
+  - Yardstick::Document
+  max_methods: 10
+TooManyStatements:
+  enabled: true
+  exclude:
+  - Yardstick::CLI#self.option_parser
+  - Yardstick::CLI#self.parse_config
+  - Yardstick::Config#set_defaults
+  - Yardstick::Config#self.normalize_hash
+  max_statements: 3
 UncommunicativeMethodName:
   enabled: true
   exclude: []
@@ -95,6 +101,9 @@ UncommunicativeVariableName:
   - !ruby/regexp /[0-9]$/
   - !ruby/regexp /[A-Z]/
   accept: []
+UnusedParameters:
+  enabled: true
+  exclude: []
 UtilityFunction:
   enabled: true
   exclude: []

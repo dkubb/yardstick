@@ -45,14 +45,14 @@ module Yardstick
 
     # Return an OptionParser instance for the command-line app
     #
-    # @param [Hash] options
+    # @param [Hash] _options
     #   the options to set when parsing the command-line arguments
     #
     # @return [Yardstick::OptionParser]
     #   the option parser instance
     #
     # @api private
-    def self.option_parser(options)
+    def self.option_parser(_options)
       opts = OptionParser.new
       opts.on_tail('-v', '--version', 'print version information and exit') { display_exit("#{opts.program_name} #{Yardstick::VERSION}") }
       opts.on_tail('-h', '--help',    'display this help and exit')         { display_exit(opts.to_s) }
