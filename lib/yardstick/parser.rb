@@ -38,6 +38,7 @@ module Yardstick
         set << Document.new(method_object.docstring)
       }
     end
+    private_class_method :documents
 
     # Return method objects in YARD registry
     #
@@ -52,10 +53,7 @@ module Yardstick
     ensure
       YARD::Registry.clear
     end
-
-    class << self
-      private :documents, :method_objects
-    end
+    private_class_method :method_objects
 
   end
 end

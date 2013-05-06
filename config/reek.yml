@@ -4,6 +4,7 @@ Attribute:
   exclude:
   - Yardstick::Config
   - Yardstick::Rule
+  - Yardstick::Document
 BooleanParameter:
   enabled: true
   exclude: []
