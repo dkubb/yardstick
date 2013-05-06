@@ -4,7 +4,7 @@ describe Yardstick::Processor, '#process' do
   subject { described_class.new(config).process }
 
   let(:config)    { mock('config', :path => path) }
-  let(:path)      { mock('path', :to_s => 'foo/bar.rb') }
+  let(:path)      { Pathname('foo/bar.rb') }
   let(:documents) { mock('document set') }
 
   it 'measures files specified in the config' do
