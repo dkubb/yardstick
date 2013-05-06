@@ -159,7 +159,7 @@ module Yardstick
     #
     # @api private
     def set_defaults(options)
-      @threshold               = options[:threshold]
+      @threshold               = options.fetch(:threshold, 100)
       @verbose                 = options.fetch(:verbose, true)
       @path                    = options.fetch(:path, 'lib/**/*.rb')
       @require_exact_threshold = options.fetch(:require_exact_threshold, true)

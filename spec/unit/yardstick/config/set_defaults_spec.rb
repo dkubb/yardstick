@@ -6,7 +6,7 @@ describe Yardstick::Config, '#set_defaults' do
   context 'when without options' do
     let(:options) { {} }
 
-    its(:threshold)                { should be_nil }
+    its(:threshold)                { should be(100) }
     its(:verbose?)                 { should be(true) }
     its(:path)                     { should eq('lib/**/*.rb') }
     its(:require_exact_threshold?) { should be(true) }

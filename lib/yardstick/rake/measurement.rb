@@ -43,7 +43,7 @@ module Yardstick
       #
       # @api public
       def yardstick_measure
-        write_report { |io| Yardstick.measure(@config).puts(io) }
+        @config.output.write { |io| Yardstick.measure(@config).puts(io) }
       end
 
     private
@@ -56,21 +56,6 @@ module Yardstick
       def define
         desc "Measure docs in #{@config.path} with yardstick"
         task(@name) { yardstick_measure }
-      end
-
-      # Open up a report for writing
-      #
-      # @yield [io]
-      #   yield to an object that responds to #puts
-      #
-      # @yieldparam [#puts] io
-      #   the object that responds to #puts
-      #
-      # @return [undefined]
-      #
-      # @api private
-      def write_report(&block)
-        @config.output.write(&block)
       end
 
     end # class Measurement
