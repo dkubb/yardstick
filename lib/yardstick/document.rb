@@ -1,6 +1,6 @@
 module Yardstick
+
   # Wraps a yard docstring to make a nicer interface
-  #
   class Document
     extend Forwardable
 
@@ -20,17 +20,15 @@ module Yardstick
 
     # Measures docstring against enabled rules
     #
-    # @param [Yard::Docstring] docstring
-    #   docstring that will be measured
+    # @param [Yardstring::Document] document
+    #   document that will be measured
     # @param [Yardstick::Config] config
     #   a configuration
     #
     # @return [MeasurementSet]
     #
     # @api private
-    def self.measure(docstring, config)
-      document = new(docstring)
-
+    def self.measure(document, config)
       MeasurementSet.new(@registered_rules.map { |rule_class|
         Measurement.new(rule_class.prepare(document, config))
       })

@@ -1,9 +1,8 @@
 require 'spec_helper'
 
 describe Yardstick::Document, '.measure' do
-  subject { described_class.measure(docstring, config) }
+  subject { described_class.measure(document, config) }
 
-  let(:docstring) { mock('docstring')     }
   let(:config)    { Yardstick::Config.new }
   let(:document)  { mock('document')      }
 
@@ -12,8 +11,6 @@ describe Yardstick::Document, '.measure' do
   }
 
   before do
-    described_class.stub(:new).with(docstring) { document }
-
     registered_rules.each do |rule_class|
       rule_class.should_receive(:prepare).
         with(document, config).
