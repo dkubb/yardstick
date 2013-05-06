@@ -29,6 +29,7 @@ module Yardstick
     def self.inherited(subclass)
       Document.register_rule(subclass)
     end
+    private_class_method :inherited
 
     # Makes a new instance of rule using given config
     #
@@ -40,7 +41,7 @@ module Yardstick
     # @return [Yardstick::Rule]
     #
     # @api private
-    def self.prepare(document, config)
+    def self.coerce(document, config)
       new(document, config.options(self))
     end
 

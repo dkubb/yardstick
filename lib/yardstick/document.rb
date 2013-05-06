@@ -18,6 +18,15 @@ module Yardstick
       @registered_rules << rule_class
     end
 
+    # Shows currently registered rules
+    #
+    # @return [Array<Class>]
+    #
+    # @api private
+    def self.registered_rules
+      @registered_rules
+    end
+
     # Measures docstring against enabled rules
     #
     # @param [Yardstring::Document] document
@@ -30,7 +39,7 @@ module Yardstick
     # @api private
     def self.measure(document, config)
       MeasurementSet.new(@registered_rules.map { |rule_class|
-        Measurement.new(rule_class.prepare(document, config))
+        Measurement.new(rule_class.coerce(document, config))
       })
     end
 
