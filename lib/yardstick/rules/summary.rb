@@ -43,7 +43,7 @@ module Yardstick
         #
         # @api private
         def valid?
-          summary_text.length <= MAXIMUM_LINE_LENGTH
+          summary_text.split(//u).count <= MAXIMUM_LINE_LENGTH
         end
       end
 
