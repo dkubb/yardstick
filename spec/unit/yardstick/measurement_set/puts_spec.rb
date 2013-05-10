@@ -4,7 +4,7 @@ describe Yardstick::MeasurementSet, '#puts' do
   let(:set)      { described_class.new([failed, successful]) }
   let(:document) { DocumentMock.new }
 
-  let(:failed) {
+  let(:failed) do
     Class.new {
       def ok?; false; end
 
@@ -12,8 +12,9 @@ describe Yardstick::MeasurementSet, '#puts' do
         io.puts('measurement info')
       end
     }.new
-  }
-  let(:successful) {
+  end
+
+  let(:successful) do
     Class.new {
       def ok?; true; end
 
@@ -21,7 +22,7 @@ describe Yardstick::MeasurementSet, '#puts' do
         io.puts('measurement info')
       end
     }.new
-  }
+  end
 
   describe 'with no arguments' do
     before do

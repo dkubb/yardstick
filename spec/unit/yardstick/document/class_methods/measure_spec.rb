@@ -6,9 +6,9 @@ describe Yardstick::Document, '.measure' do
   let(:config)    { Yardstick::Config.new }
   let(:document)  { mock('document')      }
 
-  let(:registered_rules) {
+  let(:registered_rules) do
     described_class.instance_variable_get(:@registered_rules)
-  }
+  end
 
   before do
     registered_rules.each do |rule_class|

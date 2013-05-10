@@ -6,7 +6,7 @@ describe Yardstick::Document, '#process_string' do
   let(:processor) { Yardstick::Processor.new(config) }
   let(:config)    { Yardstick::Config.new }
 
-  let(:valid_method) {
+  let(:valid_method) do
     (<<-RUBY)
       # This is a method summary that is the maximum --- exactly 80 characters in length
       #
@@ -23,7 +23,7 @@ describe Yardstick::Document, '#process_string' do
       def test(value)
       end
     RUBY
-  }
+  end
 
   describe 'with a method summary' do
     let(:method) { valid_method }
@@ -46,9 +46,9 @@ describe Yardstick::Document, '#process_string' do
   end
 
   describe 'without a method summary when validations are turned off' do
-    let(:config) {
+    let(:config) do
       Yardstick::Config.new(:rules => {:"Summary::Presence" => {:enabled => false}})
-    }
+    end
     let(:method) { 'def test(value); end' }
 
     it { should be_kind_of(Yardstick::MeasurementSet) }
@@ -69,13 +69,13 @@ describe Yardstick::Document, '#process_string' do
   end
 
   describe 'with a method summary that is 81 characters in length' do
-    let(:method) {
+    let(:method) do
       (<<-RUBY)
         # This is a method summary greater than the maximum - it is 81 characters in length
         def test(value)
         end
       RUBY
-    }
+    end
 
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
@@ -95,13 +95,13 @@ describe Yardstick::Document, '#process_string' do
   end
 
   describe 'with a method summary that does end in a period' do
-    let(:method) {
+    let(:method) do
       <<-RUBY
         # This method summary ends in a period.
         def test(value)
         end
       RUBY
-    }
+    end
 
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
@@ -121,14 +121,14 @@ describe Yardstick::Document, '#process_string' do
   end
 
   describe 'with a method summary that is not on one line' do
-    let(:method) {
+    let(:method) do
       <<-RUBY
         # This method summary
         # is on two lines
         def test(value)
         end
       RUBY
-    }
+    end
 
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
@@ -148,13 +148,13 @@ describe Yardstick::Document, '#process_string' do
   end
 
   describe 'with a method that is private' do
-    let(:method) {
+    let(:method) do
       <<-RUBY
         # @api private
         def test(value)
         end
       RUBY
-    }
+    end
 
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
@@ -164,7 +164,7 @@ describe Yardstick::Document, '#process_string' do
   end
 
   describe 'with a method that does not have an @example tag, and has an undefined @return tag' do
-    let(:method) {
+    let(:method) do
       <<-RUBY
         # @return [undefined]
         #
@@ -172,7 +172,7 @@ describe Yardstick::Document, '#process_string' do
         def test(value)
         end
       RUBY
-    }
+    end
 
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
@@ -212,13 +212,13 @@ describe Yardstick::Document, '#process_string' do
   end
 
   describe 'with a method that has an invalid @api tag' do
-    let(:method) {
+    let(:method) do
       <<-RUBY
         # @api invalid
         def test(value)
         end
       RUBY
-    }
+    end
 
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
@@ -228,7 +228,7 @@ describe Yardstick::Document, '#process_string' do
   end
 
   describe 'with a protected method and a semipublic @api tag' do
-    let(:method) {
+    let(:method) do
       <<-RUBY
         protected
 
@@ -236,7 +236,7 @@ describe Yardstick::Document, '#process_string' do
         def test(value)
         end
       RUBY
-    }
+    end
 
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
@@ -246,7 +246,7 @@ describe Yardstick::Document, '#process_string' do
   end
 
   describe 'with a protected method and a private @api tag' do
-    let(:method) {
+    let(:method) do
       <<-RUBY
         protected
 
@@ -254,7 +254,7 @@ describe Yardstick::Document, '#process_string' do
         def test(value)
         end
       RUBY
-    }
+    end
 
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
@@ -264,7 +264,7 @@ describe Yardstick::Document, '#process_string' do
   end
 
   describe 'with a protected method and a public @api tag' do
-    let(:method) {
+    let(:method) do
       <<-RUBY
         protected
 
@@ -272,7 +272,7 @@ describe Yardstick::Document, '#process_string' do
         def test(value)
         end
       RUBY
-    }
+    end
 
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
@@ -282,7 +282,7 @@ describe Yardstick::Document, '#process_string' do
   end
 
   describe 'with a private method and a private @api tag' do
-    let(:method) {
+    let(:method) do
       <<-RUBY
         private
 
@@ -290,7 +290,7 @@ describe Yardstick::Document, '#process_string' do
         def test(value)
         end
       RUBY
-    }
+    end
 
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
@@ -300,7 +300,7 @@ describe Yardstick::Document, '#process_string' do
   end
 
   describe 'with a private method and a public @api tag' do
-    let(:method) {
+    let(:method) do
       <<-RUBY
         private
 
@@ -308,7 +308,7 @@ describe Yardstick::Document, '#process_string' do
         def test(value)
         end
       RUBY
-    }
+    end
 
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
@@ -318,7 +318,7 @@ describe Yardstick::Document, '#process_string' do
   end
 
   describe 'with a private method and a semipublic @api tag' do
-    let(:method) {
+    let(:method) do
       <<-RUBY
         private
 
@@ -326,7 +326,7 @@ describe Yardstick::Document, '#process_string' do
         def test(value)
         end
       RUBY
-    }
+    end
 
     it { should be_kind_of(Yardstick::MeasurementSet) }
 

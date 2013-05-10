@@ -15,9 +15,9 @@ describe Yardstick::Config, '.coerce' do
   end
 
   context 'when block provided' do
-    subject {
+    subject do
       described_class.coerce(hash) { |config| config.path = new_path }
-    }
+    end
 
     let(:new_path) { 'custom' }
 

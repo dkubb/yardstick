@@ -3,9 +3,9 @@ require 'spec_helper'
 describe Yardstick::Config, '#options' do
   subject { described_class.new(options).options(rule_class) }
 
-  let(:options) {
+  let(:options) do
     {:rules => {:"Summary::Presence" => {:enabled => false}}}
-  }
+  end
 
   context 'when rule is present' do
     let(:rule_class) { Yardstick::Rules::Summary::Presence }

@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe Yardstick::ReportOutput, 'write' do
-  subject {
+  subject do
     described_class.new(target).write do |io|
       io.puts 'content'
     end
-  }
+  end
 
   let(:target) { mock('Pathname', :dirname => dirname) }
   let(:dirname) { mock }

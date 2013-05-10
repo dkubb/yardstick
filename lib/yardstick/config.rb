@@ -78,10 +78,10 @@ module Yardstick
     #
     # @api private
     def self.normalize_hash(hash)
-      hash.each_with_object({}) { |(key, value), normalized_hash|
+      hash.each_with_object({}) do |(key, value), normalized_hash|
         normalized_value = value.is_a?(Hash) ? normalize_hash(value) : value
         normalized_hash[key.to_sym] = normalized_value
-      }
+      end
     end
 
     # Initializes new config

@@ -17,12 +17,14 @@ describe Yardstick::Config, '#set_defaults' do
   end
 
   context 'when with options' do
-    let(:options) { {
-      :threshold => 15,
-      :verbose => false,
-      :path => 'tmp/*.rb',
-      :require_exact_threshold => false
-    } }
+    let(:options) do
+      {
+        :threshold => 15,
+        :verbose => false,
+        :path => 'tmp/*.rb',
+        :require_exact_threshold => false
+      }
+    end
 
     its(:threshold)                { should be(15) }
     its(:verbose?)                 { should be(false) }

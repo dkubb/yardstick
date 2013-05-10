@@ -2,11 +2,9 @@ require 'spec_helper'
 require 'yardstick/rake/verify'
 
 describe Yardstick::Rake::Verify, '#verify_measurements' do
-  subject(:measure) {
-    capture_stdout {
-      described_class.new(:verify, options).verify_measurements
-    }
-  }
+  subject(:measure) do
+    capture_stdout { described_class.new(:verify, options).verify_measurements }
+  end
 
   let(:config)  { Yardstick::Config.new(:threshold => 90) }
   let(:options) { mock('options') }

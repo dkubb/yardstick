@@ -34,9 +34,9 @@ module Yardstick
     #
     # @api private
     def self.documents
-      method_objects.each_with_object(DocumentSet.new) { |method_object, set|
+      method_objects.each_with_object(DocumentSet.new) do |method_object, set|
         set << Document.new(method_object.docstring)
-      }
+      end
     end
     private_class_method :documents
 
