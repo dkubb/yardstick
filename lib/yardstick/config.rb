@@ -67,7 +67,7 @@ module Yardstick
       new(normalize_hash(hash), &block)
     end
 
-    # Coverts string keys into symbol keys
+    # Converts string keys into symbol keys
     #
     # @param [Hash] hash
     #
