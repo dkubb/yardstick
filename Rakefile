@@ -1,9 +1,4 @@
 # encoding: utf-8
 
-require 'rake'
-
-require File.expand_path('../lib/yardstick/version', __FILE__)
-
-FileList['tasks/**/*.rake'].each { |task| import task }
-
-task :default => :spec
+require 'devtools'
+Devtools.init_rake_tasks

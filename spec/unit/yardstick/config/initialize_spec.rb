@@ -4,9 +4,9 @@ describe Yardstick::Config, '#initialize' do
   it { should be_instance_of(described_class) }
 
   context 'when block provided' do
-    subject {
+    subject do
       described_class.new { |config| config.path = new_path }
-    }
+    end
 
     let(:new_path) { 'custom' }
 

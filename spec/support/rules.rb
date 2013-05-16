@@ -3,7 +3,10 @@ class ValidRule
     attr_accessor :description
   end
 
-  def initialize(_)
+  attr_reader :document
+
+  def initialize(document, *)
+    @document = document
   end
 
   self.description = 'successful'

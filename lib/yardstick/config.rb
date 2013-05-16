@@ -2,6 +2,8 @@ module Yardstick
   # Handles Yardstick configuration
   #
   class Config
+    InvalidRule = Class.new(StandardError)
+
     NAMESPACE_PREFIX = 'Yardstick::Rules::'.freeze
 
     # Set the threshold
@@ -76,10 +78,10 @@ module Yardstick
     #
     # @api private
     def self.normalize_hash(hash)
-      hash.each_with_object({}) { |(key, value), normalized_hash|
+      hash.each_with_object({}) do |(key, value), normalized_hash|
         normalized_value = value.is_a?(Hash) ? normalize_hash(value) : value
         normalized_hash[key.to_sym] = normalized_value
-      }
+      end
     end
 
     # Initializes new config
@@ -94,10 +96,7 @@ module Yardstick
     #
     # @api private
     def initialize(options = {}, &block)
-      @options = options
-      @rules   = @options.fetch(:rules, {})
-
-      set_defaults
+      set_defaults(options)
 
       yield(self) if block_given?
     end
@@ -110,8 +109,13 @@ module Yardstick
     #
     # @api private
     def options(rule_class)
-      key = rule_class.to_s[NAMESPACE_PREFIX.length..-1].to_sym
-      @rules.fetch(key, {})
+      key = rule_class.to_s[NAMESPACE_PREFIX.length..-1]
+
+      if key
+        @rules.fetch(key.to_sym, {})
+      else
+        raise InvalidRule, "every rule must begin with #{NAMESPACE_PREFIX}"
+      end
     end
 
     # Specify if the coverage summary should be displayed
@@ -148,14 +152,18 @@ module Yardstick
 
     # Sets default options
     #
+    # @param [Hash] options
+    #   optional configuration
+    #
     # @return [undefined]
     #
     # @api private
-    def set_defaults
-      @threshold               = @options[:threshold]
-      @verbose                 = true
-      @path                    = @options[:path] || 'lib/**/*.rb'
-      @require_exact_threshold = true
+    def set_defaults(options)
+      @threshold               = options.fetch(:threshold, 100)
+      @verbose                 = options.fetch(:verbose, true)
+      @path                    = options.fetch(:path, 'lib/**/*.rb')
+      @require_exact_threshold = options.fetch(:require_exact_threshold, true)
+      @rules                   = options.fetch(:rules, {})
       self.output              = 'measurements/report.txt'
     end
 
