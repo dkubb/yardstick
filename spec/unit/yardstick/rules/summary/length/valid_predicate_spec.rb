@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe Yardstick::Rules::Summary::Length, '#valid?' do
@@ -7,6 +9,12 @@ describe Yardstick::Rules::Summary::Length, '#valid?' do
 
   context 'with short summary' do
     let(:text) { 'A summary' }
+
+    it { should be(true) }
+  end
+
+  context 'with short summary that includes umlauts' do
+    let(:text) { 'ö' * 79 }
 
     it { should be(true) }
   end

@@ -1,6 +1,8 @@
 module Yardstick
+
   # Handles writing reports
   class ReportOutput
+
     # Coerces string path into proper output object
     #
     # @param [String, Pathname] target
@@ -48,5 +50,6 @@ module Yardstick
     def to_s
       @target.to_s
     end
+
   end
 end

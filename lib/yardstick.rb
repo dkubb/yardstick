@@ -21,7 +21,9 @@ require 'yardstick/rules/summary'
 require 'yardstick/rules/return_tag'
 
 require 'yardstick/measurement_set'
+require 'yardstick/document_set'
 require 'yardstick/processor'
+require 'yardstick/parser'
 
 require 'yardstick/yard_ext'
 
@@ -45,7 +47,7 @@ module Yardstick
   #
   # @api public
   def self.measure(config = Config.new)
-    Processor.process_path(config)
+    Processor.new(config).process
   end
 
   # Measure a string of code and YARD documentation
@@ -65,7 +67,7 @@ module Yardstick
   #
   # @api public
   def self.measure_string(string, config = Config.new)
-    Processor.process_string(string, config)
+    Processor.new(config).process_string(string)
   end
 
 end # module Yardstick

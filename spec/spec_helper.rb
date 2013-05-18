@@ -18,16 +18,9 @@ if ENV['COVERAGE'] == 'true'
 end
 
 require 'yardstick'
-require 'spec'
-require 'rake'
-require 'spec/autorun' if RUBY_VERSION < '1.9'
+require 'devtools/spec_helper'
 
-# require spec support files and shared behavior
-Dir[File.expand_path('../{support,shared}/**/*.rb', __FILE__)].each do |file|
-  require file
-end
-
-Spec::Runner.configure do |config|
+RSpec.configure do |config|
   clear_tasks = proc { Rake::Task.clear }
 
   config.before(:all, &clear_tasks)
@@ -45,19 +38,5 @@ Spec::Runner.configure do |config|
     $stdout.rewind
     @output = $stdout.read
     $stdout = STDOUT
-  end
-end
-
-shared_examples_for 'measured itself' do
-  it 'should return a MeasurementSet' do
-    @measurements.should be_kind_of(Yardstick::MeasurementSet)
-  end
-
-  it 'should be non-empty' do
-    @measurements.should_not be_empty
-  end
-
-  it 'should all be correct' do
-    @measurements.each { |measurement| measurement.should be_ok }
   end
 end

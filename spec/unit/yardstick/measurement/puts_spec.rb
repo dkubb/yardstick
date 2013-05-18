@@ -7,7 +7,7 @@ describe Yardstick::Measurement, '#puts' do
     subject { @output }
 
     before do
-      capture_stdout { described_class.new(document, rule).puts }
+      capture_stdout { described_class.new(rule).puts }
     end
 
     describe 'when the measurement is successful' do
@@ -35,7 +35,7 @@ describe Yardstick::Measurement, '#puts' do
     let(:io) { StringIO.new }
 
     before do
-      described_class.new(document, rule).puts(io)
+      described_class.new(rule).puts(io)
       io.rewind
     end
 

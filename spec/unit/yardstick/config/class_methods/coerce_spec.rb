@@ -1,14 +1,30 @@
 require 'spec_helper'
 
 describe Yardstick::Config, '.coerce' do
-  subject { described_class.coerce(hash) }
-
   let(:hash) { {'rules' => {'foo' => 'bar'}} }
 
-  it { should be_instance_of(described_class) }
+  context 'when without block' do
+    subject { described_class.coerce(hash) }
 
-  it 'coerces hash' do
-    rules = subject.instance_variable_get(:@rules)
-    rules.should == {:foo => 'bar'}
+    it { should be_instance_of(described_class) }
+
+    it 'coerces hash' do
+      rules = subject.instance_variable_get(:@rules)
+      rules.should == {:foo => 'bar'}
+    end
+  end
+
+  context 'when block provided' do
+    subject do
+      described_class.coerce(hash) { |config| config.path = new_path }
+    end
+
+    let(:new_path) { 'custom' }
+
+    it { should be_instance_of(described_class) }
+
+    it 'executes block as config' do
+      subject.path.should == new_path
+    end
   end
 end

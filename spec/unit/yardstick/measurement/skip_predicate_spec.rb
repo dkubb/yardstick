@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Yardstick::Measurement, 'skip?' do
-  subject { described_class.new(document, rule).skip? }
+  subject { described_class.new(rule).skip? }
 
   let(:document) { DocumentMock.new }
 

@@ -1,9 +1,7 @@
 module Yardstick
-  # Wraps a yard docstring to make a nicer interface
-  #
-  class Document
-    extend Forwardable
 
+  # Wraps a yard docstring to make a nicer interface
+  class Document
     @registered_rules = Set.new
 
     # Register rule with document
@@ -18,23 +16,37 @@ module Yardstick
       @registered_rules << rule_class
     end
 
+    # Shows currently registered rules
+    #
+    # @return [Array<Class>]
+    #
+    # @api private
+    def self.registered_rules
+      @registered_rules
+    end
+
     # Measures docstring against enabled rules
     #
-    # @param [Yard::Docstring] docstring
-    #   docstring that will be measured
-    # @param [Config] config
+    # @param [Yardstring::Document] document
+    #   document that will be measured
+    # @param [Yardstick::Config] config
     #   a configuration
     #
     # @return [MeasurementSet]
     #
     # @api private
-    def self.measure(docstring, config)
-      document = new(docstring)
-
+    def self.measure(document, config)
       MeasurementSet.new(@registered_rules.map { |rule_class|
-        Measurement.new(document, rule_class.new(document, config.options(rule_class)))
+        Measurement.new(rule_class.coerce(document, config))
       })
     end
+
+    # Return document yard docstring
+    #
+    # @return [YARD::Docstring]
+    #
+    # @api private
+    attr_reader :docstring
 
     # Initializes Document object with docstring
     #
@@ -47,8 +59,6 @@ module Yardstick
       @docstring = docstring
     end
 
-    def_delegators :@docstring, :has_tag?, :hash
-
     # The raw text for the summary
     #
     # @return [String]
@@ -57,6 +67,19 @@ module Yardstick
     # @api private
     def summary_text
       @docstring.split(/\r?\n\r?\n/).first || ''
+    end
+
+    # Tests if document has a tag
+    #
+    # @param [String] name
+    #   the name of the tag
+    #
+    # @return [Boolean]
+    #   true if tag exists
+    #
+    # @api private
+    def has_tag?(name)
+      @docstring.has_tag?(name)
     end
 
     # The text for a specified tag

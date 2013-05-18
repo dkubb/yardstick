@@ -16,8 +16,8 @@ module Yardstick
     #   the measurement instance
     #
     # @api public
-    def initialize(document, rule)
-      @document = document
+    def initialize(rule)
+      @document = rule.document
       @rule     = rule
       @result   = measure
     end
