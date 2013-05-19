@@ -42,7 +42,7 @@ module Yardstick
     #
     # @api private
     def self.coerce(document, config)
-      new(document, config.options(self))
+      new(document, config.for_rule(self))
     end
 
     # Return document that current rule is using
@@ -54,17 +54,16 @@ module Yardstick
 
     # Initializes a rule
     #
-    # @param [Document] document
-    # @param [Hash] options
-    #   optional configuration
+    # @param [Yardstick::Document] document
+    # @param [Yardstick::RuleConfig] config
+    #   rule configuration
     #
-    # @return [Rule]
+    # @return [Yardstick::Rule]
     #
     # @api private
-    def initialize(document, options = {})
+    def initialize(document, config = RuleConfig.new)
       @document = document
-      @enabled  = options.fetch(:enabled, true)
-      @exclude  = options.fetch(:exclude, [])
+      @config   = config
     end
 
     def_delegators :@document, :has_tag?, :api?, :tag_types, :tag_text, :summary_text, :visibility
@@ -76,7 +75,7 @@ module Yardstick
     #
     # @api private
     def enabled?
-      @enabled && !@exclude.include?(@document.path)
+      @config.enabled_for_path?(@document.path)
     end
 
     # Checks if the rule is validatable for given document

@@ -101,18 +101,18 @@ module Yardstick
       yield(self) if block_given?
     end
 
-    # Return options for given rule
+    # Return config for given rule
     #
     # @param [Class] rule_class
     #
-    # @return [Hash]
+    # @return [RuleConfig]
     #
     # @api private
-    def options(rule_class)
+    def for_rule(rule_class)
       key = rule_class.to_s[NAMESPACE_PREFIX.length..-1]
 
       if key
-        @rules.fetch(key.to_sym, {})
+        RuleConfig.new(@rules.fetch(key.to_sym, {}))
       else
         raise InvalidRule, "every rule must begin with #{NAMESPACE_PREFIX}"
       end
