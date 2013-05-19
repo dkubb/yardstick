@@ -110,6 +110,64 @@ measurements = Yardstick.measure_string <<-RUBY
 RUBY
 ```
 
+### 4. Configuration
+
+Every rule in Yardstick can be turned off globally and locally. All rules are enabled and threshold is set to maximum by default.
+
+Default configuration:
+```yaml
+---
+threshold: 100
+rules:
+  ApiTag::Presence:
+    enabled: true
+    exclude: []
+  ApiTag::Inclusion:
+    enabled: true
+    exclude: []
+  ApiTag::ProtectedMethod:
+    enabled: true
+    exclude: []
+  ApiTag::PrivateMethod:
+    enabled: true
+    exclude: []
+  ExampleTag:
+    enabled: true
+    exclude: []
+  ReturnTag:
+    enabled: true
+    exclude: []
+  Summary::Presence:
+    enabled: true
+    exclude: []
+  Summary::Length:
+    enabled: true
+    exclude: []
+  Summary::Delimiter:
+    enabled: true
+    exclude: []
+  Summary::SingleLine:
+    enabled: true
+    exclude: []
+```
+
+To disable a rule for some part of the code use
+```yaml
+  ApiTag::Presence:
+    enabled: true
+    exclude:
+    - Foo::Bar # class or module
+    - Foo#bar  # instance method
+    - Foo.bar  # class method
+```
+
+Rake tasks take these options as a second argument. Example:
+```ruby
+options = YAML.load_file('config/yardstick.yml')
+
+Yardstick::Rake::Verify.new(:verify_measurements, options)
+```
+
 TODO
 ----
 
