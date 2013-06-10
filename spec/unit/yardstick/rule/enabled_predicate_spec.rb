@@ -1,24 +1,15 @@
 require 'spec_helper'
 
 describe Yardstick::Rule, '#enabled?' do
-  subject { described_class.new(document, options).enabled? }
+  subject { described_class.new(document, config).enabled? }
 
-  let(:document) { mock('document', :path => 'Foo#bar') }
-  let(:options)  { {}                                }
+  let(:document)     { mock('document', :path => 'Foo#bar') }
+  let(:config)       { mock('RuleConfig')                   }
+  let(:return_value) { mock('Boolean')                      }
 
-  context 'when no options' do
-    it { should be(true) }
+  before do
+    config.stub(:enabled_for_path?).with('Foo#bar') { return_value }
   end
 
-  context 'when disabled' do
-    before { options[:enabled] = false }
-
-    it { should be(false) }
-  end
-
-  context 'when current method is excluded' do
-    before { options[:exclude] = ['Foo#bar'] }
-
-    it { should be(false) }
-  end
+  it { should eq(return_value) }
 end

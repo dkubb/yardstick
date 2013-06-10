@@ -1,22 +1,31 @@
 require 'spec_helper'
 
-describe Yardstick::Config, '#options' do
-  subject { described_class.new(options).options(rule_class) }
+describe Yardstick::Config, '#for_rule' do
+  subject { described_class.new(options).for_rule(rule_class) }
 
   let(:options) do
     {:rules => {:"Summary::Presence" => {:enabled => false}}}
   end
+  let(:rule_config) { mock('RuleConfig') }
 
   context 'when rule is present' do
     let(:rule_class) { Yardstick::Rules::Summary::Presence }
 
-    it { should eq({:enabled => false}) }
+    before do
+      Yardstick::RuleConfig.stub(:new).with({:enabled => false}) { rule_config }
+    end
+
+    it { should be(rule_config) }
   end
 
   context 'when config does not have given rule' do
     let(:rule_class) { Yardstick::Rules::Summary::Length }
 
-    it { should eq({}) }
+    before do
+      Yardstick::RuleConfig.stub(:new).with({}) { rule_config }
+    end
+
+    it { should be(rule_config) }
   end
 
   context 'when invalid rule given' do
