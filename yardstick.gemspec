@@ -7,7 +7,7 @@ require 'yardstick/version'
 
 Gem::Specification.new do |gem|
   gem.name        = 'yardstick'
-  gem.version     = Yardstick::VERSION
+  gem.version     = Yardstick::VERSION.dup
   gem.authors     = ['Dan Kubb']
   gem.email       = %w[dan.kubb@gmail.com]
   gem.description = 'Measure YARD documentation coverage'
