@@ -7,8 +7,8 @@ describe Yardstick::ReportOutput, 'write' do
     end
   end
 
-  let(:target) { mock('Pathname', :dirname => dirname) }
-  let(:dirname) { mock }
+  let(:target)  { double('Pathname', dirname: dirname) }
+  let(:dirname) { double                               }
 
   before do
     dirname.stub(:mkpath)
@@ -21,7 +21,7 @@ describe Yardstick::ReportOutput, 'write' do
   end
 
   it 'should write content' do
-    io = stub
+    io = double
     io.should_receive(:puts).with('content')
     target.should_receive(:open).with('w').and_yield(io)
     subject

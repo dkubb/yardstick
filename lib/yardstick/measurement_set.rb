@@ -85,7 +85,7 @@ module Yardstick
     #
     # @api private
     def puts_summary(io)
-      io.puts("\n#{[ coverage_text, successful_text, failed_text, total_text ].join('  ')}")
+      io.puts("\n#{[coverage_text, successful_text, failed_text, total_text].join('  ')}")
     end
 
     # The text for the coverage percentage to include in the summary

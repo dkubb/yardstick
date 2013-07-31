@@ -1,3 +1,4 @@
+# Mock Document object
 class DocumentMock
   def path
     'Foo#bar'

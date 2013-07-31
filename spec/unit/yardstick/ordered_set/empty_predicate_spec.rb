@@ -10,7 +10,7 @@ describe Yardstick::OrderedSet, '#empty?' do
   end
 
   context 'when there are items' do
-    let(:set) { described_class.new([mock('item')]) }
+    let(:set) { described_class.new([double('item')]) }
 
     it { should be(false) }
   end

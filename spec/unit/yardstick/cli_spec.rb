@@ -5,30 +5,33 @@ require 'yardstick/cli'
 
 shared_examples_for 'displays help' do
   it 'should display the help message' do
-    @output.should == <<-OUTPUT.gsub(/^\s{6}/, '')
+    expect(@output).to eql(<<-OUTPUT.gsub(/^\s{6}/, '')
       Usage: #{OptionParser.new.program_name} [options]
           -v, --version                    print version information and exit
           -h, --help                       display this help and exit
-    OUTPUT
+      OUTPUT
+    )
   end
 end
 
 shared_examples_for 'displays version' do
   it 'should display the program and version' do
-    @output.should == "#{OptionParser.new.program_name} #{Yardstick::VERSION}\n"
+    expect(@output)
+      .to eql("#{OptionParser.new.program_name} #{Yardstick::VERSION}\n")
   end
 end
 
 shared_examples_for 'displays coverage summary' do
   it 'should output the coverage summary' do
-    @output.should == "\nYARD-Coverage: 100.0%  Success: 20  Failed: 0  Total: 20\n"
+    expect(@output)
+      .to eql("\nYARD-Coverage: 100.0%  Success: 20  Failed: 0  Total: 20\n")
   end
 end
 
 describe Yardstick::CLI do
   def capture_display(&block)
     capture_stdout do
-      block.should raise_error(SystemExit)
+      expect(block).to raise_error(SystemExit)
     end
   end
 
@@ -81,7 +84,7 @@ describe Yardstick::CLI do
 
     describe 'with an Array of String objects' do
       before :all do
-        @measurements = capture_stdout { Yardstick::CLI.run(*[ Yardstick::ROOT.join('lib', 'yardstick.rb').to_s ]) }
+        @measurements = capture_stdout { Yardstick::CLI.run(*[Yardstick::ROOT.join('lib', 'yardstick.rb').to_s]) }
       end
 
       it_should_behave_like 'measured itself'
@@ -90,7 +93,7 @@ describe Yardstick::CLI do
 
     describe 'with an Array of Pathname objects' do
       before :all do
-        @measurements = capture_stdout { Yardstick::CLI.run(*[ Yardstick::ROOT.join('lib', 'yardstick.rb') ]) }
+        @measurements = capture_stdout { Yardstick::CLI.run(*[Yardstick::ROOT.join('lib', 'yardstick.rb')]) }
       end
 
       it_should_behave_like 'measured itself'
@@ -103,7 +106,7 @@ describe Yardstick::CLI do
       end
 
       it 'should display the invalid option message' do
-        @output.should == "invalid option: --invalid\n"
+        expect(@output).to eql("invalid option: --invalid\n")
       end
     end
   end

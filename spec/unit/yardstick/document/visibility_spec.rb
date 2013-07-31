@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Yardstick::Document, '#visibility' do
   subject { described_class.new(docstring).visibility }
 
-  let(:docstring) { mock('docstring', :object => object)   }
-  let(:object)    { mock('object', :visibility => visibility) }
+  let(:docstring) { double('docstring', object: object)      }
+  let(:object)    { double('object', visibility: visibility) }
 
   context 'when true' do
     let(:visibility) { true }

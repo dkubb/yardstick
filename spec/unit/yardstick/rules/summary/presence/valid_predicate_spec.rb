@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Yardstick::Rules::Summary::Presence, '#valid?' do
   subject { described_class.new(document).valid? }
 
-  let(:document) { mock('document', :summary_text => text) }
+  let(:document) { double('document', summary_text: text) }
 
   context 'with summary' do
     let(:text) { 'A summary' }

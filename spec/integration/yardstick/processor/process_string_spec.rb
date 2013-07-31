@@ -4,7 +4,7 @@ describe Yardstick::Document, '#process_string' do
   subject(:measurements) { processor.process_string(method) }
 
   let(:processor) { Yardstick::Processor.new(config) }
-  let(:config)    { Yardstick::Config.new }
+  let(:config)    { Yardstick::Config.new            }
 
   let(:valid_method) do
     (<<-RUBY)
@@ -25,13 +25,19 @@ describe Yardstick::Document, '#process_string' do
     RUBY
   end
 
+  def measurement(description)
+    measurements.detect do |measurement|
+      measurement.description == description
+    end
+  end
+
   describe 'with a method summary' do
     let(:method) { valid_method }
 
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have a correct measurement' do
-      measurements.detect { |measurement| measurement.description == 'The method summary should be specified' }.should be_ok
+      expect(measurement('The method summary should be specified')).to be_ok
     end
   end
 
@@ -41,20 +47,22 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have an incorrect measurement' do
-      measurements.detect { |measurement| measurement.description == 'The method summary should be specified' }.should_not be_ok
+      expect(measurement('The method summary should be specified')).to_not be_ok
     end
   end
 
   describe 'without a method summary when validations are turned off' do
     let(:config) do
-      Yardstick::Config.new(:rules => {:"Summary::Presence" => {:enabled => false}})
+      Yardstick::Config.new(rules: {
+        'Summary::Presence'.to_sym => { enabled: false }
+      })
     end
     let(:method) { 'def test(value); end' }
 
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have a correct measurement' do
-      measurements.detect { |measurement| measurement.description == 'The method summary should be specified' }.should be_ok
+      expect(measurement('The method summary should be specified')).to be_ok
     end
   end
 
@@ -64,7 +72,8 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have a correct measurement' do
-      measurements.detect { |measurement| measurement.description == 'The method summary should be less than 80 characters in length' }.should be_ok
+      expect(measurement('The method summary should be less than 80 characters in length'))
+        .to be_ok
     end
   end
 
@@ -80,7 +89,8 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have an incorrect measurement' do
-      measurements.detect { |measurement| measurement.description == 'The method summary should be less than 80 characters in length' }.should_not be_ok
+      expect(measurement('The method summary should be less than 80 characters in length'))
+        .to_not be_ok
     end
   end
 
@@ -90,7 +100,8 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have a correct measurement' do
-      measurements.detect { |measurement| measurement.description == 'The method summary should not end in a period' }.should be_ok
+      expect(measurement('The method summary should not end in a period'))
+        .to be_ok
     end
   end
 
@@ -106,7 +117,8 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have an incorrect measurement' do
-      measurements.detect { |measurement| measurement.description == 'The method summary should not end in a period' }.should_not be_ok
+      expect(measurement('The method summary should not end in a period'))
+        .to_not be_ok
     end
   end
 
@@ -116,7 +128,8 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have a correct measurement' do
-      measurements.detect { |measurement| measurement.description == 'The method summary should be a single line' }.should be_ok
+      expect(measurement('The method summary should be a single line'))
+        .to be_ok
     end
   end
 
@@ -133,7 +146,8 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have an incorrect measurement' do
-      measurements.detect { |measurement| measurement.description == 'The method summary should be a single line' }.should_not be_ok
+      expect(measurement('The method summary should be a single line'))
+        .to_not be_ok
     end
   end
 
@@ -143,7 +157,8 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have a correct measurement' do
-      measurements.detect { |measurement| measurement.description == 'The public/semipublic method should have an example specified' }.should be_ok
+      expect(measurement('The public/semipublic method should have an example specified'))
+        .to be_ok
     end
   end
 
@@ -159,7 +174,8 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should be skipped' do
-      measurements.detect { |measurement| measurement.description == 'The public/semipublic method should have an example specified' }.should be_skip
+      expect(measurement('The public/semipublic method should have an example specified'))
+        .to be_skip
     end
   end
 
@@ -177,7 +193,8 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should be skipped' do
-      measurements.detect { |measurement| measurement.description == 'The public/semipublic method should have an example specified' }.should be_skip
+      expect(measurement('The public/semipublic method should have an example specified'))
+        .to be_skip
     end
   end
 
@@ -187,7 +204,8 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have a correct measurement' do
-      measurements.detect { |measurement| measurement.description == 'The @api tag should be specified' }.should be_ok
+      expect(measurement('The @api tag should be specified'))
+        .to be_ok
     end
   end
 
@@ -197,7 +215,8 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have an incorrect measurement' do
-      measurements.detect { |measurement| measurement.description == 'The @api tag should be specified' }.should_not be_ok
+      expect(measurement('The @api tag should be specified'))
+        .to_not be_ok
     end
   end
 
@@ -207,7 +226,8 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have a correct measurement' do
-      measurements.detect { |measurement| measurement.description == 'The @api tag must be either public, semipublic or private' }.should be_ok
+      expect(measurement('The @api tag must be either public, semipublic or private'))
+        .to be_ok
     end
   end
 
@@ -223,7 +243,8 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have an incorrect measurement' do
-      measurements.detect { |measurement| measurement.description == 'The @api tag must be either public, semipublic or private' }.should_not be_ok
+      expect(measurement('The @api tag must be either public, semipublic or private'))
+        .to_not be_ok
     end
   end
 
@@ -241,7 +262,8 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have a correct measurement' do
-      measurements.detect { |measurement| measurement.description == 'A method with protected visibility must have an @api tag of semipublic or private' }.should be_ok
+      expect(measurement('A method with protected visibility must have an @api tag of semipublic or private'))
+        .to be_ok
     end
   end
 
@@ -259,7 +281,8 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have a correct measurement' do
-      measurements.detect { |measurement| measurement.description == 'A method with protected visibility must have an @api tag of semipublic or private' }.should be_ok
+      expect(measurement('A method with protected visibility must have an @api tag of semipublic or private'))
+        .to be_ok
     end
   end
 
@@ -277,7 +300,8 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have an incorrect measurement' do
-      measurements.detect { |measurement| measurement.description == 'A method with protected visibility must have an @api tag of semipublic or private' }.should_not be_ok
+      expect(measurement('A method with protected visibility must have an @api tag of semipublic or private'))
+        .to_not be_ok
     end
   end
 
@@ -295,7 +319,8 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have a correct measurement' do
-      measurements.detect { |measurement| measurement.description == 'A method with private visibility must have an @api tag of private' }.should be_ok
+      expect(measurement('A method with private visibility must have an @api tag of private'))
+        .to be_ok
     end
   end
 
@@ -313,7 +338,8 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have an incorrect measurement' do
-      measurements.detect { |measurement| measurement.description == 'A method with private visibility must have an @api tag of private' }.should_not be_ok
+      expect(measurement('A method with private visibility must have an @api tag of private'))
+        .to_not be_ok
     end
   end
 
@@ -331,7 +357,8 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have an incorrect measurement' do
-      measurements.detect { |measurement| measurement.description == 'A method with private visibility must have an @api tag of private' }.should_not be_ok
+      expect(measurement('A method with private visibility must have an @api tag of private'))
+        .to_not be_ok
     end
   end
 
@@ -341,7 +368,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have a correct measurement' do
-      measurements.detect { |measurement| measurement.description == 'The @return tag should be specified' }.should be_ok
+      expect(measurement('The @return tag should be specified')).to be_ok
     end
   end
 
@@ -351,7 +378,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have an incorrect measurement' do
-      measurements.detect { |measurement| measurement.description == 'The @return tag should be specified' }.should_not be_ok
+      expect(measurement('The @return tag should be specified')).to_not be_ok
     end
   end
 end

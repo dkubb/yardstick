@@ -5,8 +5,8 @@ describe Yardstick::Rake::Verify, '#initialize' do
   context 'with custom arguments' do
     subject(:task) { described_class.new(:verify, options) }
 
-    let(:config)  { Yardstick::Config.new(:threshold => 90) }
-    let(:options) { mock('options') }
+    let(:config)  { Yardstick::Config.new(threshold: 90) }
+    let(:options) { double('options')                    }
 
     before do
       Yardstick::Config.stub(:coerce).with(options) { config }
@@ -17,7 +17,7 @@ describe Yardstick::Rake::Verify, '#initialize' do
 
       it 'creates rake task with given name' do
         subject
-        Rake::Task['verify'].should be_kind_of(Rake::Task)
+        expect(Rake::Task['verify']).to be_kind_of(Rake::Task)
       end
 
       it 'calls verify_measurements when rake task is executed' do
@@ -28,7 +28,8 @@ describe Yardstick::Rake::Verify, '#initialize' do
 
       it 'should include the threshold in the task name' do
         task
-        Rake.application.last_description.should == 'Verify that yardstick coverage is at least 90%'
+        expect(Rake.application.last_description)
+          .to eql('Verify that yardstick coverage is at least 90%')
       end
     end
 
@@ -48,7 +49,7 @@ describe Yardstick::Rake::Verify, '#initialize' do
 
     it 'assigns verify_measurements as the name' do
       subject
-      Rake::Task['verify_measurements'].should be_kind_of(Rake::Task)
+      expect(Rake::Task['verify_measurements']).to be_kind_of(Rake::Task)
     end
   end
 
@@ -63,7 +64,7 @@ describe Yardstick::Rake::Verify, '#initialize' do
 
     it 'should yield to Config' do
       task
-      @yield.should be_instance_of(Yardstick::Config)
+      expect(@yield).to be_instance_of(Yardstick::Config)
     end
   end
 end

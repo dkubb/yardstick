@@ -3,10 +3,10 @@ require 'spec_helper'
 describe Yardstick::Document, '#api?' do
   subject { described_class.new(docstring).api?(types) }
 
-  let(:docstring) { mock('docstring') }
+  let(:docstring) { double('docstring') }
 
   before do
-    docstring.stub(:tag).with('api') { mock(:text => 'private') }
+    docstring.stub(:tag).with('api') { double(text: 'private') }
   end
 
   context 'when tag is equal' do

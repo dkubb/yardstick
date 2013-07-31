@@ -12,6 +12,6 @@ describe Yardstick::Rake::Verify do
   it 'should display coverage summary when executed' do
     capture_stdout { Rake::Task['verify_measurements'].execute }
 
-    @output.should == "YARD-Coverage: 100.0% (threshold: 100%)\n"
+    expect(@output).to eql("YARD-Coverage: 100.0% (threshold: 100%)\n")
   end
 end

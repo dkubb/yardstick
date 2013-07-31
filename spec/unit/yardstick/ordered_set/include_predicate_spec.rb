@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Yardstick::OrderedSet, '#include?' do
   subject { set.include?(item) }
 
-  let(:item) { mock('item') }
+  let(:item) { double('item') }
 
   context 'when provided an included item' do
     let(:set) { described_class.new([item]) }

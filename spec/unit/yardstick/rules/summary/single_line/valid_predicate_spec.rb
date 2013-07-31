@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Yardstick::Rules::Summary::SingleLine, '#valid?' do
   subject { described_class.new(document).valid? }
 
-  let(:document) { mock('document', :summary_text => text) }
+  let(:document) { double('document', summary_text: text) }
 
   context 'with one line summary' do
     let(:text) { 'A summary' }

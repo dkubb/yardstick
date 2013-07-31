@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 require 'pathname'
-require 'rational'
 require 'delegate'
 
 require 'backports'
