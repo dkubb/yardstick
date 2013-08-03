@@ -55,12 +55,12 @@ describe Yardstick::Rake::Verify, '#verify_measurements' do
 
     it 'outputs coverage' do
       expect { measure }.to raise_error
-      expect(@output).to eq("YARD-Coverage: 99.9% (threshold: 90%)\n")
+      expect(@output).to eq("YARD-Coverage: 99.8% (threshold: 90%)\n")
     end
 
     it 'raises error about high coverage' do
       expect { measure }
-        .to raise_error(RuntimeError, 'YARD-Coverage has increased above the threshold of 90% to 99.9%. You should update your threshold value.')
+        .to raise_error(RuntimeError, 'YARD-Coverage has increased above the threshold of 90% to 99.8%. You should update your threshold value.')
     end
   end
 

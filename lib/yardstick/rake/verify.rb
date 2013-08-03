@@ -155,7 +155,7 @@ module Yardstick
       #
       # @api private
       def self.round_percentage(percentage)
-        (percentage * 10).ceil / 10.0
+        (percentage * 10).floor / 10.0
       end
 
     end # class Verify
