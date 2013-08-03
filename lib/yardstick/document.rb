@@ -68,7 +68,7 @@ module Yardstick
     #
     # @api private
     def summary_text
-      @docstring.split(/\r?\n\r?\n/).first || ''
+      @docstring.split(/\r?\n\r?\n/).first.to_s
     end
 
     # Tests if document has a tag
