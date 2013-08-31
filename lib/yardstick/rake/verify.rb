@@ -68,7 +68,7 @@ module Yardstick
       # @api private
       def total_coverage
         measurements = Yardstick.measure(@config)
-        self.class.round_percentage(measurements.coverage * 100)
+        Yardstick.round_percentage(measurements.coverage * 100)
       end
 
     private
@@ -143,19 +143,6 @@ module Yardstick
       # @api private
       def higher_coverage?
         total_coverage > @threshold
-      end
-
-      # Round percentage to 1/10th of a percent
-      #
-      # @param [Float] percentage
-      #   the percentage to round
-      #
-      # @return [Float]
-      #   the rounded percentage
-      #
-      # @api private
-      def self.round_percentage(percentage)
-        (percentage * 10).ceil / 10.0
       end
 
     end # class Verify

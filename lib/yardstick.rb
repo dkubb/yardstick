@@ -69,4 +69,17 @@ module Yardstick
     Processor.new(config).process_string(string)
   end
 
+  # Round percentage to 1/10th of a percent
+  #
+  # @param [Float] percentage
+  #   the percentage to round
+  #
+  # @return [Float]
+  #   the rounded percentage
+  #
+  # @api private
+  def self.round_percentage(percentage)
+    (percentage * 10).ceil / 10.0
+  end
+
 end # module Yardstick
