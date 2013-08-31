@@ -34,10 +34,9 @@ module Yardstick
   # Measure a list of files
   #
   # @example
-  #   Yardstick.measure('article.rb')  # => [ Measurement ]
+  #   config = Yardstick::Config.coerce(path: 'article.rb')
+  #   Yardstick.measure(config)  # => [ MeasurementSet ]
   #
-  # @param [Array<#to_s>, #to_s] path
-  #   optional list of paths to measure
   # @param [Config] config
   #   optional configuration
   #
