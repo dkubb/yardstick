@@ -1,5 +1,4 @@
-yardstick
-=========
+# yardstick
 
 [![Gem Version](https://badge.fury.io/rb/yardstick.png)][gem]
 [![Build Status](https://secure.travis-ci.org/dkubb/yardstick.png?branch=master)][travis]
@@ -18,31 +17,7 @@ Yardstick is a tool that verifies documentation coverage of Ruby code.  It will 
 * [Git](https://github.com/dkubb/yardstick)
 * [Bug Tracker](https://github.com/dkubb/yardstick/issues)
 
-Installation
-------------
-
-With Rubygems:
-
-```bash
-$ gem install yardstick
-$ irb -rubygems
->> require 'yardstick'
-=> true
-```
-
-With git and local working copy:
-
-```bash
-$ git clone git://github.com/dkubb/yardstick.git
-$ cd yardstick
-$ rake install
-$ irb -rubygems
->> require 'yardstick'
-=> true
-```
-
-Usage
------
+## Usage
 
 Yardstick may be used three ways:
 
@@ -110,18 +85,10 @@ measurements = Yardstick.measure_string <<-RUBY
 RUBY
 ```
 
-TODO
-----
+## Contributing
 
-* Add more measurements, especially for @param, @yield and type
-  validation
-* Update yardstick_measure task to use the Yardstick::CLI library
-  underneath.
-* Output results as HTML from command line tool and Rake task
-* Specify method_missing to allow public, semipublic or private even
-  if its visibility is private
-* Allow initialize to be public, semipublic or private regardless of
-  its visibility. A constructor may not necessarily be public, and may
-  not be used externally.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+## Copyright
 
 Copyright (c) 2009-2013 Dan Kubb. See LICENSE for details.

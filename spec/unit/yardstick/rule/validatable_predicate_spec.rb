@@ -1,10 +1,12 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe Yardstick::Rule, '#validatable?' do
   subject { described_class.new(document, options).validatable? }
 
-  let(:document) { mock('document') }
-  let(:options)  { {}               }
+  let(:document) { double('document') }
+  let(:options)  { {}                 }
 
   it { should be(true) }
 end

@@ -1,8 +1,19 @@
+# encoding: utf-8
+
 module Yardstick
 
   # Wraps a yard docstring to make a nicer interface
   class Document
     @registered_rules = Set.new
+
+    class << self
+      # Shows currently registered rules
+      #
+      # @return [Array<Class>]
+      #
+      # @api private
+      attr_reader :registered_rules
+    end
 
     # Register rule with document
     #
@@ -13,16 +24,7 @@ module Yardstick
     #
     # @api private
     def self.register_rule(rule_class)
-      @registered_rules << rule_class
-    end
-
-    # Shows currently registered rules
-    #
-    # @return [Array<Class>]
-    #
-    # @api private
-    def self.registered_rules
-      @registered_rules
+      registered_rules << rule_class
     end
 
     # Measures docstring against enabled rules
@@ -36,9 +38,11 @@ module Yardstick
     #
     # @api private
     def self.measure(document, config)
-      MeasurementSet.new(@registered_rules.map { |rule_class|
-        Measurement.new(rule_class.coerce(document, config))
-      })
+      MeasurementSet.new(
+        registered_rules.map do |rule_class|
+          Measurement.new(rule_class.coerce(document, config))
+        end
+      )
     end
 
     # Return document yard docstring
@@ -66,7 +70,7 @@ module Yardstick
     #
     # @api private
     def summary_text
-      @docstring.split(/\r?\n\r?\n/).first || ''
+      @docstring.split(/\r?\n\r?\n/).first.to_s
     end
 
     # Tests if document has a tag

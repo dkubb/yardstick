@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Yardstick
   module Rules
     # Checks if method has @example tag

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe Yardstick::Config, '#initialize' do
@@ -13,7 +15,7 @@ describe Yardstick::Config, '#initialize' do
     it { should be_instance_of(described_class) }
 
     it 'executes block as config' do
-      subject.path.should == new_path
+      expect(subject.path).to eql(new_path)
     end
   end
 end
