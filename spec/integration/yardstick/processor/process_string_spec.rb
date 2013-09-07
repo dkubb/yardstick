@@ -70,8 +70,8 @@ describe Yardstick::Document, '#process_string' do
 
   describe 'without a method summary when validations are turned off for given class' do
     let(:config) do
-      Yardstick::Config.new(:rules => {
-        :"Summary::Presence" => {:enabled => true, :exclude => ['World']}
+      Yardstick::Config.new(rules: {
+        'Summary::Presence'.to_sym => { enabled: true, exclude: %w[World] }
       })
     end
     let(:method) { 'class World; def test(value); end; end' }
@@ -79,7 +79,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'should have a correct measurement' do
-      measurements.detect { |measurement| measurement.description == 'The method summary should be specified' }.should be_ok
+      expect(measurements.detect { |measurement| measurement.description == 'The method summary should be specified' }).to be_ok
     end
   end
 

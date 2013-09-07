@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Yardstick
   # Config class for rules
   #

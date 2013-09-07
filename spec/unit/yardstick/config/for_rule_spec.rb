@@ -1,12 +1,13 @@
 # encoding: utf-8
 
+
 require 'spec_helper'
 
 describe Yardstick::Config, '#for_rule' do
   subject { described_class.new(options).for_rule(rule_class) }
 
   let(:options) do
-    { rules: { :'Summary::Presence' => { enabled: false } } }
+    { rules: { 'Summary::Presence'.to_sym => { enabled: false } } }
   end
 
   let(:rule_config) { double('RuleConfig') }
