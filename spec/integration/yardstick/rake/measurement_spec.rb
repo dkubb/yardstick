@@ -17,6 +17,6 @@ describe Yardstick::Rake::Measurement do
   it 'should write the report' do
     Rake::Task['yardstick_measure'].execute
     expect(output.read)
-      .to eql("\nYARD-Coverage: 100.0%  Success: 20  Failed: 0  Total: 20\n")
+      .to eql("\nYARD-Coverage: 100.0%  Success: 30  Failed: 0  Total: 30\n")
   end
 end

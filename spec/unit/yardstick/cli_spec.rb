@@ -24,7 +24,7 @@ end
 shared_examples_for 'displays coverage summary' do
   it 'should output the coverage summary' do
     expect(@output)
-      .to eql("\nYARD-Coverage: 100.0%  Success: 20  Failed: 0  Total: 20\n")
+      .to eql("\nYARD-Coverage: 100.0%  Success: 30  Failed: 0  Total: 30\n")
   end
 end
 
