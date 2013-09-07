@@ -3,29 +3,24 @@ before_install: gem install bundler
 bundler_args: --without yard guard benchmarks
 script: "bundle exec rake ci"
 rvm:
-  - ree
-  - 1.8.7
-  - 1.9.2
   - 1.9.3
   - 2.0.0
   - ruby-head
-  - rbx-18mode
   - rbx-19mode
-  - jruby-18mode
-notifications:
-  irc:
-    channels:
-      - irc.freenode.org#datamapper
-    on_success: never
-    on_failure: change
-  email:
-    recipients:
-      - dan.kubb@gmail.com
-    on_success: never
-    on_failure: change
 matrix:
   include:
     - rvm: jruby-19mode
       env: JRUBY_OPTS="$JRUBY_OPTS --debug"
     - rvm: jruby-head
       env: JRUBY_OPTS="$JRUBY_OPTS --debug"
+  allow_failures:
+    - rvm: 1.9.3       # mutant fails
+    - rvm: 2.0.0       # mutant fails
+    - rvm: ruby-head   # travis broken
+    - rvm: rbx-19mode  # mutant fails
+notifications:
+  irc:
+    channels:
+      - irc.freenode.org#rom-rb
+    on_success: never
+    on_failure: change

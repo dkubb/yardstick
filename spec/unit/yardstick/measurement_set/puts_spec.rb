@@ -1,27 +1,33 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe Yardstick::MeasurementSet, '#puts' do
   let(:set)      { described_class.new([failed, successful]) }
-  let(:document) { DocumentMock.new }
+  let(:document) { DocumentMock.new                          }
 
   let(:failed) do
-    Class.new {
-      def ok?; false; end
+    Class.new do
+      def ok?
+        false
+      end
 
       def puts(io)
         io.puts('measurement info')
       end
-    }.new
+    end.new
   end
 
   let(:successful) do
-    Class.new {
-      def ok?; true; end
+    Class.new do
+      def ok?
+        true
+      end
 
       def puts(io)
         io.puts('measurement info')
       end
-    }.new
+    end.new
   end
 
   describe 'with no arguments' do
@@ -30,9 +36,11 @@ describe Yardstick::MeasurementSet, '#puts' do
     end
 
     it 'should output the summary' do
-      @output.should == "measurement info\n" \
-        "measurement info\n" \
+      expect(@output).to eql([
+        'measurement info',
+        'measurement info',
         "\nYARD-Coverage: 50.0%  Success: 1  Failed: 1  Total: 2\n"
+      ].join("\n"))
     end
   end
 
@@ -45,9 +53,11 @@ describe Yardstick::MeasurementSet, '#puts' do
     end
 
     it 'should output the summary' do
-      @output.should == "measurement info\n" \
-        "measurement info\n" \
-        "\nYARD-Coverage: 50.0%  Success: 1  Failed: 1  Total: 2\n"
+      expect(@output).to eql([
+        'measurement info',
+        'measurement info',
+        "\nYARD-Coverage: 50.0%  Success: 1  Failed: 1  Total: 2\n",
+      ].join("\n"))
     end
   end
 end

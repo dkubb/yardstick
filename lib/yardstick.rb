@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 require 'pathname'
-require 'rational'
 require 'delegate'
 
 require 'backports'
@@ -36,10 +35,9 @@ module Yardstick
   # Measure a list of files
   #
   # @example
-  #   Yardstick.measure('article.rb')  # => [ Measurement ]
+  #   config = Yardstick::Config.coerce(path: 'article.rb')
+  #   Yardstick.measure(config)  # => [ MeasurementSet ]
   #
-  # @param [Array<#to_s>, #to_s] path
-  #   optional list of paths to measure
   # @param [Config] config
   #   optional configuration
   #
@@ -69,6 +67,19 @@ module Yardstick
   # @api public
   def self.measure_string(string, config = Config.new)
     Processor.new(config).process_string(string)
+  end
+
+  # Round percentage to 1/10th of a percent
+  #
+  # @param [Float] percentage
+  #   the percentage to round
+  #
+  # @return [Float]
+  #   the rounded percentage
+  #
+  # @api private
+  def self.round_percentage(percentage)
+    (percentage * 10).floor / 10.0
   end
 
 end # module Yardstick

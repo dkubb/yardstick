@@ -1,18 +1,22 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe Yardstick::Config, '#for_rule' do
   subject { described_class.new(options).for_rule(rule_class) }
 
   let(:options) do
-    {:rules => {:"Summary::Presence" => {:enabled => false}}}
+    { rules: { :'Summary::Presence' => { enabled: false } } }
   end
-  let(:rule_config) { mock('RuleConfig') }
+
+  let(:rule_config) { double('RuleConfig') }
 
   context 'when rule is present' do
     let(:rule_class) { Yardstick::Rules::Summary::Presence }
 
     before do
-      Yardstick::RuleConfig.stub(:new).with({:enabled => false}) { rule_config }
+      allow(Yardstick::RuleConfig).to receive(:new).with(enabled: false)
+        .and_return(rule_config)
     end
 
     it { should be(rule_config) }
@@ -22,7 +26,8 @@ describe Yardstick::Config, '#for_rule' do
     let(:rule_class) { Yardstick::Rules::Summary::Length }
 
     before do
-      Yardstick::RuleConfig.stub(:new).with({}) { rule_config }
+      allow(Yardstick::RuleConfig).to receive(:new).with({})
+        .and_return(rule_config)
     end
 
     it { should be(rule_config) }
@@ -34,9 +39,8 @@ describe Yardstick::Config, '#for_rule' do
     it 'raises InvalidRule error' do
       msg = 'every rule must begin with Yardstick::Rules::'
 
-      expect {
-        subject
-      }.to raise_error(described_class::InvalidRule, msg)
+      expect { subject }
+        .to raise_error(described_class::InvalidRule, msg)
     end
   end
 end

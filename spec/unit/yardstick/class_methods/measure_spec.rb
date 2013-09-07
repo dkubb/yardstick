@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe Yardstick, '.measure' do
@@ -5,8 +7,10 @@ describe Yardstick, '.measure' do
     subject { described_class.measure }
 
     it 'delegates to Processor' do
-      processor = mock('processor')
-      Yardstick::Processor.stub(:new).with(instance_of(Yardstick::Config)) { processor }
+      processor = double('processor')
+      Yardstick::Processor.stub(:new).with(instance_of(Yardstick::Config)) do
+        processor
+      end
       processor.should_receive(:process)
       subject
     end
@@ -15,10 +19,10 @@ describe Yardstick, '.measure' do
   context 'when custom config' do
     subject { described_class.measure(config) }
 
-    let(:config) { mock('config') }
+    let(:config) { double('config') }
 
     it 'delegates to Processor' do
-      processor = mock('processor')
+      processor = double('processor')
       Yardstick::Processor.stub(:new).with(config) { processor }
       processor.should_receive(:process)
       subject

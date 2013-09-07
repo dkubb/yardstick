@@ -1,3 +1,6 @@
+# encoding: utf-8
+
+# Mock Document object
 class DocumentMock
   def path
     'Foo#bar'

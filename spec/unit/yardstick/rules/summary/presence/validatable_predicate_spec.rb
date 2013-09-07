@@ -1,9 +1,11 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe Yardstick::Rules::Summary::Presence, '#validatable?' do
   subject { described_class.new(document).validatable? }
 
-  let(:document) { mock('document') }
+  let(:document) { double('document') }
 
   context 'with @see tag' do
     before { document.stub(:has_tag?).with('see').and_return(true) }

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Yardstick
 
   # Parses files and strings using YARD
@@ -48,7 +50,7 @@ module Yardstick
     # @api private
     def self.method_objects
       YARD::Registry.all(:method).sort_by do |method_object|
-        [ method_object.file, method_object.line ]
+        [method_object.file, method_object.line]
       end
     ensure
       YARD::Registry.clear

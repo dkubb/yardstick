@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe Yardstick::ReportOutput, '.coerce' do
@@ -11,6 +13,6 @@ describe Yardstick::ReportOutput, '.coerce' do
 
   it 'coerces target to Pathname' do
     target = subject.instance_variable_get(:@target)
-    target.should be_a(Pathname)
+    expect(target).to be_a(Pathname)
   end
 end

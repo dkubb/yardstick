@@ -1,16 +1,19 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe Yardstick, '.measure' do
-  let(:string) { mock('string') }
+  let(:string) { double('string') }
 
   context 'when no arguments' do
     subject { described_class.measure_string(string) }
 
     it 'delegates to Processor' do
-      processor = mock('processor')
-      Yardstick::Processor.stub(:new).with(instance_of(Yardstick::Config)) { processor }
+      processor = double('processor')
+      Yardstick::Processor.stub(:new).with(instance_of(Yardstick::Config)) do
+        processor
+      end
       processor.should_receive(:process_string).with(string)
-
       subject
     end
   end
@@ -18,13 +21,12 @@ describe Yardstick, '.measure' do
   context 'when custom config' do
     subject { described_class.measure_string(string, config) }
 
-    let(:config) { mock('config') }
+    let(:config) { double('config') }
 
     it 'delegates to Processor' do
-      processor = mock('processor')
+      processor = double('processor')
       Yardstick::Processor.stub(:new).with(config) { processor }
       processor.should_receive(:process_string).with(string)
-
       subject
     end
   end

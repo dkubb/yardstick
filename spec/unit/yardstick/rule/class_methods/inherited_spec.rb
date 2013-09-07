@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe Yardstick::Rule, '.inherited' do
@@ -8,6 +10,6 @@ describe Yardstick::Rule, '.inherited' do
   end
 
   it 'registers rule' do
-    Yardstick::Document.registered_rules.should include(subclass)
+    expect(Yardstick::Document.registered_rules).to include(subclass)
   end
 end

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe Yardstick::MeasurementSet, '#initialize' do
@@ -5,17 +7,21 @@ describe Yardstick::MeasurementSet, '#initialize' do
     subject { described_class.new }
 
     it { should be_a(Yardstick::MeasurementSet) }
+
     it { should be_a(Enumerable) }
+
     it { should be_empty }
   end
 
   context 'with measurements' do
     subject { described_class.new([measurement]) }
 
-    let(:measurement) { mock('measurement') }
+    let(:measurement) { double('measurement') }
 
     it { should be_a(Yardstick::MeasurementSet) }
+
     it { should be_a(Enumerable) }
+
     it { should include(measurement) }
   end
 end

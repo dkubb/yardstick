@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 require 'yardstick/rake/measurement'
 
@@ -6,7 +8,7 @@ describe Yardstick::Rake::Measurement, '#initialize' do
     subject(:task) { described_class.new(:measure, options) }
 
     let(:config)  { Yardstick::Config.new }
-    let(:options) { mock('options') }
+    let(:options) { double('options')     }
 
     before do
       Yardstick::Config.stub(:coerce).with(options) { config }
@@ -17,7 +19,7 @@ describe Yardstick::Rake::Measurement, '#initialize' do
 
       it 'creates rake task with given name' do
         subject
-        Rake::Task['measure'].should be_kind_of(Rake::Task)
+        expect(Rake::Task['measure']).to be_kind_of(Rake::Task)
       end
 
       it 'calls yardstick_measure when rake task is executed' do
@@ -28,7 +30,8 @@ describe Yardstick::Rake::Measurement, '#initialize' do
 
       it 'should include the threshold in the task name' do
         task
-        Rake.application.last_description.should == 'Measure docs in lib/**/*.rb with yardstick'
+        expect(Rake.application.last_description)
+          .to eql('Measure docs in lib/**/*.rb with yardstick')
       end
     end
   end
@@ -40,7 +43,7 @@ describe Yardstick::Rake::Measurement, '#initialize' do
 
     it 'assigns yardstick_measure as the name' do
       subject
-      Rake::Task['yardstick_measure'].should be_kind_of(Rake::Task)
+      expect(Rake::Task['yardstick_measure']).to be_kind_of(Rake::Task)
     end
   end
 
@@ -55,7 +58,7 @@ describe Yardstick::Rake::Measurement, '#initialize' do
 
     it 'should yield to Config' do
       task
-      @yield.should be_instance_of(Yardstick::Config)
+      expect(@yield).to be_instance_of(Yardstick::Config)
     end
   end
 end
