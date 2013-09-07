@@ -126,17 +126,20 @@ rules:
     exclude: []
 ```
 
-To disable a rule for some part of the code use
+To disable a rule for some part of the code use:
+
 ```yaml
+rules:
   ApiTag::Presence:
     enabled: true
     exclude:
-    - Foo::Bar # class or module
-    - Foo#bar  # instance method
-    - Foo.bar  # class method
+      - Foo::Bar  # class or module
+      - Foo#bar   # instance method
+      - Foo.bar   # class method
 ```
 
-Rake tasks take these options as a second argument. Example:
+Rake tasks take these options as a second argument:
+
 ```ruby
 options = YAML.load_file('config/yardstick.yml')
 
