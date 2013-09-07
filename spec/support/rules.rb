@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class ValidRule
   class << self
     attr_accessor :description

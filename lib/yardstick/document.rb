@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Yardstick
 
   # Wraps a yard docstring to make a nicer interface

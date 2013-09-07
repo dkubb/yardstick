@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 shared_examples_for 'measured itself' do
   it 'should return a MeasurementSet' do
     expect(@measurements).to be_kind_of(Yardstick::MeasurementSet)
