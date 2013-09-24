@@ -3,7 +3,6 @@
 require 'pathname'
 require 'delegate'
 
-require 'backports'
 require 'yard'
 
 require 'yardstick/ordered_set'
