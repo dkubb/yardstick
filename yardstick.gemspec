@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
   gem.extra_rdoc_files = %w[LICENSE README.md CONTRIBUTING.md TODO]
   gem.executables      = %w[yardstick]
 
-  gem.add_runtime_dependency('yard', '~> 0.8', '>= 0.8.7')
+  gem.add_runtime_dependency('yard', '~> 0.8', '>= 0.8.7.2')
 
   gem.add_development_dependency('bundler', '~> 1.3', '>= 1.3.5')
 end
