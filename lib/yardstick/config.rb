@@ -116,7 +116,7 @@ module Yardstick
       if key
         RuleConfig.new(@rules.fetch(key.to_sym, {}))
       else
-        raise InvalidRule, "every rule must begin with #{NAMESPACE_PREFIX}"
+        fail InvalidRule, "every rule must begin with #{NAMESPACE_PREFIX}"
       end
     end
 

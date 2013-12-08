@@ -80,5 +80,4 @@ module Yardstick
   def self.round_percentage(percentage)
     (percentage * 10).floor / 10.0
   end
-
 end # module Yardstick

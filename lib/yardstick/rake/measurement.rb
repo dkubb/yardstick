@@ -8,10 +8,8 @@ require 'yardstick'
 
 module Yardstick
   module Rake
-
     # A rake task for measuring docs in a set of files
     class Measurement < ::Rake::TaskLib
-
       # Initializes a Measurement task
       #
       # @example
@@ -57,7 +55,6 @@ module Yardstick
         desc "Measure docs in #{@config.path} with yardstick"
         task(@name) { yardstick_measure }
       end
-
     end # class Measurement
   end # module Rake
 end # module Yardstick

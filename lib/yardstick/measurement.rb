@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 module Yardstick
-
   # A measurement given a constraint on the docs
   class Measurement
     # Return a Measurement instance
@@ -97,6 +96,5 @@ module Yardstick
       return :skip if !@rule.enabled? || !@rule.validatable?
       @rule.valid?
     end
-
   end # class Measurement
 end # module Yardstick

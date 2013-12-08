@@ -1,10 +1,8 @@
 # encoding: utf-8
 
 module Yardstick
-
   # A set of yardstick documents
   class DocumentSet < OrderedSet
-
     # Measure documents using given config
     #
     # @return [Yardstick::MeasurementSet]
@@ -16,6 +14,5 @@ module Yardstick
         set.merge(Document.measure(document, config))
       end
     end
-
   end
 end

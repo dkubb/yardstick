@@ -1,10 +1,8 @@
 # encoding: utf-8
 
 module Yardstick
-
   # Parses files and strings using YARD
   class Parser
-
     # Measure files specified in the paths
     #
     # @return [Array<Document>]
@@ -56,6 +54,5 @@ module Yardstick
       YARD::Registry.clear
     end
     private_class_method :method_objects
-
   end
 end

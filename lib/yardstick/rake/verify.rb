@@ -7,10 +7,8 @@ require 'yardstick'
 
 module Yardstick
   module Rake
-
     # A rake task for verifying the doc thresholds
     class Verify < ::Rake::TaskLib
-
       # Initialize a Verify task
       #
       # @example
@@ -93,7 +91,7 @@ module Yardstick
       # @api private
       def assert_threshold
         unless @threshold
-          raise 'threshold must be set'
+          fail 'threshold must be set'
         end
       end
 
@@ -107,7 +105,7 @@ module Yardstick
       # @api private
       def assert_meets_threshold
         if lower_coverage?
-          raise "YARD-Coverage must be at least #{@threshold}% but was #{total_coverage}%"
+          fail "YARD-Coverage must be at least #{@threshold}% but was #{total_coverage}%"
         end
       end
 
@@ -121,7 +119,7 @@ module Yardstick
       # @api private
       def assert_matches_threshold
         if @config.require_exact_threshold? && higher_coverage?
-          raise "YARD-Coverage has increased above the threshold of #{@threshold}% to #{total_coverage}%. You should update your threshold value."
+          fail "YARD-Coverage has increased above the threshold of #{@threshold}% to #{total_coverage}%. You should update your threshold value."
         end
       end
 
@@ -144,7 +142,6 @@ module Yardstick
       def higher_coverage?
         total_coverage > @threshold
       end
-
     end # class Verify
   end # module Rake
 end # module Yardstick
