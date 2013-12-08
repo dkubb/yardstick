@@ -6,7 +6,7 @@ require 'yardstick/rake/measurement'
 describe Yardstick::Rake::Measurement, '#yardstick_measure' do
   subject { described_class.new(:yardstick_measure, options).yardstick_measure }
 
-  let(:config)        { double('config', path: 'tmp', output: report_writer) }
+  let(:config)        { double('config', :path => 'tmp', :output => report_writer) }
   let(:report_writer) { double('report writer')                              }
   let(:options)       { double('options')                                    }
   let(:measurements)  { double('measurements')                               }

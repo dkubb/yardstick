@@ -10,8 +10,9 @@ module Yardstick
     #
     # @api private
     def measure(config)
-      each_with_object(MeasurementSet.new) do |document, set|
+      reduce(MeasurementSet.new) do |set, document|
         set.merge(Document.measure(document, config))
+        set
       end
     end
   end

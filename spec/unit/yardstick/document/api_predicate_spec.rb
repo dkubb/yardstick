@@ -8,7 +8,7 @@ describe Yardstick::Document, '#api?' do
   let(:docstring) { double('docstring') }
 
   before do
-    docstring.stub(:tag).with('api') { double(text: 'private') }
+    docstring.stub(:tag).with('api') { double(:text => 'private') }
   end
 
   context 'when tag is equal' do

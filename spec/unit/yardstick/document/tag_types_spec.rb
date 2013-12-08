@@ -7,7 +7,7 @@ describe Yardstick::Document, '#tag_types' do
 
   let(:name)      { 'tag name'           }
   let(:docstring) { double('docstring')  }
-  let(:yard_tag)  { double(types: types) }
+  let(:yard_tag)  { double(:types => types) }
   let(:types)     { %w[type1 type2]      }
 
   before do

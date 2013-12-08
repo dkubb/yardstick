@@ -13,7 +13,7 @@ describe Yardstick, '.measure' do
 
   describe 'with a config' do
     before :all do
-      config = Yardstick::Config.new(path: Yardstick::ROOT.join('lib', 'yardstick.rb'))
+      config = Yardstick::Config.new(:path => Yardstick::ROOT.join('lib', 'yardstick.rb'))
       @measurements = Yardstick.measure(config)
     end
 

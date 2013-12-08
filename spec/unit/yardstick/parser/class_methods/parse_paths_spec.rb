@@ -6,7 +6,7 @@ describe Yardstick::Parser, '.parse_paths' do
   subject(:document_set) { described_class.parse_paths(paths) }
 
   let(:paths)         { double('paths')                                       }
-  let(:method_object) { double(file: 'foo.rb', line: 4, docstring: docstring) }
+  let(:method_object) { double(:file => 'foo.rb', :line => 4, :docstring => docstring) }
   let(:docstring)     { double('docstring')                                   }
 
   before do

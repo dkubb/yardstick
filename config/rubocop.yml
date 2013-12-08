@@ -47,3 +47,7 @@ IfUnlessModifier:
 # Do not use sprintf instead of String#%.
 FavorSprintf:
   Enabled: false
+
+# Enforce Ruby 1.8-compatible hash syntax
+HashSyntax:
+  EnforcedStyle: hash_rockets

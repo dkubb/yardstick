@@ -7,7 +7,7 @@ describe Yardstick::Rake::Verify, '#initialize' do
   context 'with custom arguments' do
     subject(:task) { described_class.new(:verify, options) }
 
-    let(:config)  { Yardstick::Config.new(threshold: 90) }
+    let(:config)  { Yardstick::Config.new(:threshold => 90) }
     let(:options) { double('options')                    }
 
     before do

@@ -7,7 +7,7 @@ describe Yardstick::Document, '#tag_text' do
 
   let(:name)      { 'api'                   }
   let(:docstring) { double('docstring')     }
-  let(:yard_tag)  { double(text: 'private') }
+  let(:yard_tag)  { double(:text => 'private') }
 
   before do
     docstring.stub(:tag).with(name) { yard_tag }
