@@ -5,8 +5,8 @@ script: "bundle exec rake ci"
 rvm:
   - 1.9.3
   - 2.0.0
-  - ruby-head
   - rbx-19mode
+  - ruby-head
 matrix:
   include:
     - rvm: jruby-19mode
@@ -16,8 +16,9 @@ matrix:
   allow_failures:
     - rvm: 1.9.3       # mutant fails
     - rvm: 2.0.0       # mutant fails
-    - rvm: ruby-head   # travis broken
     - rvm: rbx-19mode  # mutant fails
+    - rvm: ruby-head   # travis broken
+  fast_finish: true
 notifications:
   irc:
     channels:
