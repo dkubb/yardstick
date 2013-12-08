@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 module Yardstick
-
   # A base class for an ordered set
   class OrderedSet
     include Enumerable
@@ -114,6 +113,5 @@ module Yardstick
     def index(entry)
       @index[entry]
     end
-
   end # class OrderedSet
 end # module Yardstick

@@ -1,10 +1,8 @@
 # encoding: utf-8
 
 module Yardstick
-
   # Handle procesing a docstring or path of files
   class Processor
-
     # Initializes new Processor instance
     #
     # @param [Yardstick::Config] config
@@ -50,6 +48,5 @@ module Yardstick
     def paths
       Array(@config.path).map(&:to_s)
     end
-
   end # class Processor
 end # module Yardstick

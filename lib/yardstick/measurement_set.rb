@@ -1,10 +1,8 @@
 # encoding: utf-8
 
 module Yardstick
-
   # A set of yardstick measurements
   class MeasurementSet < OrderedSet
-
     # The total number of measurements
     #
     # @example
@@ -127,6 +125,5 @@ module Yardstick
     def total_text
       'Total: %d' % total
     end
-
   end # class MeasurementSet
 end # module Yardstick

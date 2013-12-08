@@ -7,10 +7,8 @@ require 'yardstick'
 
 module Yardstick
   module Rake
-
     # A rake task for verifying the doc thresholds
     class Verify < ::Rake::TaskLib
-
       # Initialize a Verify task
       #
       # @example
@@ -144,7 +142,6 @@ module Yardstick
       def higher_coverage?
         total_coverage > @threshold
       end
-
     end # class Verify
   end # module Rake
 end # module Yardstick
