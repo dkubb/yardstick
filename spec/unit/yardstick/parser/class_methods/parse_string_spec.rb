@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Yardstick::Parser, '.parse_string' do
   subject(:document_set) { described_class.parse_string(string) }
 
-  let(:string)        { double('string', to_str: 'body')                      }
-  let(:method_object) { double(file: 'foo.rb', line: 4, docstring: docstring) }
+  let(:string)        { double('string', :to_str => 'body')                      }
+  let(:method_object) { double(:file => 'foo.rb', :line => 4, :docstring => docstring) }
   let(:docstring)     { double('docstring')                                   }
 
   before do

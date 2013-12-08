@@ -55,8 +55,8 @@ describe Yardstick::Document, '#process_string' do
 
   describe 'without a method summary when validations are turned off' do
     let(:config) do
-      Yardstick::Config.new(rules: {
-        'Summary::Presence'.to_sym => { enabled: false }
+      Yardstick::Config.new(:rules => {
+        'Summary::Presence'.to_sym => { :enabled => false }
       })
     end
     let(:method) { 'def test(value); end' }
@@ -70,8 +70,8 @@ describe Yardstick::Document, '#process_string' do
 
   describe 'without a method summary when validations are turned off for given class' do
     let(:config) do
-      Yardstick::Config.new(rules: {
-        'Summary::Presence'.to_sym => { enabled: true, exclude: %w[World] }
+      Yardstick::Config.new(:rules => {
+        'Summary::Presence'.to_sym => { :enabled => true, :exclude => %w[World] }
       })
     end
     let(:method) { 'class World; def test(value); end; end' }

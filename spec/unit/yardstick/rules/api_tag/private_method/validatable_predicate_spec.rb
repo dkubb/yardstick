@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Yardstick::Rules::ApiTag::PrivateMethod, '#validatable?' do
   subject { described_class.new(document).validatable? }
 
-  let(:document) { double('document', visibility: visibility) }
+  let(:document) { double('document', :visibility => visibility) }
 
   context 'when protected visibility' do
     let(:visibility) { :private }

@@ -12,7 +12,7 @@ describe Yardstick::Config, '.coerce' do
 
     it 'coerces hash' do
       rules = subject.instance_variable_get(:@rules)
-      expect(rules).to eql(foo: 'bar')
+      expect(rules).to eql(:foo => 'bar')
     end
   end
 

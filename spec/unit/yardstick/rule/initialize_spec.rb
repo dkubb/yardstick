@@ -16,7 +16,7 @@ describe Yardstick::Rule, '#initialize' do
   context 'when rule config is given' do
     subject { described_class.new(document, config) }
 
-    let(:config) { Yardstick::RuleConfig.new(enabled: false) }
+    let(:config) { Yardstick::RuleConfig.new(:enabled => false) }
 
     it { should be_a(described_class) }
 

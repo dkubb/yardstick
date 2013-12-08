@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Yardstick::Rule, '#enabled?' do
   subject { described_class.new(document, config).enabled? }
 
-  let(:document)     { double('document', path: 'Foo#bar') }
+  let(:document)     { double('document', :path => 'Foo#bar') }
   let(:config)       { double('RuleConfig')                }
   let(:return_value) { double('Boolean')                   }
 
