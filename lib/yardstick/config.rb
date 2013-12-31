@@ -99,7 +99,7 @@ module Yardstick
     #
     # @api private
     def initialize(options = {}, &block)
-      set_defaults(options)
+      self.defaults = options
 
       yield(self) if block_given?
     end
@@ -161,7 +161,7 @@ module Yardstick
     # @return [undefined]
     #
     # @api private
-    def set_defaults(options)
+    def defaults=(options)
       @threshold               = options.fetch(:threshold, 100)
       @verbose                 = options.fetch(:verbose, true)
       @path                    = options.fetch(:path, 'lib/**/*.rb')
