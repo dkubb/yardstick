@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'forwardable'
+
 module Yardstick
   # Base class of every rule
   #
