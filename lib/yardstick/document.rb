@@ -81,7 +81,7 @@ module Yardstick
     #   true if tag exists
     #
     # @api private
-    def has_tag?(name)
+    def has_tag?(name) # rubocop:disable PredicateName
       @docstring.has_tag?(name)
     end
 
