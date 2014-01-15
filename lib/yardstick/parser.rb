@@ -48,8 +48,8 @@ module Yardstick
     #
     # @api private
     def self.method_objects
-      YARD::Registry.all(:method).sort_by do |method_object|
-        [method_object.file || '', method_object.line || 0]
+      YARD::Registry.all(:method).select(&:file).select(&:line).sort_by do |method_object|
+        [method_object.file, method_object.line]
       end
     ensure
       YARD::Registry.clear

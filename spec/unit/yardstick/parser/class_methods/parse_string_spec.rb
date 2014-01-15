@@ -37,5 +37,6 @@ describe Yardstick::Parser, '.parse_string' do
     end
 
     it { should be_a(Yardstick::DocumentSet) }
+    its(:length) { should be(1) }
   end
 end
