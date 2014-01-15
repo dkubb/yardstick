@@ -87,7 +87,7 @@ RUBY
 
 ### 4. Configuration
 
-Every rule in Yardstick can be turned off globally and locally. All rules are enabled and threshold is set to maximum by default.
+Every rule in Yardstick can be turned off globally and locally. All rules are enabled and threshold is set to maximum by default (100%). If your documentation coverage is below or above this threshold then yardstick will exit with a nonzero status and print that fact.
 
 Default configuration:
 ```yaml
