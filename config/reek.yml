@@ -13,7 +13,9 @@ ClassVariable:
   exclude: []
 ControlParameter:
   enabled: true
-  exclude: []
+  exclude:
+  # False positive
+  - Yardstick::OrderedSet#initialize
 DataClump:
   enabled: true
   exclude: []
@@ -69,6 +71,7 @@ TooManyStatements:
   - Yardstick::CLI#self.option_parser
   - Yardstick::CLI#self.parse_config
   - Yardstick::Config#self.normalize_hash
+  - Yardstick::Config#defaults=
   - Yardstick::Config#set_defaults
   - Yardstick::Rake::Verify#initialize
   max_statements: 3
