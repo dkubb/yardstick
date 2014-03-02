@@ -1,10 +1,10 @@
 # yardstick
 
-[![Gem Version](https://badge.fury.io/rb/yardstick.png)][gem]
-[![Build Status](https://secure.travis-ci.org/dkubb/yardstick.png?branch=master)][travis]
-[![Dependency Status](https://gemnasium.com/dkubb/yardstick.png)][gemnasium]
-[![Code Climate](https://codeclimate.com/github/dkubb/yardstick.png)][codeclimate]
-[![Coverage Status](https://coveralls.io/repos/dkubb/yardstick/badge.png?branch=master)][coveralls]
+[![Gem Version](http://img.shields.io/gem/v/yardstick.svg)][gem]
+[![Build Status](http://img.shields.io/travis/dkubb/yardstick.svg)][travis]
+[![Dependency Status](http://img.shields.io/gemnasium/dkubb/yardstick.svg)][gemnasium]
+[![Code Climate](http://img.shields.io/codeclimate/github/dkubb/yardstick.svg)][codeclimate]
+[![Coverage Status](http://img.shields.io/coveralls/dkubb/yardstick.svg)][coveralls]
 
 [gem]: https://rubygems.org/gems/yardstick
 [travis]: https://travis-ci.org/dkubb/yardstick
