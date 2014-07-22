@@ -16,7 +16,7 @@ module Yardstick
       #
       # @api private
       def validatable?
-        !api?(%w[ private ]) && tag_types('return') != %w[ undefined ]
+        !api?(%w(private)) && tag_types('return') != %w(undefined)
       end
 
       # @see class description

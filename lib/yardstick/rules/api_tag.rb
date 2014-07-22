@@ -24,7 +24,7 @@ module Yardstick
       # Checks if @api tag is a public, semipublic or private
       #
       class Inclusion < Rule
-        VALID_VALUES = %w[ public semipublic private ].freeze
+        VALID_VALUES = %w(public semipublic private).freeze
 
         self.description = 'The @api tag must be either public, semipublic or private'
 
@@ -61,7 +61,7 @@ module Yardstick
         #
         # @api private
         def valid?
-          api?(%w[ semipublic private ])
+          api?(%w(semipublic private))
         end
       end
 
@@ -87,7 +87,7 @@ module Yardstick
         #
         # @api private
         def valid?
-          api?(%w[ private ])
+          api?(%w(private))
         end
       end
     end

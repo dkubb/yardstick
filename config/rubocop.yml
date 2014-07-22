@@ -1,9 +1,9 @@
 AllCops:
-  Includes:
+  Include:
     - '**/*.rake'
     - 'Gemfile'
     - 'Gemfile.devtools'
-  Excludes:
+  Exclude:
     - '**/vendor/**'
     - '**/benchmarks/**'
 
@@ -46,8 +46,8 @@ IfUnlessModifier:
   Enabled: false
 
 # Do not use sprintf instead of String#%.
-FavorSprintf:
-  Enabled: false
+FormatString:
+  EnforcedStyle: percent
 
 # Not all trivial readers/writers can be defined with attr_* methods
 TrivialAccessors:
@@ -56,3 +56,11 @@ TrivialAccessors:
 # Enforce Ruby 1.8-compatible hash syntax
 HashSyntax:
   EnforcedStyle: hash_rockets
+
+# Don't prefer each_with_object to inject/reduce
+EachWithObject:
+  Enabled: false
+
+# Allow trailing commas
+TrailingComma:
+  Enabled: false

@@ -9,7 +9,7 @@ describe Yardstick::Rules::ExampleTag, '#validatable?' do
 
   before do
     document.stub(:api?).with(['private']) { false }
-    document.stub(:tag_types).with('return') { %w[Object] }
+    document.stub(:tag_types).with('return') { %w(Object) }
   end
 
   it { should be(true) }

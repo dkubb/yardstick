@@ -7,7 +7,7 @@ describe Yardstick::RuleConfig, '#enabled_for_path?' do
 
   let(:options) { {} }
 
-  %w[ Foo::Bar#baz Foo::Bar.baz ].each do |method|
+  %w(Foo::Bar#baz Foo::Bar.baz).each do |method|
     let(:path) { method }
 
     context 'when no restrictions' do

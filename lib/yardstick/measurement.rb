@@ -65,9 +65,8 @@ module Yardstick
     #
     # @api public
     def puts(io = $stdout)
-      unless ok?
-        io.puts("#{@document.file}:#{@document.line}: #{@document.path}: #{description}")
-      end
+      return if ok?
+      io.puts("#{@document.file}:#{@document.line}: #{@document.path}: #{description}")
     end
 
     # Return the Measurement description
@@ -83,7 +82,7 @@ module Yardstick
       @rule.class.description
     end
 
-  private
+    private
 
     # Measure the document using the rule provided to the constructor
     #

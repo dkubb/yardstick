@@ -44,7 +44,7 @@ module Yardstick
         @config.output.write { |io| Yardstick.measure(@config).puts(io) }
       end
 
-    private
+      private
 
       # Define the task
       #

@@ -72,7 +72,7 @@ module Yardstick
       puts_summary(io)
     end
 
-  private
+    private
 
     # Warn the summary of all measurements
     #

@@ -56,7 +56,7 @@ module Yardstick
         assert_matches_threshold
       end
 
-    protected
+      protected
 
       # The total YARD coverage
       #
@@ -69,7 +69,7 @@ module Yardstick
         Yardstick.round_percentage(measurements.coverage * 100)
       end
 
-    private
+      private
 
       # Define the task
       #
@@ -90,9 +90,8 @@ module Yardstick
       #
       # @api private
       def assert_threshold
-        unless @threshold
-          fail 'threshold must be set'
-        end
+        return if @threshold
+        fail 'threshold must be set'
       end
 
       # Raise an exception if the threshold is not met
@@ -104,9 +103,8 @@ module Yardstick
       #
       # @api private
       def assert_meets_threshold
-        if lower_coverage?
-          fail "YARD-Coverage must be at least #{@threshold}% but was #{total_coverage}%"
-        end
+        return unless lower_coverage?
+        fail "YARD-Coverage must be at least #{@threshold}% but was #{total_coverage}%"
       end
 
       # Raise an exception if the threshold is not equal to the coverage
@@ -118,9 +116,8 @@ module Yardstick
       #
       # @api private
       def assert_matches_threshold
-        if @config.require_exact_threshold? && higher_coverage?
-          fail "YARD-Coverage has increased above the threshold of #{@threshold}% to #{total_coverage}%. You should update your threshold value."
-        end
+        return unless @config.require_exact_threshold? && higher_coverage?
+        fail "YARD-Coverage has increased above the threshold of #{@threshold}% to #{total_coverage}%. You should update your threshold value."
       end
 
       # Checks if total coverage is lower than the threshold

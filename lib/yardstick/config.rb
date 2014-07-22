@@ -98,7 +98,7 @@ module Yardstick
     # @return [Yardstick::Config]
     #
     # @api private
-    def initialize(options = {}, &block)
+    def initialize(options = {})
       self.defaults = options
 
       yield(self) if block_given?
