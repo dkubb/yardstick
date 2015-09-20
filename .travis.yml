@@ -5,6 +5,8 @@ env:
 language: ruby
 script: "bundle exec rake ci"
 rvm:
+  - '2.1.6'
+  - '2.2'
   - ruby-head
 matrix:
   allow_failures:
