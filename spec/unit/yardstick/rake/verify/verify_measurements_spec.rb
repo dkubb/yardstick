@@ -12,8 +12,8 @@ describe Yardstick::Rake::Verify, '#verify_measurements' do
   let(:options) { double('options')                    }
 
   before do
-    Yardstick::Config.stub(:coerce).with(options) { config }
-    Yardstick.stub(:measure).with(config) { measurements }
+    allow(Yardstick::Config).to receive(:coerce).with(options) { config }
+    allow(Yardstick).to receive(:measure).with(config) { measurements }
   end
 
   context 'when verbose' do

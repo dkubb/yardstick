@@ -8,6 +8,6 @@ describe Yardstick::Config, '#path' do
   context 'when default options' do
     let(:options) { {} }
 
-    it { should == 'lib/**/*.rb' }
+    it { should eq('lib/**/*.rb') }
   end
 end

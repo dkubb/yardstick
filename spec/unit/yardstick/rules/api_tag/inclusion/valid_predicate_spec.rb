@@ -10,7 +10,7 @@ describe Yardstick::Rules::ApiTag::Inclusion, '#valid?' do
   %w(public semipublic private).each do |method_visibility|
     context "with #{method_visibility} method" do
       before do
-        document.stub(:tag_text).with('api').and_return(method_visibility)
+        allow(document).to receive(:tag_text).with('api').and_return(method_visibility)
       end
 
       it { should be(true) }
@@ -19,7 +19,7 @@ describe Yardstick::Rules::ApiTag::Inclusion, '#valid?' do
 
   context 'with unknown method visibility' do
     before do
-      document.stub(:tag_text).with('api').and_return('unknown')
+      allow(document).to receive(:tag_text).with('api').and_return('unknown')
     end
 
     it { should be(false) }

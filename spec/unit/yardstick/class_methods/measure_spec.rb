@@ -8,10 +8,10 @@ describe Yardstick, '.measure' do
 
     it 'delegates to Processor' do
       processor = double('processor')
-      Yardstick::Processor.stub(:new).with(instance_of(Yardstick::Config)) do
+      allow(Yardstick::Processor).to receive(:new).with(instance_of(Yardstick::Config)) do
         processor
       end
-      processor.should_receive(:process)
+      expect(processor).to receive(:process)
       subject
     end
   end
@@ -23,8 +23,8 @@ describe Yardstick, '.measure' do
 
     it 'delegates to Processor' do
       processor = double('processor')
-      Yardstick::Processor.stub(:new).with(config) { processor }
-      processor.should_receive(:process)
+      allow(Yardstick::Processor).to receive(:new).with(config) { processor }
+      expect(processor).to receive(:process)
       subject
     end
   end

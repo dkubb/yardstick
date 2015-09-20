@@ -8,13 +8,13 @@ describe Yardstick::Rules::ReturnTag, '#valid?' do
   let(:document) { double('document') }
 
   context 'when with protected api tag' do
-    before { document.stub(:has_tag?).with('return').and_return(true) }
+    before { allow(document).to receive(:has_tag?).with('return').and_return(true) }
 
     it { should be(true) }
   end
 
   context 'when not protected visibility' do
-    before { document.stub(:has_tag?).with('return').and_return(false) }
+    before { allow(document).to receive(:has_tag?).with('return').and_return(false) }
 
     it { should be(false) }
   end

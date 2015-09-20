@@ -9,7 +9,7 @@ describe Yardstick::Document, '#has_tag?' do
   let(:name)      { 'tag name'          }
 
   it 'delegates to docstring' do
-    docstring.should_receive(:has_tag?).with(name)
+    expect(docstring).to receive(:has_tag?).with(name)
     subject
   end
 end

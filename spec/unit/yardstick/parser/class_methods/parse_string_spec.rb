@@ -12,8 +12,8 @@ describe Yardstick::Parser, '.parse_string' do
   let(:method_objects) { [method_object] }
 
   before do
-    YARD.should_receive(:parse_string).with('body')
-    YARD::Registry.stub(:all).with(:method).and_return(method_objects)
+    expect(YARD).to receive(:parse_string).with('body')
+    allow(YARD::Registry).to receive(:all).with(:method).and_return(method_objects)
   end
 
   it { should be_a(Yardstick::DocumentSet) }

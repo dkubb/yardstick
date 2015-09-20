@@ -22,7 +22,7 @@ describe Yardstick::Document, '#path' do
       RUBY
     end
 
-    it { should == 'Foo::Bar#baz' }
+    it { should eq('Foo::Bar#baz') }
   end
 
   context 'when class method' do
@@ -40,6 +40,6 @@ describe Yardstick::Document, '#path' do
       RUBY
     end
 
-    it { should == 'Foo::Bar.baz' }
+    it { should eq('Foo::Bar.baz') }
   end
 end

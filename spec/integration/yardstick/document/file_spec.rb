@@ -12,5 +12,5 @@ describe Yardstick::Document, '#file' do
 
   it { should be_kind_of(Pathname) }
 
-  it { should == file }
+  it { should eq(file) }
 end

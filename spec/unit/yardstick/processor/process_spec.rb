@@ -10,8 +10,8 @@ describe Yardstick::Processor, '#process' do
   let(:documents) { double('document set')       }
 
   it 'measures files specified in the config' do
-    Yardstick::Parser.should_receive(:parse_paths).with(['foo/bar.rb']) { documents }
-    documents.should_receive(:measure).with(config)
+    expect(Yardstick::Parser).to receive(:parse_paths).with(['foo/bar.rb']) { documents }
+    expect(documents).to receive(:measure).with(config)
     subject
   end
 end

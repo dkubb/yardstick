@@ -20,5 +20,5 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency('yard', '~> 0.8', '>= 0.8.7.2')
 
-  gem.add_development_dependency('bundler', '~> 1.3', '>= 1.3.5')
+  gem.add_development_dependency('bundler', '~> 1.6', '>= 1.6.1')
 end

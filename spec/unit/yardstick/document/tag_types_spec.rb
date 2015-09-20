@@ -11,7 +11,7 @@ describe Yardstick::Document, '#tag_types' do
   let(:types)     { %w(type1 type2)      }
 
   before do
-    docstring.stub(:tag).with(name) { yard_tag }
+    allow(docstring).to receive(:tag).with(name) { yard_tag }
   end
 
   it { should be(types) }

@@ -10,5 +10,5 @@ describe Yardstick::Document, '#file' do
 
   it { should be_kind_of(Pathname) }
 
-  its(:to_s) { should == '/foo/bar.rb' }
+  its(:to_s) { should eq('/foo/bar.rb') }
 end

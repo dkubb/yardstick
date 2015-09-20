@@ -9,7 +9,7 @@ describe Yardstick::Rules::ExampleTag, '#valid?' do
 
   context 'with example tag' do
     before do
-      document.stub(:has_tag?).with('example').and_return(true)
+      allow(document).to receive(:has_tag?).with('example').and_return(true)
     end
 
     it { should be(true) }
@@ -17,7 +17,7 @@ describe Yardstick::Rules::ExampleTag, '#valid?' do
 
   context 'without example tag' do
     before do
-      document.stub(:has_tag?).with('example').and_return(false)
+      allow(document).to receive(:has_tag?).with('example').and_return(false)
     end
 
     it { should be(false) }

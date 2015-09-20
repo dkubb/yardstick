@@ -8,13 +8,13 @@ describe Yardstick::Rules::Summary::Presence, '#validatable?' do
   let(:document) { double('document') }
 
   context 'with @see tag' do
-    before { document.stub(:has_tag?).with('see').and_return(true) }
+    before { allow(document).to receive(:has_tag?).with('see').and_return(true) }
 
     it { should be(false) }
   end
 
   context 'without @see tag' do
-    before { document.stub(:has_tag?).with('see').and_return(false) }
+    before { allow(document).to receive(:has_tag?).with('see').and_return(false) }
 
     it { should be(true) }
   end

@@ -13,10 +13,10 @@ describe Yardstick::DocumentSet, '#measure' do
   let(:measurement2) { double('measurement') }
 
   before do
-    Yardstick::Document.should_receive(:measure).with(document1, config)
+    expect(Yardstick::Document).to receive(:measure).with(document1, config)
       .and_return(Yardstick::MeasurementSet.new([measurement1]))
 
-    Yardstick::Document.should_receive(:measure).with(document2, config)
+    expect(Yardstick::Document).to receive(:measure).with(document2, config)
       .and_return(Yardstick::MeasurementSet.new([measurement2]))
   end
 

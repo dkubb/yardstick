@@ -8,15 +8,15 @@ describe Yardstick::Rules::ExampleTag, '#validatable?' do
   let(:document) { double('document') }
 
   before do
-    document.stub(:api?).with(['private']) { false }
-    document.stub(:tag_types).with('return') { %w(Object) }
+    allow(document).to receive(:api?).with(['private']) { false }
+    allow(document).to receive(:tag_types).with('return') { %w(Object) }
   end
 
   it { should be(true) }
 
   context 'with private api' do
     before do
-      document.stub(:api?).with(['private']).and_return(true)
+      allow(document).to receive(:api?).with(['private']).and_return(true)
     end
 
     it { should be(false) }
@@ -24,7 +24,7 @@ describe Yardstick::Rules::ExampleTag, '#validatable?' do
 
   context 'with undefined return' do
     before do
-      document.stub(:tag_types).with('return').and_return(['undefined'])
+      allow(document).to receive(:tag_types).with('return').and_return(['undefined'])
     end
 
     it { should be(false) }

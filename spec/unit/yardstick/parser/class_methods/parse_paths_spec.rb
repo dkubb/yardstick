@@ -10,8 +10,8 @@ describe Yardstick::Parser, '.parse_paths' do
   let(:docstring)     { double('docstring')                                   }
 
   before do
-    YARD.should_receive(:parse).with(paths, [], YARD::Logger::ERROR)
-    YARD::Registry.stub(:all).with(:method).and_return([method_object])
+    expect(YARD).to receive(:parse).with(paths, [], YARD::Logger::ERROR)
+    allow(YARD::Registry).to receive(:all).with(:method).and_return([method_object])
   end
 
   it { should be_a(Yardstick::DocumentSet) }

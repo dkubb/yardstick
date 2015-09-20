@@ -5,7 +5,9 @@ source 'https://rubygems.org'
 gemspec
 
 group :development, :test do
-  gem 'devtools', :git => 'https://github.com/rom-rb/devtools.git'
+  gem 'devtools', '~> 0.1.1'
 end
 
-eval_gemfile 'Gemfile.devtools'
+group :test do
+  gem 'coveralls', '~> 0.8.2'
+end
