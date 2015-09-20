@@ -26,7 +26,7 @@ module Yardstick
     #
     # @api public
     def successful
-      select { |measurement| measurement.ok? }.length
+      count(&:ok?)
     end
 
     # The number of failed measurements
