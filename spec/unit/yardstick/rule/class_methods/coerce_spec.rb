@@ -10,7 +10,8 @@ describe Yardstick::Rule, '.coerce' do
   let(:rule_config) { Yardstick::RuleConfig.new(:enabled => false) }
 
   before do
-    allow(config).to receive(:for_rule).with(described_class) { rule_config }
+    allow(config)
+      .to receive(:for_rule).with(described_class).and_return(rule_config)
   end
 
   it { should be_a(described_class) }

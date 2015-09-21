@@ -10,7 +10,8 @@ describe Yardstick::Processor, '#process_string' do
   let(:documents) { double('document set') }
 
   it 'measures specified string' do
-    expect(Yardstick::Parser).to receive(:parse_string).with(string) { documents }
+    expect(Yardstick::Parser)
+      .to receive(:parse_string).with(string).and_return(documents)
     expect(documents).to receive(:measure).with(config)
     subject
   end

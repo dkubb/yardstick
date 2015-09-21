@@ -10,7 +10,7 @@ describe Yardstick::Document, '#tag_text' do
   let(:yard_tag)  { double(:text => 'private') }
 
   before do
-    allow(docstring).to receive(:tag).with(name) { yard_tag }
+    allow(docstring).to receive(:tag).with(name).and_return(yard_tag)
   end
 
   it { should eql('private') }

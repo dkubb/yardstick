@@ -13,8 +13,10 @@ describe Yardstick::Rake::Measurement, '#yardstick_measure' do
   let(:io)            { double('io')                                         }
 
   it 'writes yardstick results' do
-    allow(Yardstick::Config).to receive(:coerce).with(options) { config }
-    allow(Yardstick).to receive(:measure).with(config) { measurements }
+    allow(Yardstick::Config)
+      .to receive(:coerce).with(options).and_return(config)
+    allow(Yardstick)
+      .to receive(:measure).with(config).and_return(measurements)
     allow(report_writer).to receive(:write).and_yield(io)
     expect(measurements).to receive(:puts).with(io)
     subject

@@ -11,7 +11,8 @@ describe Yardstick::Rake::Verify, '#initialize' do
     let(:options) { double('options')                    }
 
     before do
-      allow(Yardstick::Config).to receive(:coerce).with(options) { config }
+      allow(Yardstick::Config)
+        .to receive(:coerce).with(options).and_return(config)
     end
 
     context 'when valid options' do
