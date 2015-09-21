@@ -15,19 +15,19 @@ describe Yardstick::Measurement, '#puts' do
     describe 'when the measurement is successful' do
       let(:rule) { ValidRule.new(document) }
 
-      it { should == '' }
+      it { should eql('') }
     end
 
     describe 'when the measurement is skipped' do
       let(:rule) { NotValidatableRule.new(document) }
 
-      it { should == '' }
+      it { should eql('') }
     end
 
     describe 'when the measurement is not successful' do
       let(:rule) { InvalidRule.new(document) }
 
-      it { should == "(stdin):2: Foo#bar: not successful\n" }
+      it { should eql("(stdin):2: Foo#bar: not successful\n") }
     end
   end
 
@@ -44,19 +44,19 @@ describe Yardstick::Measurement, '#puts' do
     describe 'when the measurement is successful' do
       let(:rule) { ValidRule.new(document) }
 
-      it { should == '' }
+      it { should eql('') }
     end
 
     describe 'when the measurement is skipped' do
       let(:rule) { NotValidatableRule.new(document) }
 
-      it { should == '' }
+      it { should eql('') }
     end
 
     describe 'when the measurement is not successful' do
       let(:rule) { InvalidRule.new(document) }
 
-      it { should == "(stdin):2: Foo#bar: not successful\n" }
+      it { should eql("(stdin):2: Foo#bar: not successful\n") }
     end
   end
 end

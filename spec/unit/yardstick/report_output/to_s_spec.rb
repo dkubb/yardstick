@@ -8,5 +8,5 @@ describe Yardstick::ReportOutput, '#to_s' do
   let(:pathname) { Pathname(path) }
   let(:path)     { '/foo/bar'     }
 
-  it { should == path }
+  it { should eql(path) }
 end

@@ -9,7 +9,7 @@ describe Yardstick::ReportOutput, '.coerce' do
 
   it { should be_a(described_class) }
 
-  its(:to_s) { should eq(target) }
+  its(:to_s) { should eql(target) }
 
   it 'coerces target to Pathname' do
     target = subject.instance_variable_get(:@target)

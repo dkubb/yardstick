@@ -11,7 +11,8 @@ describe Yardstick::Rake::Measurement, '#initialize' do
     let(:options) { double('options')     }
 
     before do
-      Yardstick::Config.stub(:coerce).with(options) { config }
+      allow(Yardstick::Config)
+        .to receive(:coerce).with(options).and_return(config)
     end
 
     context 'when valid options' do
@@ -24,7 +25,7 @@ describe Yardstick::Rake::Measurement, '#initialize' do
 
       it 'calls yardstick_measure when rake task is executed' do
         subject
-        task.should_receive(:yardstick_measure)
+        expect(task).to receive(:yardstick_measure)
         Rake::Task['measure'].execute
       end
 

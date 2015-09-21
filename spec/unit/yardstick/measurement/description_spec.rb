@@ -8,5 +8,5 @@ describe Yardstick::Measurement, '#description' do
   let(:rule)     { ValidRule.new(document) }
   let(:document) { DocumentMock.new        }
 
-  it { should == ValidRule.description }
+  it { should eql(ValidRule.description) }
 end

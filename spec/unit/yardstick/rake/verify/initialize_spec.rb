@@ -7,11 +7,12 @@ describe Yardstick::Rake::Verify, '#initialize' do
   context 'with custom arguments' do
     subject(:task) { described_class.new(:verify, options) }
 
-    let(:config)  { Yardstick::Config.new(:threshold => 90) }
+    let(:config)  { Yardstick::Config.new(threshold: 90) }
     let(:options) { double('options')                    }
 
     before do
-      Yardstick::Config.stub(:coerce).with(options) { config }
+      allow(Yardstick::Config)
+        .to receive(:coerce).with(options).and_return(config)
     end
 
     context 'when valid options' do
@@ -24,7 +25,7 @@ describe Yardstick::Rake::Verify, '#initialize' do
 
       it 'calls verify_measurements when rake task is executed' do
         subject
-        task.should_receive(:verify_measurements)
+        expect(task).to receive(:verify_measurements)
         Rake::Task['verify'].execute
       end
 

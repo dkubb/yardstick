@@ -10,6 +10,6 @@ describe Yardstick::Config, '#output' do
 
     it { should be_instance_of(Yardstick::ReportOutput) }
 
-    its(:to_s) { should == 'measurements/report.txt' }
+    its(:to_s) { should eql('measurements/report.txt') }
   end
 end

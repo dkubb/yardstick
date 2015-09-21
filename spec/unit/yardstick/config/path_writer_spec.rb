@@ -7,5 +7,5 @@ describe Yardstick::Config, '#path=' do
 
   before { subject.path = '/tmp/*.rb' }
 
-  its(:path) { should == '/tmp/*.rb' }
+  its(:path) { should eql('/tmp/*.rb') }
 end

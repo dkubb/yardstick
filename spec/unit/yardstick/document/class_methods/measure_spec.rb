@@ -14,7 +14,7 @@ describe Yardstick::Document, '.measure' do
 
   before do
     registered_rules.each do |rule_class|
-      rule_class.should_receive(:coerce).with(document, config)
+      expect(rule_class).to receive(:coerce).with(document, config)
         .and_return(ValidRule.new(document))
     end
   end

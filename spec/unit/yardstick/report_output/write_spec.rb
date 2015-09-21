@@ -9,23 +9,23 @@ describe Yardstick::ReportOutput, 'write' do
     end
   end
 
-  let(:target)  { double('Pathname', :dirname => dirname) }
+  let(:target)  { double('Pathname', dirname: dirname) }
   let(:dirname) { double                               }
 
   before do
-    dirname.stub(:mkpath)
-    target.stub(:open)
+    allow(dirname).to receive(:mkpath)
+    allow(target).to receive(:open)
   end
 
   it 'should create directory' do
-    dirname.should_receive(:mkpath)
+    expect(dirname).to receive(:mkpath)
     subject
   end
 
   it 'should write content' do
     io = double
-    io.should_receive(:puts).with('content')
-    target.should_receive(:open).with('w').and_yield(io)
+    expect(io).to receive(:puts).with('content')
+    expect(target).to receive(:open).with('w').and_yield(io)
     subject
   end
 end

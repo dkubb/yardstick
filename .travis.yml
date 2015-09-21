@@ -5,19 +5,12 @@ env:
 language: ruby
 script: "bundle exec rake ci"
 rvm:
-  - 1.8.7
-  - 1.9.3
-  - 2.0.0
-  - jruby-19mode
-  - jruby-head
-  - rbx-19mode
+  - '2.1.6'
+  - '2.2'
   - ruby-head
 matrix:
   allow_failures:
-    - rvm: 1.8.7       # mutant fails
-    - rvm: 1.9.3       # mutant fails
-    - rvm: 2.0.0       # mutant fails
-    - rvm: rbx-19mode  # mutant fails
+    - rvm: jruby-head  # buggy with flay
     - rvm: ruby-head   # travis broken
   fast_finish: true
 notifications:

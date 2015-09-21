@@ -10,7 +10,7 @@ describe Yardstick::Document, '#summary_text' do
       "This is a method summary\n\nThis is a method body"
     end
 
-    it { should eq('This is a method summary') }
+    it { should eql('This is a method summary') }
   end
 
   context 'when without summary' do
@@ -18,6 +18,6 @@ describe Yardstick::Document, '#summary_text' do
       "\n\nThis is a method body"
     end
 
-    it { should eq('') }
+    it { should eql('') }
   end
 end

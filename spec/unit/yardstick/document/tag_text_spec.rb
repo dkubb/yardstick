@@ -7,11 +7,11 @@ describe Yardstick::Document, '#tag_text' do
 
   let(:name)      { 'api'                   }
   let(:docstring) { double('docstring')     }
-  let(:yard_tag)  { double(:text => 'private') }
+  let(:yard_tag)  { double(text: 'private') }
 
   before do
-    docstring.stub(:tag).with(name) { yard_tag }
+    allow(docstring).to receive(:tag).with(name).and_return(yard_tag)
   end
 
-  it { should eq('private') }
+  it { should eql('private') }
 end

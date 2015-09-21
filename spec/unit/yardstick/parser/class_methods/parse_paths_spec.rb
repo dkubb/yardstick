@@ -6,12 +6,12 @@ describe Yardstick::Parser, '.parse_paths' do
   subject(:document_set) { described_class.parse_paths(paths) }
 
   let(:paths)         { double('paths')                                       }
-  let(:method_object) { double(:file => 'foo.rb', :line => 4, :docstring => docstring) }
+  let(:method_object) { double(file: 'foo.rb', line: 4, docstring: docstring) }
   let(:docstring)     { double('docstring')                                   }
 
   before do
-    YARD.should_receive(:parse).with(paths, [], YARD::Logger::ERROR)
-    YARD::Registry.stub(:all).with(:method).and_return([method_object])
+    expect(YARD).to receive(:parse).with(paths, [], YARD::Logger::ERROR)
+    allow(YARD::Registry).to receive(:all).with(:method).and_return([method_object])
   end
 
   it { should be_a(Yardstick::DocumentSet) }
@@ -23,6 +23,6 @@ describe Yardstick::Parser, '.parse_paths' do
 
     it { should be_a(Yardstick::Document) }
 
-    its(:docstring) { should eq(docstring) }
+    its(:docstring) { should eql(docstring) }
   end
 end

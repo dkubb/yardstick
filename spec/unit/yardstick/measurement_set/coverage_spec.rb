@@ -13,8 +13,8 @@ describe Yardstick::MeasurementSet, '#coverage' do
 
   context 'when there are measurements' do
     let(:set)          { described_class.new([measurement1, measurement2]) }
-    let(:measurement1) { double('measurement', :ok? => true)               }
-    let(:measurement2) { double('measurement', :ok? => false)              }
+    let(:measurement1) { double('measurement', ok?: true)               }
+    let(:measurement2) { double('measurement', ok?: false)              }
 
     it { should be_a(Rational) }
 

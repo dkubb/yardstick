@@ -7,11 +7,11 @@ describe Yardstick::Document, '#tag_types' do
 
   let(:name)      { 'tag name'           }
   let(:docstring) { double('docstring')  }
-  let(:yard_tag)  { double(:types => types) }
+  let(:yard_tag)  { double(types: types) }
   let(:types)     { %w(type1 type2)      }
 
   before do
-    docstring.stub(:tag).with(name) { yard_tag }
+    allow(docstring).to receive(:tag).with(name).and_return(yard_tag)
   end
 
   it { should be(types) }

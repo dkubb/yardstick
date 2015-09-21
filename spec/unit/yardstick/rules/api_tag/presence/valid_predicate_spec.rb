@@ -9,7 +9,7 @@ describe Yardstick::Rules::ApiTag::Presence, '#valid?' do
 
   context 'with api tag' do
     before do
-      document.stub(:has_tag?).with('api').and_return(true)
+      allow(document).to receive(:has_tag?).with('api').and_return(true)
     end
 
     it { should be(true) }
@@ -17,7 +17,7 @@ describe Yardstick::Rules::ApiTag::Presence, '#valid?' do
 
   context 'without api tag' do
     before do
-      document.stub(:has_tag?).with('api').and_return(false)
+      allow(document).to receive(:has_tag?).with('api').and_return(false)
     end
 
     it { should be(false) }

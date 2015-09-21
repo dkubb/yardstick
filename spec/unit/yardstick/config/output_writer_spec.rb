@@ -15,6 +15,6 @@ describe Yardstick::Config, '#output=' do
 
     it { should be_a(Yardstick::ReportOutput) }
 
-    its(:to_s) { should == 'tmp/*.rb' }
+    its(:to_s) { should eql('tmp/*.rb') }
   end
 end

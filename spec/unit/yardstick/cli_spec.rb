@@ -4,13 +4,16 @@ require 'spec_helper'
 require 'yardstick/cli'
 
 shared_examples_for 'displays help' do
-  it 'should display the help message' do
-    expect(@output).to eql(<<-OUTPUT.gsub(/^\s{6}/, '')
+  let(:message) do
+    <<-OUTPUT.gsub(/^\s{6}/, '')
       Usage: #{OptionParser.new.program_name} [options]
           -v, --version                    print version information and exit
           -h, --help                       display this help and exit
-      OUTPUT
-    )
+    OUTPUT
+  end
+
+  it 'should display the help message' do
+    expect(@output).to eql(message)
   end
 end
 
