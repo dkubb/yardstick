@@ -9,7 +9,7 @@ describe Yardstick::ReportOutput, 'write' do
     end
   end
 
-  let(:target)  { double('Pathname', :dirname => dirname) }
+  let(:target)  { double('Pathname', dirname: dirname) }
   let(:dirname) { double                               }
 
   before do

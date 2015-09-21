@@ -53,10 +53,6 @@ FormatString:
 TrivialAccessors:
   Enabled: false
 
-# Enforce Ruby 1.8-compatible hash syntax
-HashSyntax:
-  EnforcedStyle: hash_rockets
-
 # Don't prefer each_with_object to inject/reduce
 EachWithObject:
   Enabled: false

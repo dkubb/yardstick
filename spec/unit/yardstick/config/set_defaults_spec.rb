@@ -24,10 +24,10 @@ describe Yardstick::Config, '#set_defaults' do
   context 'when with options' do
     let(:options) do
       {
-        :threshold => 15,
-        :verbose => false,
-        :path => 'tmp/*.rb',
-        :require_exact_threshold => false
+        threshold:               15,
+        verbose:                 false,
+        path:                    'tmp/*.rb',
+        require_exact_threshold: false
       }
     end
 

@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Yardstick::Processor, '#process' do
   subject { described_class.new(config).process }
 
-  let(:config)    { double('config', :path => path) }
+  let(:config)    { double('config', path: path) }
   let(:path)      { Pathname('foo/bar.rb')       }
   let(:documents) { double('document set')       }
 

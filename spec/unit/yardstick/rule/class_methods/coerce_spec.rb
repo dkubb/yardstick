@@ -7,7 +7,7 @@ describe Yardstick::Rule, '.coerce' do
 
   let(:document)    { DocumentMock.new                          }
   let(:config)      { double('config')                          }
-  let(:rule_config) { Yardstick::RuleConfig.new(:enabled => false) }
+  let(:rule_config) { Yardstick::RuleConfig.new(enabled: false) }
 
   before do
     allow(config)

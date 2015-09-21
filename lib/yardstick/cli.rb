@@ -36,7 +36,7 @@ module Yardstick
       args << '--help' if args.empty?
       options = {}
       option_parser(options).parse!(args)
-      Config.new(options.merge(:path => args))
+      Config.new(options.merge(path: args))
     rescue OptionParser::InvalidOption => error
       display_exit(error.message)
     end

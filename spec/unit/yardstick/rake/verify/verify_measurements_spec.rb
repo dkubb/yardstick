@@ -8,7 +8,7 @@ describe Yardstick::Rake::Verify, '#verify_measurements' do
     capture_stdout { described_class.new(:verify, options).verify_measurements }
   end
 
-  let(:config)  { Yardstick::Config.new(:threshold => 90) }
+  let(:config)  { Yardstick::Config.new(threshold: 90) }
   let(:options) { double('options')                    }
 
   before do
@@ -19,7 +19,7 @@ describe Yardstick::Rake::Verify, '#verify_measurements' do
   end
 
   context 'when verbose' do
-    let(:measurements) { double('measurements', :coverage => 0.9) }
+    let(:measurements) { double('measurements', coverage: 0.9) }
 
     it 'outputs coverage' do
       measure
@@ -28,7 +28,7 @@ describe Yardstick::Rake::Verify, '#verify_measurements' do
   end
 
   context 'when not verbose' do
-    let(:measurements) { double('measurements', :coverage => 0.9) }
+    let(:measurements) { double('measurements', coverage: 0.9) }
 
     before do
       config.verbose = false
@@ -41,7 +41,7 @@ describe Yardstick::Rake::Verify, '#verify_measurements' do
   end
 
   context 'when lower coverage' do
-    let(:measurements) { double('measurements', :coverage => 0.434) }
+    let(:measurements) { double('measurements', coverage: 0.434) }
 
     it 'outputs coverage' do
       expect { measure }.to raise_error(RuntimeError)
@@ -55,7 +55,7 @@ describe Yardstick::Rake::Verify, '#verify_measurements' do
   end
 
   context 'when higher coverage' do
-    let(:measurements) { double('measurements', :coverage => 0.9989) }
+    let(:measurements) { double('measurements', coverage: 0.9989) }
 
     it 'outputs coverage' do
       expect { measure }.to raise_error(RuntimeError)
@@ -69,7 +69,7 @@ describe Yardstick::Rake::Verify, '#verify_measurements' do
   end
 
   context 'when higher coverage without exact threshold requirement' do
-    let(:measurements) { double('measurements', :coverage => 1) }
+    let(:measurements) { double('measurements', coverage: 1) }
 
     before do
       config.require_exact_threshold = false

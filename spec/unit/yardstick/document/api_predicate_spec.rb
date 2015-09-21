@@ -9,7 +9,7 @@ describe Yardstick::Document, '#api?' do
 
   before do
     allow(docstring)
-      .to receive(:tag).with('api').and_return(double(:text => 'private'))
+      .to receive(:tag).with('api').and_return(double(text: 'private'))
   end
 
   context 'when tag is equal' do
