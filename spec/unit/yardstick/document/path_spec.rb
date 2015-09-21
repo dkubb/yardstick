@@ -8,5 +8,5 @@ describe Yardstick::Document, '#path' do
   let(:docstring) { double('docstring', :object => object) }
   let(:object)    { double('object', :path => 'Foo#bar')   }
 
-  it { should eq('Foo#bar') }
+  it { should eql('Foo#bar') }
 end

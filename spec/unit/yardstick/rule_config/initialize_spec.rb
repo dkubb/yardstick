@@ -10,7 +10,7 @@ describe Yardstick::RuleConfig, '#initialize' do
       expect(subject.enabled_for_path?('Foo#bar')).to be(true)
 
       # Satisfy mutant
-      expect(subject.instance_variable_get(:@exclude)).to eq([])
+      expect(subject.instance_variable_get(:@exclude)).to eql([])
     end
   end
 end

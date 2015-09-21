@@ -13,5 +13,5 @@ describe Yardstick::Document, '#tag_text' do
     allow(docstring).to receive(:tag).with(name) { yard_tag }
   end
 
-  it { should eq('private') }
+  it { should eql('private') }
 end

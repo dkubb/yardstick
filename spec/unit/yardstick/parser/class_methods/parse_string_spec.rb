@@ -25,7 +25,7 @@ describe Yardstick::Parser, '.parse_string' do
 
     it { should be_a(Yardstick::Document) }
 
-    its(:docstring) { should eq(docstring) }
+    its(:docstring) { should eql(docstring) }
   end
 
   context 'when method one object does not have file information' do

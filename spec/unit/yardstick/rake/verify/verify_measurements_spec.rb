@@ -21,7 +21,7 @@ describe Yardstick::Rake::Verify, '#verify_measurements' do
 
     it 'outputs coverage' do
       measure
-      expect(@output).to eq("YARD-Coverage: 90.0% (threshold: 90%)\n")
+      expect(@output).to eql("YARD-Coverage: 90.0% (threshold: 90%)\n")
     end
   end
 
@@ -34,7 +34,7 @@ describe Yardstick::Rake::Verify, '#verify_measurements' do
 
     it 'outputs nothing' do
       measure
-      expect(@output).to eq('')
+      expect(@output).to eql('')
     end
   end
 
@@ -43,7 +43,7 @@ describe Yardstick::Rake::Verify, '#verify_measurements' do
 
     it 'outputs coverage' do
       expect { measure }.to raise_error(RuntimeError)
-      expect(@output).to eq("YARD-Coverage: 43.4% (threshold: 90%)\n")
+      expect(@output).to eql("YARD-Coverage: 43.4% (threshold: 90%)\n")
     end
 
     it 'raises error about low coverage' do
@@ -57,7 +57,7 @@ describe Yardstick::Rake::Verify, '#verify_measurements' do
 
     it 'outputs coverage' do
       expect { measure }.to raise_error(RuntimeError)
-      expect(@output).to eq("YARD-Coverage: 99.8% (threshold: 90%)\n")
+      expect(@output).to eql("YARD-Coverage: 99.8% (threshold: 90%)\n")
     end
 
     it 'raises error about high coverage' do
@@ -75,7 +75,7 @@ describe Yardstick::Rake::Verify, '#verify_measurements' do
 
     it 'outputs coverage' do
       measure
-      expect(@output).to eq("YARD-Coverage: 100.0% (threshold: 90%)\n")
+      expect(@output).to eql("YARD-Coverage: 100.0% (threshold: 90%)\n")
     end
 
     it 'passes' do

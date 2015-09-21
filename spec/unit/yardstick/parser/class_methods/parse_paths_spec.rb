@@ -23,6 +23,6 @@ describe Yardstick::Parser, '.parse_paths' do
 
     it { should be_a(Yardstick::Document) }
 
-    its(:docstring) { should eq(docstring) }
+    its(:docstring) { should eql(docstring) }
   end
 end
