@@ -51,7 +51,7 @@ module Yardstick
         #
         # @api private
         def validatable?
-          visibility == :protected
+          visibility.equal?(:protected)
         end
 
         # @see class description
@@ -77,7 +77,7 @@ module Yardstick
         #
         # @api private
         def validatable?
-          visibility == :private
+          visibility.equal?(:private)
         end
 
         # @see class description

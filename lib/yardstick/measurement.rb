@@ -34,7 +34,7 @@ module Yardstick
     #
     # @api public
     def ok?
-      @result == true || skip?
+      @result.equal?(true) || skip?
     end
 
     # Return true if the measurement was skipped
@@ -50,7 +50,7 @@ module Yardstick
     #
     # @api public
     def skip?
-      @result == :skip
+      @result.equal?(:skip)
     end
 
     # Warns the results the measurement if it was not successful
