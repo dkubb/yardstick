@@ -34,23 +34,19 @@ module Yardstick
     # @api private
     def self.parse_config(args)
       args << '--help' if args.empty?
-      options = {}
-      option_parser(options).parse!(args)
-      Config.new(options.merge(path: args))
+      option_parser.parse!(args)
+      Config.new(path: args)
     rescue OptionParser::InvalidOption => error
       display_exit(error.message)
     end
 
     # Return an OptionParser instance for the command-line app
     #
-    # @param [Hash] _options
-    #   the options to set when parsing the command-line arguments
-    #
     # @return [Yardstick::OptionParser]
     #   the option parser instance
     #
     # @api private
-    def self.option_parser(_options)
+    def self.option_parser
       opts = OptionParser.new
       opts.on_tail('-v', '--version', 'print version information and exit') { display_exit("#{opts.program_name} #{Yardstick::VERSION}") }
       opts.on_tail('-h', '--help',    'display this help and exit')         { display_exit(opts.to_s) }
