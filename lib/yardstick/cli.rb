@@ -37,7 +37,7 @@ module Yardstick
       option_parser.parse!(args)
       Config.new(path: args)
     rescue OptionParser::InvalidOption => error
-      display_exit(error.message)
+      display_exit(error)
     end
 
     # Return an OptionParser instance for the command-line app
@@ -62,7 +62,7 @@ module Yardstick
     #
     # @api private
     def self.display_exit(message)
-      puts message.to_str
+      puts message
       exit
     end
 
