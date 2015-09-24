@@ -1,7 +1,7 @@
 ---
 name: yardstick
 namespace: Yardstick
-expect_coverage: 2339/2415
+expect_coverage: 2339/2414
 ignore_subjects:
 # sometimes creates a neutral failure
 - Yardstick::Rake::Measurement#define
