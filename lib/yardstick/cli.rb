@@ -49,8 +49,7 @@ module Yardstick
     def self.option_parser
       opts = OptionParser.new
       opts.on_tail('-v', '--version', 'print version information and exit') { display_exit("#{opts.program_name} #{Yardstick::VERSION}") }
-      opts.on_tail('-h', '--help',    'display this help and exit')         { display_exit(opts.to_s) }
-      opts
+      opts.on_tail('-h', '--help',    'display this help and exit')         { display_exit(opts) }
     end
 
     # Display a message and exit
