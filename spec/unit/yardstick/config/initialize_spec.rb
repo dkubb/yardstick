@@ -5,6 +5,12 @@ require 'spec_helper'
 describe Yardstick::Config, '#initialize' do
   it { should be_instance_of(described_class) }
 
+  context 'when given custom options' do
+    subject { described_class.new(verbose: false) }
+
+    its(:verbose?) { should be(false) }
+  end
+
   context 'when block provided' do
     subject do
       described_class.new { |config| config.path = new_path }
