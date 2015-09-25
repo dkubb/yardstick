@@ -61,3 +61,7 @@ ExtraSpacing:
 # Buggy
 FormatParameterMismatch:
   Enabled: false
+
+# Align if/else blocks with the variable assignment
+EndAlignment:
+  AlignWith: variable
