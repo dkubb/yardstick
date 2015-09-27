@@ -81,8 +81,12 @@ module Yardstick
     # @api private
     def self.normalize_hash(hash)
       hash.reduce({}) do |normalized_hash, (key, value)|
-        normalized_value = value.is_a?(Hash) ? normalize_hash(value) : value
-        normalized_hash[key.to_sym] = normalized_value
+        normalized_hash[key.to_sym] = if value.instance_of?(Hash)
+          normalize_hash(value)
+        else
+          value
+        end
+
         normalized_hash
       end
     end
