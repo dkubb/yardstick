@@ -1,4 +1,4 @@
 ---
-unit_test_timeout: 0.1
+unit_test_timeout: 1.0
 fail_on_branch:
 - "master"
