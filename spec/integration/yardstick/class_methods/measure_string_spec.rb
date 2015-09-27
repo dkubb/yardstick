@@ -12,7 +12,7 @@ describe Yardstick, '.measure_string' do
   end
 
   describe 'with no arguments' do
-    it 'should raise an exception' do
+    it 'raises an exception' do
       expect { described_class.measure_string }
         .to raise_error(ArgumentError)
     end

@@ -11,7 +11,7 @@ describe Yardstick::OrderedSet, '#each' do
 
   it { should be(set) }
 
-  it 'should yield items' do
+  it 'yields items' do
     subject
     expect(yielded).to eql([[item]])
   end

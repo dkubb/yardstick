@@ -38,7 +38,7 @@ describe Yardstick::MeasurementSet, '#puts' do
       capture_stdout { set.puts }
     end
 
-    it 'should output the summary' do
+    it 'outputs the summary' do
       expect(@output).to eql([
         'measurement info',
         'measurement info',
@@ -56,7 +56,7 @@ describe Yardstick::MeasurementSet, '#puts' do
       @output = io.read
     end
 
-    it 'should output the summary' do
+    it 'outputs the summary' do
       expect(@output).to eql([
         'measurement info',
         'measurement info',
