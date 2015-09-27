@@ -12,7 +12,6 @@ module Yardstick
     def measure(config)
       reduce(MeasurementSet.new) do |set, document|
         set.merge(Document.measure(document, config))
-        set
       end
     end
   end
