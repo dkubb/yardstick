@@ -5,6 +5,7 @@ require 'pathname'
 require 'delegate'
 
 require 'yard'
+require 'yard/logging'
 
 require 'yardstick/ordered_set'
 require 'yardstick/measurement'
