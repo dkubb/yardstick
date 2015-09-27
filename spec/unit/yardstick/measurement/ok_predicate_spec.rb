@@ -18,4 +18,10 @@ describe Yardstick::Measurement, 'ok?' do
 
     it { should be(false) }
   end
+
+  context 'when rule is disabled' do
+    let(:rule) { DisabledRule.new(document) }
+
+    it { should be(true) }
+  end
 end
