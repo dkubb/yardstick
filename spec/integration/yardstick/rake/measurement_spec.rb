@@ -9,7 +9,7 @@ describe Yardstick::Rake::Measurement do
   before do
     output.dirname.rmtree if output.dirname.exist?
 
-    Yardstick::Rake::Measurement.new do |config|
+    described_class.new do |config|
       config.path = 'lib/yardstick.rb'
     end
   end

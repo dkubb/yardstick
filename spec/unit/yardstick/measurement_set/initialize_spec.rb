@@ -6,7 +6,7 @@ describe Yardstick::MeasurementSet, '#initialize' do
   context 'with no arguments' do
     subject { described_class.new }
 
-    it { should be_a(Yardstick::MeasurementSet) }
+    it { should be_a(described_class) }
 
     it { should be_a(Enumerable) }
 
@@ -18,7 +18,7 @@ describe Yardstick::MeasurementSet, '#initialize' do
 
     let(:measurement) { double('measurement') }
 
-    it { should be_a(Yardstick::MeasurementSet) }
+    it { should be_a(described_class) }
 
     it { should be_a(Enumerable) }
 

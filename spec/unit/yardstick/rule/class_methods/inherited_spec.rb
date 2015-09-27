@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Yardstick::Rule, '.inherited' do
-  let(:subclass) { Class.new(Yardstick::Rule) }
+  let(:subclass) { Class.new(described_class) }
 
   after do
     Yardstick::Document.registered_rules.delete(subclass)
