@@ -17,7 +17,7 @@ module Yardstick
     def initialize(entries = nil)
       @entries = []
       @index   = {}
-      merge(entries || [])
+      merge(entries) if entries
     end
 
     # Append to the OrderedSet
