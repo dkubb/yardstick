@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Yardstick::ReportOutput, 'write' do
+describe Yardstick::ReportOutput, '#write' do
   subject do
     described_class.new(target).write do |io|
       io.puts 'content'
