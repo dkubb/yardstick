@@ -13,4 +13,10 @@ describe Yardstick::OrderedSet, '#<<' do
   it { should include(item) }
 
   its(:length) { should be(1) }
+
+  context 'when operation is repeated' do
+    it do
+      expect { set << item << item }.to change(set, :to_a).from([]).to([item])
+    end
+  end
 end

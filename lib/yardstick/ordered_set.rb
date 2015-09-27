@@ -31,7 +31,7 @@ module Yardstick
     # @api private
     def <<(entry)
       unless include?(entry)
-        @index[entry] = @entries.length
+        @index[entry] = length
         @entries << entry
       end
       self
