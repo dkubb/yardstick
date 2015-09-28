@@ -13,6 +13,7 @@ describe Yardstick::Parser, '.parse_string' do
 
   before do
     expect(YARD).to receive(:parse_string).with('body')
+    expect(YARD::Registry).to receive(:clear)
     allow(YARD::Registry)
       .to receive(:all).with(:method).and_return(method_objects)
   end
