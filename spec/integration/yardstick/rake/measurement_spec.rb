@@ -4,15 +4,17 @@ require 'spec_helper'
 require 'yardstick/rake/measurement'
 
 describe Yardstick::Rake::Measurement do
-  let(:output) { Pathname('measurements/report.txt') }
+  let(:file)   { Tempfile.new('report.txt') }
+  let(:output) { Pathname(file.path)        }
 
   before do
-    output.dirname.rmtree if output.dirname.exist?
-
     described_class.new do |config|
-      config.path = 'lib/yardstick.rb'
+      config.path   = 'lib/yardstick.rb'
+      config.output = output.to_s
     end
   end
+
+  after { file.close }
 
   it 'writes the report' do
     Rake::Task['yardstick_measure'].execute

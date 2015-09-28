@@ -1,6 +1,3 @@
 ---
 name: yardstick
 namespace: Yardstick
-ignore_subjects:
-# sometimes creates a neutral failure
-- Yardstick::Rake::Measurement#define
