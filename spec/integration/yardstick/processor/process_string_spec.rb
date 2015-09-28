@@ -10,7 +10,7 @@ describe Yardstick::Document, '#process_string' do
 
   let(:valid_method) do
     (<<-RUBY)
-      # This is a method summary that is the maximum --- exactly 80 characters in length
+      # This is a method summary that is the maximum -- exactly 79 characters in length
       #
       # @example
       #   test('Hello World')  # => nil
@@ -83,13 +83,13 @@ describe Yardstick::Document, '#process_string' do
     end
   end
 
-  describe 'with a method summary that is 80 characters in length' do
+  describe 'with a method summary that is 79 characters in length' do
     let(:method) { valid_method }
 
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('The method summary should be less than 80 characters in length'))
+      expect(measurement('The method summary should be less than or equal to 79 characters in length'))
         .to be_ok
     end
   end
@@ -97,7 +97,7 @@ describe Yardstick::Document, '#process_string' do
   describe 'with a method summary that is 81 characters in length' do
     let(:method) do
       (<<-RUBY)
-        # This is a method summary greater than the maximum - it is 81 characters in length
+        # This is a method summary greater than the maximum - it is precisely 80 characters
         def test(value)
         end
       RUBY
@@ -106,7 +106,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('The method summary should be less than 80 characters in length'))
+      expect(measurement('The method summary should be less than or equal to 79 characters in length'))
         .to_not be_ok
     end
   end
