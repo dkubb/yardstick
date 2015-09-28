@@ -61,7 +61,7 @@ module Yardstick
         #
         # @api private
         def valid?
-          !summary_text[-1, 1].eql?('.')
+          !summary_text.end_with?('.')
         end
       end
 
