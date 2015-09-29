@@ -15,6 +15,7 @@ if ENV['COVERAGE'] == 'true'
   end
 end
 
+require 'tempfile'
 require 'yardstick'
 require 'devtools/spec_helper'
 
