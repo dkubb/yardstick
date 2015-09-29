@@ -197,7 +197,6 @@ module Yardstick
       #
       # @api private
       def text
-        nil
       end
 
       # Empty list of types

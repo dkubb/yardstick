@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Yardstick::Measurement, 'ok?' do
+describe Yardstick::Measurement, '#ok?' do
   subject { described_class.new(rule).ok? }
 
   let(:document) { DocumentMock.new }
@@ -17,5 +17,11 @@ describe Yardstick::Measurement, 'ok?' do
     let(:rule) { InvalidRule.new(document) }
 
     it { should be(false) }
+  end
+
+  context 'when rule is disabled' do
+    let(:rule) { DisabledRule.new(document) }
+
+    it { should be(true) }
   end
 end

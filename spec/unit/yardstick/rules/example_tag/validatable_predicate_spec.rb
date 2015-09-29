@@ -9,7 +9,7 @@ describe Yardstick::Rules::ExampleTag, '#validatable?' do
 
   before do
     allow(document).to receive(:api?).with(['private']) { false }
-    allow(document).to receive(:tag_types).with('return') { %w(Object) }
+    allow(document).to receive(:tag_types).with('return') { %w[Object] }
   end
 
   it { should be(true) }

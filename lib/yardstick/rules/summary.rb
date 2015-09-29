@@ -34,9 +34,9 @@ module Yardstick
       # Checks that method summary length doesn't go over 80 characters
       #
       class Length < Rule
-        MAXIMUM_LINE_LENGTH = 80
+        MAXIMUM_LINE_LENGTH = 79
 
-        self.description = 'The method summary should be less than 80 characters in length'
+        self.description = 'The method summary should be less than or equal to 79 characters in length'
 
         # @see class description
         #
@@ -61,7 +61,7 @@ module Yardstick
         #
         # @api private
         def valid?
-          summary_text[-1, 1] != '.'
+          !summary_text.end_with?('.')
         end
       end
 

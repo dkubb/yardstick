@@ -11,6 +11,7 @@ describe Yardstick::Parser, '.parse_paths' do
 
   before do
     expect(YARD).to receive(:parse).with(paths, [], YARD::Logger::ERROR)
+    expect(YARD::Registry).to receive(:clear)
     allow(YARD::Registry).to receive(:all).with(:method).and_return([method_object])
   end
 

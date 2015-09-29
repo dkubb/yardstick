@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Yardstick::ReportOutput, 'write' do
+describe Yardstick::ReportOutput, '#write' do
   subject do
     described_class.new(target).write do |io|
       io.puts 'content'
@@ -17,12 +17,12 @@ describe Yardstick::ReportOutput, 'write' do
     allow(target).to receive(:open)
   end
 
-  it 'should create directory' do
+  it 'creates directory' do
     expect(dirname).to receive(:mkpath)
     subject
   end
 
-  it 'should write content' do
+  it 'writes content' do
     io = double
     expect(io).to receive(:puts).with('content')
     expect(target).to receive(:open).with('w').and_yield(io)

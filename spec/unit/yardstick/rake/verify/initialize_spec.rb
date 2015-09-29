@@ -29,7 +29,7 @@ describe Yardstick::Rake::Verify, '#initialize' do
         Rake::Task['verify'].execute
       end
 
-      it 'should include the threshold in the task name' do
+      it 'includes the threshold in the task name' do
         task
         expect(Rake.application.last_description)
           .to eql('Verify that yardstick coverage is at least 90%')
@@ -65,7 +65,7 @@ describe Yardstick::Rake::Verify, '#initialize' do
 
     it { should be_a(described_class) }
 
-    it 'should yield to Config' do
+    it 'yields to Config' do
       task
       expect(@yield).to be_instance_of(Yardstick::Config)
     end

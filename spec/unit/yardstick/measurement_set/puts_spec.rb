@@ -3,8 +3,11 @@
 require 'spec_helper'
 
 describe Yardstick::MeasurementSet, '#puts' do
-  let(:set)      { described_class.new([failed, successful]) }
-  let(:document) { DocumentMock.new                          }
+  let(:document) { DocumentMock.new }
+
+  let(:set) do
+    described_class.new([failed.new, successful.new, successful.new])
+  end
 
   let(:failed) do
     Class.new do
@@ -15,7 +18,7 @@ describe Yardstick::MeasurementSet, '#puts' do
       def puts(io)
         io.puts('measurement info')
       end
-    end.new
+    end
   end
 
   let(:successful) do
@@ -27,7 +30,7 @@ describe Yardstick::MeasurementSet, '#puts' do
       def puts(io)
         io.puts('measurement info')
       end
-    end.new
+    end
   end
 
   describe 'with no arguments' do
@@ -35,11 +38,12 @@ describe Yardstick::MeasurementSet, '#puts' do
       capture_stdout { set.puts }
     end
 
-    it 'should output the summary' do
+    it 'outputs the summary' do
       expect(@output).to eql([
         'measurement info',
         'measurement info',
-        "\nYARD-Coverage: 50.0%  Success: 1  Failed: 1  Total: 2\n"
+        'measurement info',
+        "\nYARD-Coverage: 66.6%  Success: 2  Failed: 1  Total: 3\n"
       ].join("\n"))
     end
   end
@@ -52,11 +56,12 @@ describe Yardstick::MeasurementSet, '#puts' do
       @output = io.read
     end
 
-    it 'should output the summary' do
+    it 'outputs the summary' do
       expect(@output).to eql([
         'measurement info',
         'measurement info',
-        "\nYARD-Coverage: 50.0%  Success: 1  Failed: 1  Total: 2\n",
+        'measurement info',
+        "\nYARD-Coverage: 66.6%  Success: 2  Failed: 1  Total: 3\n",
       ].join("\n"))
     end
   end

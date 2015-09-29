@@ -7,16 +7,23 @@ describe Yardstick::Document, '#summary_text' do
 
   context 'when with summary' do
     let(:docstring) do
-      "This is a method summary\n\nThis is a method body"
+      YARD::Docstring.new("This is a method summary\n\nThis is a method body")
     end
 
     it { should eql('This is a method summary') }
+    it { should be_an_instance_of(String) }
   end
 
   context 'when without summary' do
     let(:docstring) do
       "\n\nThis is a method body"
     end
+
+    it { should eql('') }
+  end
+
+  context 'when empty' do
+    let(:docstring) { '' }
 
     it { should eql('') }
   end

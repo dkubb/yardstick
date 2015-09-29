@@ -10,7 +10,7 @@ module Yardstick
     #
     # @api private
     def self.parse_paths(paths)
-      YARD.parse(paths, [], YARD::Logger::ERROR)
+      YARD.parse(paths, [], Logger::ERROR)
       documents
     end
 
@@ -36,7 +36,6 @@ module Yardstick
     def self.documents
       method_objects.reduce(DocumentSet.new) do |set, method_object|
         set << Document.new(method_object.docstring)
-        set
       end
     end
     private_class_method :documents
@@ -48,7 +47,7 @@ module Yardstick
     #
     # @api private
     def self.method_objects
-      YARD::Registry.all(:method).select(&:file).select(&:line).sort_by do |method_object|
+      YARD::Registry.all(:method).select(&:file).sort_by do |method_object|
         [method_object.file, method_object.line]
       end
     ensure

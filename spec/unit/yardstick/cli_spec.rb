@@ -12,20 +12,20 @@ shared_examples_for 'displays help' do
     OUTPUT
   end
 
-  it 'should display the help message' do
+  it 'displays the help message' do
     expect(@output).to eql(message)
   end
 end
 
 shared_examples_for 'displays version' do
-  it 'should display the program and version' do
+  it 'displays the program and version' do
     expect(@output)
       .to eql("#{OptionParser.new.program_name} #{Yardstick::VERSION}\n")
   end
 end
 
 shared_examples_for 'displays coverage summary' do
-  it 'should output the coverage summary' do
+  it 'outputs the coverage summary' do
     expect(@output)
       .to eql("\nYARD-Coverage: 100.0%  Success: 30  Failed: 0  Total: 30\n")
   end
@@ -41,26 +41,26 @@ describe Yardstick::CLI do
   describe '.run' do
     describe 'with no arguments' do
       before do
-        capture_display { Yardstick::CLI.run }
+        capture_display { described_class.run }
       end
 
       it_should_behave_like 'displays help'
     end
 
-    %w(-h --help).each do |help_option|
+    %w[-h --help].each do |help_option|
       describe "with #{help_option} option" do
         before do
-          capture_display { Yardstick::CLI.run(help_option) }
+          capture_display { described_class.run(help_option) }
         end
 
         it_should_behave_like 'displays help'
       end
     end
 
-    %w(-v --version).each do |version_option|
+    %w[-v --version].each do |version_option|
       describe "with #{version_option} option" do
         before do
-          capture_display { Yardstick::CLI.run(version_option) }
+          capture_display { described_class.run(version_option) }
         end
 
         it_should_behave_like 'displays version'
@@ -69,7 +69,7 @@ describe Yardstick::CLI do
 
     describe 'with a String path' do
       before :all do
-        @measurements = capture_stdout { Yardstick::CLI.run(Yardstick::ROOT.join('lib', 'yardstick.rb').to_s) }
+        @measurements = capture_stdout { described_class.run(Yardstick::ROOT.join('lib', 'yardstick.rb').to_s) }
       end
 
       it_should_behave_like 'measured itself'
@@ -78,7 +78,7 @@ describe Yardstick::CLI do
 
     describe 'with a Pathname' do
       before :all do
-        @measurements = capture_stdout { Yardstick::CLI.run(Yardstick::ROOT.join('lib', 'yardstick.rb')) }
+        @measurements = capture_stdout { described_class.run(Yardstick::ROOT.join('lib', 'yardstick.rb')) }
       end
 
       it_should_behave_like 'measured itself'
@@ -87,7 +87,7 @@ describe Yardstick::CLI do
 
     describe 'with an Array of String objects' do
       before :all do
-        @measurements = capture_stdout { Yardstick::CLI.run(*[Yardstick::ROOT.join('lib', 'yardstick.rb').to_s]) }
+        @measurements = capture_stdout { described_class.run(*[Yardstick::ROOT.join('lib', 'yardstick.rb').to_s]) }
       end
 
       it_should_behave_like 'measured itself'
@@ -96,7 +96,7 @@ describe Yardstick::CLI do
 
     describe 'with an Array of Pathname objects' do
       before :all do
-        @measurements = capture_stdout { Yardstick::CLI.run(*[Yardstick::ROOT.join('lib', 'yardstick.rb')]) }
+        @measurements = capture_stdout { described_class.run(*[Yardstick::ROOT.join('lib', 'yardstick.rb')]) }
       end
 
       it_should_behave_like 'measured itself'
@@ -105,10 +105,10 @@ describe Yardstick::CLI do
 
     describe 'with invalid option' do
       before do
-        capture_display { Yardstick::CLI.run('--invalid') }
+        capture_display { described_class.run('--invalid') }
       end
 
-      it 'should display the invalid option message' do
+      it 'displays the invalid option message' do
         expect(@output).to eql("invalid option: --invalid\n")
       end
     end

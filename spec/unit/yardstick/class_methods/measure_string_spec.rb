@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Yardstick, '.measure' do
+describe Yardstick, '.measure_string' do
   let(:string) { double('string') }
 
   context 'when no arguments' do
