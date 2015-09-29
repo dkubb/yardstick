@@ -47,7 +47,7 @@ describe Yardstick::CLI do
       it_should_behave_like 'displays help'
     end
 
-    %w(-h --help).each do |help_option|
+    %w[-h --help].each do |help_option|
       describe "with #{help_option} option" do
         before do
           capture_display { described_class.run(help_option) }
@@ -57,7 +57,7 @@ describe Yardstick::CLI do
       end
     end
 
-    %w(-v --version).each do |version_option|
+    %w[-v --version].each do |version_option|
       describe "with #{version_option} option" do
         before do
           capture_display { described_class.run(version_option) }

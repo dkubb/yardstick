@@ -8,13 +8,13 @@ describe Yardstick::Rules::ApiTag::PrivateMethod, '#valid?' do
   let(:document) { double('document') }
 
   context 'when with protected api tag' do
-    before { allow(document).to receive(:api?).with(%w(private)).and_return(true) }
+    before { allow(document).to receive(:api?).with(%w[private]).and_return(true) }
 
     it { should be(true) }
   end
 
   context 'when not protected visibility' do
-    before { allow(document).to receive(:api?).with(%w(private)).and_return(false) }
+    before { allow(document).to receive(:api?).with(%w[private]).and_return(false) }
 
     it { should be(false) }
   end
