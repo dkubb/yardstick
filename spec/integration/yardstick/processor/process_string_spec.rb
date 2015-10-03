@@ -39,7 +39,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('The method summary should be specified')).to be_ok
+      expect(measurement('method summary should be specified')).to be_ok
     end
   end
 
@@ -49,7 +49,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('The method summary should be specified')).to_not be_ok
+      expect(measurement('method summary should be specified')).to_not be_ok
     end
   end
 
@@ -64,7 +64,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('The method summary should be specified')).to be_ok
+      expect(measurement('method summary should be specified')).to be_ok
     end
   end
 
@@ -79,7 +79,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurements.detect { |measurement| measurement.description == 'The method summary should be specified' }).to be_ok
+      expect(measurements.detect { |measurement| measurement.description == 'method summary should be specified' }).to be_ok
     end
   end
 
@@ -89,7 +89,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('The method summary should be less than or equal to 79 characters in length'))
+      expect(measurement('method summary should be less than or equal to 79 characters in length'))
         .to be_ok
     end
   end
@@ -106,7 +106,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('The method summary should be less than or equal to 79 characters in length'))
+      expect(measurement('method summary should be less than or equal to 79 characters in length'))
         .to_not be_ok
     end
   end
@@ -117,7 +117,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('The method summary should not end in a period'))
+      expect(measurement('method summary should not end in a period'))
         .to be_ok
     end
   end
@@ -134,7 +134,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('The method summary should not end in a period'))
+      expect(measurement('method summary should not end in a period'))
         .to_not be_ok
     end
   end
@@ -145,7 +145,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('The method summary should be a single line'))
+      expect(measurement('method summary should be a single line'))
         .to be_ok
     end
   end
@@ -163,7 +163,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('The method summary should be a single line'))
+      expect(measurement('method summary should be a single line'))
         .to_not be_ok
     end
   end
