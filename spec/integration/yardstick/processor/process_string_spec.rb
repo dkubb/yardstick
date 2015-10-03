@@ -385,7 +385,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('The @return tag should be specified')).to be_ok
+      expect(measurement('@return should be specified')).to be_ok
     end
   end
 
@@ -395,7 +395,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('The @return tag should be specified')).to_not be_ok
+      expect(measurement('@return should be specified')).to_not be_ok
     end
   end
 end
