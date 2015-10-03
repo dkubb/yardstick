@@ -174,7 +174,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('The public/semipublic method should have an example specified'))
+      expect(measurement('The public/semipublic method should have an @example specified'))
         .to be_ok
     end
   end
@@ -191,7 +191,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'is skipped' do
-      expect(measurement('The public/semipublic method should have an example specified'))
+      expect(measurement('The public/semipublic method should have an @example specified'))
         .to be_skip
     end
   end
@@ -210,7 +210,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'is skipped' do
-      expect(measurement('The public/semipublic method should have an example specified'))
+      expect(measurement('The public/semipublic method should have an @example specified'))
         .to be_skip
     end
   end
