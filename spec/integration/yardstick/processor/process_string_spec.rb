@@ -221,7 +221,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('The @api tag should be specified'))
+      expect(measurement('@api should be specified'))
         .to be_ok
     end
   end
@@ -232,7 +232,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('The @api tag should be specified'))
+      expect(measurement('@api should be specified'))
         .to_not be_ok
     end
   end
@@ -243,7 +243,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('The @api tag must be either public, semipublic or private'))
+      expect(measurement('@api should be public, semipublic, or private'))
         .to be_ok
     end
   end
@@ -260,7 +260,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('The @api tag must be either public, semipublic or private'))
+      expect(measurement('@api should be public, semipublic, or private'))
         .to_not be_ok
     end
   end
@@ -279,7 +279,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('A method with protected visibility must have an @api tag of semipublic or private'))
+      expect(measurement('@api should be semipublic or private for protected methods'))
         .to be_ok
     end
   end
@@ -298,7 +298,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('A method with protected visibility must have an @api tag of semipublic or private'))
+      expect(measurement('@api should be semipublic or private for protected methods'))
         .to be_ok
     end
   end
@@ -317,7 +317,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('A method with protected visibility must have an @api tag of semipublic or private'))
+      expect(measurement('@api should be semipublic or private for protected methods'))
         .to_not be_ok
     end
   end
@@ -336,7 +336,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('A method with private visibility must have an @api tag of private'))
+      expect(measurement('@api should be private for private methods'))
         .to be_ok
     end
   end
@@ -355,7 +355,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('A method with private visibility must have an @api tag of private'))
+      expect(measurement('@api should be private for private methods'))
         .to_not be_ok
     end
   end
@@ -374,7 +374,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('A method with private visibility must have an @api tag of private'))
+      expect(measurement('@api should be private for private methods'))
         .to_not be_ok
     end
   end
