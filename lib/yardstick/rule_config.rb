@@ -6,6 +6,8 @@ module Yardstick
   # It is used to check if document should be validated or not.
   #
   class RuleConfig
+    include Concord.new(:enabled, :exclude)
+
     METHOD_SEPARATOR = /\#|\./.freeze
 
     # Initializes new instance of rule config
@@ -17,8 +19,7 @@ module Yardstick
     #
     # @api private
     def initialize(options = {})
-      @enabled = options.fetch(:enabled, true)
-      @exclude = options.fetch(:exclude, [])
+      super(options.fetch(:enabled, true), options.fetch(:exclude, []))
     end
 
     # Checks if given path should be checked using this rule
@@ -31,7 +32,7 @@ module Yardstick
     #
     # @api private
     def enabled_for_path?(path)
-      @enabled && !exclude?(path)
+      enabled && !exclude?(path)
     end
 
     private
@@ -49,8 +50,8 @@ module Yardstick
     #
     # @api private
     def exclude?(path)
-      @exclude.include?(path) ||
-        @exclude.include?(path.split(METHOD_SEPARATOR).first)
+      exclude.include?(path) ||
+        exclude.include?(path.split(METHOD_SEPARATOR).first)
     end
   end
 end
