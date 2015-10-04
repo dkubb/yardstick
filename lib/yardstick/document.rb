@@ -44,23 +44,14 @@ module Yardstick
       )
     end
 
+    # @!attribute [r] docstring
+    #
     # Return document yard docstring
     #
     # @return [YARD::Docstring]
     #
     # @api private
-    attr_reader :docstring
-
-    # Initializes Document object with docstring
-    #
-    # @param [Yard::Docstring]
-    #
-    # @return [undefined]
-    #
-    # @api private
-    def initialize(docstring)
-      @docstring = docstring
-    end
+    include Concord::Public.new(:docstring)
 
     # The raw text for the summary
     #
@@ -69,7 +60,7 @@ module Yardstick
     #
     # @api private
     def summary_text
-      @docstring.split(/\r?\n\r?\n/).first.to_s
+      docstring.split(/\r?\n\r?\n/).first.to_s
     end
 
     # Tests if document has a tag
@@ -82,7 +73,7 @@ module Yardstick
     #
     # @api private
     def has_tag?(name) # rubocop:disable PredicateName
-      @docstring.has_tag?(name)
+      docstring.has_tag?(name)
     end
 
     # The text for a specified tag
@@ -173,7 +164,7 @@ module Yardstick
     #
     # @api private
     def object
-      @docstring.object
+      docstring.object
     end
 
     # Finds tag by tag name
@@ -185,7 +176,7 @@ module Yardstick
     #
     # @api private
     def tag(name)
-      @docstring.tag(name) || NullTag.new
+      docstring.tag(name) || NullTag.new
     end
 
     # Null object for YARD::Tags::Tag
