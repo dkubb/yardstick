@@ -10,6 +10,8 @@ module Yardstick
   module Rake
     # A rake task for measuring docs in a set of files
     class Measurement < ::Rake::TaskLib
+      include Concord.new(:name, :config)
+
       # Initializes a Measurement task
       #
       # @example
@@ -26,8 +28,7 @@ module Yardstick
       #
       # @api public
       def initialize(name = :yardstick_measure, options = {}, &block)
-        @name   = name
-        @config = Config.coerce(options, &block)
+        super(name, Config.coerce(options, &block))
 
         define
       end
@@ -41,7 +42,7 @@ module Yardstick
       #
       # @api public
       def yardstick_measure
-        @config.output.write { |io| Yardstick.measure(@config).puts(io) }
+        config.output.write { |io| Yardstick.measure(config).puts(io) }
       end
 
       private
@@ -52,8 +53,8 @@ module Yardstick
       #
       # @api private
       def define
-        desc "Measure docs in #{@config.path} with yardstick"
-        task(@name) { yardstick_measure }
+        desc "Measure docs in #{config.path} with yardstick"
+        task(name) { yardstick_measure }
       end
     end # class Measurement
   end # module Rake
