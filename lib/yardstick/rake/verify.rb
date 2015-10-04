@@ -77,7 +77,9 @@ module Yardstick
       #
       # @api private
       def define
-        desc "Verify that yardstick coverage is at least #{@threshold}%"
+        modifier = @config.require_exact_threshold? ? 'exactly' : 'at least'
+
+        desc "Verify that yardstick coverage is #{modifier} #{@threshold}%"
         task(@name) { verify_measurements }
       end
 

@@ -32,6 +32,16 @@ describe Yardstick::Rake::Verify, '#initialize' do
       it 'includes the threshold in the task name' do
         task
         expect(Rake.application.last_description)
+          .to eql('Verify that yardstick coverage is exactly 90%')
+      end
+    end
+
+    context 'when require_exact_threshold is false' do
+      before { config.require_exact_threshold = false }
+
+      it 'is reflected in the task description' do
+        task
+        expect(Rake.application.last_description)
           .to eql('Verify that yardstick coverage is at least 90%')
       end
     end
