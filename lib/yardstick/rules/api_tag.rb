@@ -24,7 +24,7 @@ module Yardstick
       # Checks if @api tag is a public, semipublic or private
       #
       class Inclusion < Rule
-        VALID_VALUES = %w[public semipublic private].freeze
+        VALID_VALUES = IceNine.deep_freeze(%w[public semipublic private])
 
         self.description = 'The @api tag must be either public, semipublic or private'.freeze
 

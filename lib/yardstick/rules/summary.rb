@@ -69,7 +69,7 @@ module Yardstick
       # Checks that method summary length is exactly one line
       #
       class SingleLine < Rule
-        LINE_BREAK_CHARACTER = "\n"
+        LINE_BREAK_CHARACTER = "\n".freeze
 
         self.description = 'The method summary should be a single line'.freeze
 
