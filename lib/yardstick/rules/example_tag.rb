@@ -7,7 +7,7 @@ module Yardstick
     # This applies only for public methods
     #
     class ExampleTag < Rule
-      self.description = 'The public/semipublic method should have an example specified'
+      self.description = 'The public/semipublic method should have an example specified'.freeze
 
       # @see class description
       #

@@ -8,7 +8,7 @@ module Yardstick
       # Checks if method summary is present
       #
       class Presence < Rule
-        self.description = 'The method summary should be specified'
+        self.description = 'The method summary should be specified'.freeze
 
         # @see Rule::validatable?
         #
@@ -36,7 +36,8 @@ module Yardstick
       class Length < Rule
         MAXIMUM_LINE_LENGTH = 79
 
-        self.description = 'The method summary should be less than or equal to 79 characters in length'
+        self.description =
+          'The method summary should be less than or equal to 79 characters in length'.freeze
 
         # @see class description
         #
@@ -52,7 +53,7 @@ module Yardstick
       # Checks that method summary doesn't end with a period
       #
       class Delimiter < Rule
-        self.description = 'The method summary should not end in a period'
+        self.description = 'The method summary should not end in a period'.freeze
 
         # @see class description
         #
@@ -70,7 +71,7 @@ module Yardstick
       class SingleLine < Rule
         LINE_BREAK_CHARACTER = "\n"
 
-        self.description = 'The method summary should be a single line'
+        self.description = 'The method summary should be a single line'.freeze
 
         # @see class description
         #

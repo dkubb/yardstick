@@ -8,7 +8,7 @@ module Yardstick
       # Checks if @api tag is present
       #
       class Presence < Rule
-        self.description = 'The @api tag should be specified'
+        self.description = 'The @api tag should be specified'.freeze
 
         # @see class description
         #
@@ -26,7 +26,7 @@ module Yardstick
       class Inclusion < Rule
         VALID_VALUES = %w[public semipublic private].freeze
 
-        self.description = 'The @api tag must be either public, semipublic or private'
+        self.description = 'The @api tag must be either public, semipublic or private'.freeze
 
         # @see class description
         #
@@ -42,7 +42,8 @@ module Yardstick
       # Checks if protected method has correct @api visibility
       #
       class ProtectedMethod < Rule
-        self.description = 'A method with protected visibility must have an @api tag of semipublic or private'
+        self.description =
+          'A method with protected visibility must have an @api tag of semipublic or private'.freeze
 
         # @see Rule::validatable?
         #
@@ -68,7 +69,8 @@ module Yardstick
       # Checks if private method has correct @api visibility
       #
       class PrivateMethod < Rule
-        self.description = 'A method with private visibility must have an @api tag of private'
+        self.description =
+          'A method with private visibility must have an @api tag of private'.freeze
 
         # @see Rule::validatable?
         #
