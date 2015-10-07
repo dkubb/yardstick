@@ -27,7 +27,7 @@ This is the simplest way to run yardstick.  Provide it a list of files
 and it will measure all of them and output suggestions for improvement,
 eg:
 
-```
+```sh
 $ yardstick 'lib/**/*.rb' 'app/**/*.rb' ...etc...
 ```
 
@@ -39,7 +39,7 @@ You can set thresholds, as well as check that the threshold matches the
 actual coverage, forcing you to bump it up if the actual coverage has
 increased.  It uses a simple DSL to configure the task eg:
 
-```
+```ruby
 # measure coverage
 
 require 'yardstick/rake/measurement'
@@ -63,7 +63,7 @@ end
 Yardstick comes with several libraries that will allow you to process
 lists of files, or String code fragments, eg:
 
-```
+```ruby
 require 'yardstick'
 
 # measure a list of file paths
