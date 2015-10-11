@@ -20,6 +20,7 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency('yard', '~> 0.8', '>= 0.8.7.2')
   gem.add_runtime_dependency('concord', '~> 0.1.x')
+  gem.add_runtime_dependency('ice_nine', '~> 0.11')
 
   gem.add_development_dependency('bundler', '~> 1.6', '>= 1.6.1')
 end

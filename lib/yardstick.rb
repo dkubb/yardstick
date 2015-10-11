@@ -7,6 +7,7 @@ require 'delegate'
 require 'yard'
 require 'yard/logging'
 require 'concord'
+require 'ice_nine'
 
 require 'yardstick/ordered_set'
 require 'yardstick/measurement'
