@@ -3,7 +3,7 @@
 module Yardstick
   # A base class for an ordered set
   class OrderedSet
-    include Enumerable
+    include Concord.new(:entries, :index), Enumerable
 
     # Returns the OrderedSet instance
     #
@@ -15,8 +15,8 @@ module Yardstick
     #
     # @api private
     def initialize(entries = nil)
-      @entries = []
-      @index   = {}
+      super([], {})
+
       merge(entries) if entries
     end
 
@@ -32,7 +32,7 @@ module Yardstick
     def <<(entry)
       unless include?(entry)
         @index[entry] = length
-        @entries << entry
+        entries << entry
       end
       self
     end
@@ -64,7 +64,7 @@ module Yardstick
     #
     # @api private
     def each(&block)
-      @entries.each(&block)
+      entries.each(&block)
       self
     end
 
@@ -75,7 +75,7 @@ module Yardstick
     #
     # @api private
     def empty?
-      @entries.empty?
+      entries.empty?
     end
 
     # The number of entries
@@ -85,7 +85,7 @@ module Yardstick
     #
     # @api private
     def length
-      @entries.length
+      entries.length
     end
 
     # Check if the entry exists in the set

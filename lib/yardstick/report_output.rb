@@ -3,6 +3,8 @@
 module Yardstick
   # Handles writing reports
   class ReportOutput
+    include Concord.new(:target)
+
     # Coerces string path into proper output object
     #
     # @param [String, Pathname] target
@@ -13,17 +15,6 @@ module Yardstick
     # @api private
     def self.coerce(target)
       new(Pathname(target))
-    end
-
-    # Initializes ReportOutput instance
-    #
-    # @param [Pathname] target
-    #
-    # @return [undefined]
-    #
-    # @api private
-    def initialize(target)
-      @target = target
     end
 
     # Open up a report for writing
@@ -38,8 +29,8 @@ module Yardstick
     #
     # @api private
     def write(&block)
-      @target.dirname.mkpath
-      @target.open('w', &block)
+      target.dirname.mkpath
+      target.open('w', &block)
     end
 
     # @see [Pathname#to_s]
@@ -48,7 +39,7 @@ module Yardstick
     #
     # @api private
     def to_s
-      @target.to_s
+      target.to_s
     end
   end
 end

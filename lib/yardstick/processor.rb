@@ -3,17 +3,7 @@
 module Yardstick
   # Handle procesing a docstring or path of files
   class Processor
-    # Initializes new Processor instance
-    #
-    # @param [Yardstick::Config] config
-    #   a configuration
-    #
-    # @return [undefined]
-    #
-    # @api private
-    def initialize(config)
-      @config = config
-    end
+    include Concord.new(:config)
 
     # Measure files specified in the config
     #
@@ -22,7 +12,7 @@ module Yardstick
     #
     # @api private
     def process
-      Parser.parse_paths(paths).measure(@config)
+      Parser.parse_paths(paths).measure(config)
     end
 
     # Measure string provided
@@ -35,7 +25,7 @@ module Yardstick
     #
     # @api private
     def process_string(string)
-      Parser.parse_string(string).measure(@config)
+      Parser.parse_string(string).measure(config)
     end
 
     private
@@ -46,7 +36,7 @@ module Yardstick
     #
     # @api private
     def paths
-      Array(@config.path).map(&:to_s)
+      Array(config.path).map(&:to_s)
     end
   end # class Processor
 end # module Yardstick
