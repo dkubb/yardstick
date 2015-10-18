@@ -4,6 +4,7 @@ module Yardstick
   # Handles Yardstick configuration
   #
   class Config
+    # :reek:IrresponsibleModule
     InvalidRule = Class.new(StandardError)
 
     NAMESPACE_PREFIX = 'Yardstick::Rules::'.freeze
