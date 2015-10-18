@@ -74,6 +74,7 @@ TooManyStatements:
   - Yardstick::Config#defaults=
   - Yardstick::Config#set_defaults
   - Yardstick::Rake::Verify#initialize
+  - Yardstick::Rake::Verify#define
   max_statements: 3
 UncommunicativeMethodName:
   enabled: true
@@ -111,5 +112,6 @@ UnusedParameters:
   exclude: []
 UtilityFunction:
   enabled: true
-  exclude: []
+  exclude:
+  - Yardstick::RuleConfig#initialize
   max_helper_calls: 0

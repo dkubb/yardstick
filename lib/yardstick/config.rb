@@ -4,6 +4,7 @@ module Yardstick
   # Handles Yardstick configuration
   #
   class Config
+    # Error raised when an invalid rule is provided
     InvalidRule = Class.new(StandardError)
 
     NAMESPACE_PREFIX = 'Yardstick::Rules::'.freeze

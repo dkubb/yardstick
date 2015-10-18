@@ -32,6 +32,7 @@ require 'yardstick/yard_ext'
 
 require 'yardstick/version'
 
+# Measure YARD documentation coverage
 module Yardstick
   ROOT = Pathname(__FILE__).dirname.parent.expand_path.freeze
 
