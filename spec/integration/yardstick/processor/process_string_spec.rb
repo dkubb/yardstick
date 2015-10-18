@@ -27,9 +27,11 @@ describe Yardstick::Document, '#process_string' do
     RUBY
   end
 
-  def measurement(description)
+  def measurement(markup)
+    description = Yardstick::RuleDescription.parse(markup)
+
     measurements.detect do |measurement|
-      measurement.description == description
+      measurement.description.eql?(description)
     end
   end
 
@@ -39,7 +41,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('method summary should be specified')).to be_ok
+      expect(measurement('*method summary* should be specified')).to be_ok
     end
   end
 
@@ -49,7 +51,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('method summary should be specified')).to_not be_ok
+      expect(measurement('*method summary* should be specified')).to_not be_ok
     end
   end
 
@@ -64,7 +66,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('method summary should be specified')).to be_ok
+      expect(measurement('*method summary* should be specified')).to be_ok
     end
   end
 
@@ -79,7 +81,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurements.detect { |measurement| measurement.description == 'method summary should be specified' }).to be_ok
+      expect(measurement('*method summary* should be specified')).to be_ok
     end
   end
 
@@ -89,7 +91,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('method summary should be less than or equal to 79 characters in length'))
+      expect(measurement('*method summary* should be less than or equal to 79 characters in length'))
         .to be_ok
     end
   end
@@ -106,7 +108,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('method summary should be less than or equal to 79 characters in length'))
+      expect(measurement('*method summary* should be less than or equal to 79 characters in length'))
         .to_not be_ok
     end
   end
@@ -117,7 +119,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('method summary should not end in a period'))
+      expect(measurement('*method summary* should not end in a period'))
         .to be_ok
     end
   end
@@ -134,7 +136,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('method summary should not end in a period'))
+      expect(measurement('*method summary* should not end in a period'))
         .to_not be_ok
     end
   end
@@ -145,7 +147,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('method summary should be a single line'))
+      expect(measurement('*method summary* should be a single line'))
         .to be_ok
     end
   end
@@ -163,7 +165,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('method summary should be a single line'))
+      expect(measurement('*method summary* should be a single line'))
         .to_not be_ok
     end
   end
@@ -174,7 +176,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('@example should be specified for public and semipublic methods'))
+      expect(measurement('*@example* should be specified for _public_ and _semipublic_ methods'))
         .to be_ok
     end
   end
@@ -191,7 +193,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'is skipped' do
-      expect(measurement('@example should be specified for public and semipublic methods'))
+      expect(measurement('*@example* should be specified for _public_ and _semipublic_ methods'))
         .to be_skip
     end
   end
@@ -210,7 +212,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'is skipped' do
-      expect(measurement('@example should be specified for public and semipublic methods'))
+      expect(measurement('*@example* should be specified for _public_ and _semipublic_ methods'))
         .to be_skip
     end
   end
@@ -221,7 +223,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('@api should be specified'))
+      expect(measurement('*@api* should be specified'))
         .to be_ok
     end
   end
@@ -232,7 +234,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('@api should be specified'))
+      expect(measurement('*@api* should be specified'))
         .to_not be_ok
     end
   end
@@ -243,7 +245,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('@api should be public, semipublic, or private'))
+      expect(measurement('*@api* should be _public_, _semipublic_, or _private_'))
         .to be_ok
     end
   end
@@ -260,7 +262,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('@api should be public, semipublic, or private'))
+      expect(measurement('*@api* should be _public_, _semipublic_, or _private_'))
         .to_not be_ok
     end
   end
@@ -279,7 +281,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('@api should be semipublic or private for protected methods'))
+      expect(measurement('*@api* should be _semipublic_ or _private_ for protected methods'))
         .to be_ok
     end
   end
@@ -298,7 +300,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('@api should be semipublic or private for protected methods'))
+      expect(measurement('*@api* should be _semipublic_ or _private_ for protected methods'))
         .to be_ok
     end
   end
@@ -317,7 +319,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('@api should be semipublic or private for protected methods'))
+      expect(measurement('*@api* should be _semipublic_ or _private_ for protected methods'))
         .to_not be_ok
     end
   end
@@ -336,7 +338,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('@api should be private for private methods'))
+      expect(measurement('*@api* should be _private_ for private methods'))
         .to be_ok
     end
   end
@@ -355,7 +357,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('@api should be private for private methods'))
+      expect(measurement('*@api* should be _private_ for private methods'))
         .to_not be_ok
     end
   end
@@ -374,7 +376,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('@api should be private for private methods'))
+      expect(measurement('*@api* should be _private_ for private methods'))
         .to_not be_ok
     end
   end
@@ -385,7 +387,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has a correct measurement' do
-      expect(measurement('@return should be specified')).to be_ok
+      expect(measurement('*@return* should be specified')).to be_ok
     end
   end
 
@@ -395,7 +397,7 @@ describe Yardstick::Document, '#process_string' do
     it { should be_kind_of(Yardstick::MeasurementSet) }
 
     it 'has an incorrect measurement' do
-      expect(measurement('@return should be specified')).to_not be_ok
+      expect(measurement('*@return* should be specified')).to_not be_ok
     end
   end
 end

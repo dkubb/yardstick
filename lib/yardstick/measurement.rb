@@ -66,7 +66,7 @@ module Yardstick
     # @api public
     def puts(io = $stdout)
       return if ok?
-      io.puts("#{@document.file}:#{@document.line}: #{@document.path}: #{description}")
+      io.puts("#{@document.file}:#{@document.line}: #{@document.path}: #{formatted_description}")
     end
 
     # Return the Measurement description
@@ -83,6 +83,15 @@ module Yardstick
     end
 
     private
+
+    # Return a formatted description
+    #
+    # @return [String]
+    #
+    # @api private
+    def formatted_description
+      RuleDescription::Formatter.new(description).format
+    end
 
     # Measure the document using the rule provided to the constructor
     #

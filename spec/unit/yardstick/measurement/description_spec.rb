@@ -8,5 +8,9 @@ describe Yardstick::Measurement, '#description' do
   let(:rule)     { ValidRule.new(document) }
   let(:document) { DocumentMock.new        }
 
+  let(:formatted_description) do
+    Yardstick::RuleDescription::Formatter.new(ValidRule.description).format
+  end
+
   it { should eql(ValidRule.description) }
 end

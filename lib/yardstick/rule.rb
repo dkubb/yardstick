@@ -35,6 +35,10 @@ module Yardstick
     end
     private_class_method :inherited
 
+    def self.describe(text)
+      self.description = RuleDescription.parse(text)
+    end
+
     # Makes a new instance of rule using given config
     #
     # @param [Yardstick::Document] document
