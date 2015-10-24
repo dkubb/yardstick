@@ -8,6 +8,7 @@ require 'yard'
 require 'yard/logging'
 require 'concord'
 require 'ice_nine'
+require 'adamantium'
 require 'abstract_type'
 
 require 'yardstick/ordered_set'
