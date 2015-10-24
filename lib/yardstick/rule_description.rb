@@ -14,7 +14,7 @@ module Yardstick
       new(Tokenizer.new(description).tokenize)
     end
 
-    include Concord.new(:tokens), Enumerable
+    include Adamantium, Concord.new(:tokens), Enumerable
 
     # @!method each
     # Iterate over each token in description

@@ -16,7 +16,7 @@ module Yardstick
         new(string[1..-2])
       end
 
-      include AbstractType, Concord.new(:string)
+      include AbstractType, Adamantium, Concord.new(:string)
 
       # Decorate using decorator specified by token type
       #

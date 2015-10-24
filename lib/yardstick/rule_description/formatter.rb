@@ -2,14 +2,14 @@ module Yardstick
   class RuleDescription
     # Rule description text formatter
     class Formatter
-      include Concord.new(:description)
+      include Adamantium, Concord.new(:description)
 
       # Map of token types to decorators
-      TOKEN_DECORATORS = IceNine.deep_freeze(
+      TOKEN_DECORATORS = {
         Token::Subject => Decorator::RED_BOLD,
         Token::Option  => Decorator::YELLOW_UNDERLINED,
         Token::Text    => Decorator::NONE
-      )
+      }.freeze
 
       # Translate rule description tokens into a single decorated string
       #

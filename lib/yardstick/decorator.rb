@@ -1,7 +1,7 @@
 module Yardstick
   # A string decorator for applying unix console codes
   class Decorator
-    include Concord.new(:color, :mode)
+    include Adamantium, Concord.new(:color, :mode)
 
     FORMAT = "\e[%{mode};%{color}m%{string}\e[0m".freeze
 

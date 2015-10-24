@@ -6,7 +6,7 @@ module Yardstick
     # Processes rule descriptions specified with simple markup
     # and splits the markup into {Token} components
     class Tokenizer
-      include Concord.new(:text)
+      include Adamantium, Concord.new(:text)
 
       # Mapping of token classes to their matching pattern
       CLASSIFIERS = Classifier::List.new([

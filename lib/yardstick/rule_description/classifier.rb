@@ -5,7 +5,7 @@ module Yardstick
     module Classifier
       # List of classifiers
       class List
-        include Concord.new(:classifiers)
+        include Adamantium, Concord.new(:classifiers)
 
         # Classify a token by returning the first match
         #
@@ -45,7 +45,7 @@ module Yardstick
 
       # Pattern based classifier
       class Pattern
-        include Concord::Public.new(:type, :pattern)
+        include Adamantium, Concord::Public.new(:type, :pattern)
 
         # Try to coerce text if it matches
         #
@@ -84,7 +84,7 @@ module Yardstick
 
       # Catch all classifier
       class Default
-        include Concord.new(:type)
+        include Adamantium, Concord.new(:type)
 
         # Coerces any string
         #
