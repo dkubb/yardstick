@@ -1,5 +1,13 @@
 # encoding: utf-8
 
+class DescriptionToken
+  include Concord.new(:string)
+
+  def decorate
+    string
+  end
+end
+
 class ValidRule
   class << self
     attr_accessor :description
@@ -11,7 +19,7 @@ class ValidRule
     @document = document
   end
 
-  self.description = 'successful'
+  self.description = [DescriptionToken.new('successful')]
 
   def enabled?
     true
@@ -27,7 +35,7 @@ class ValidRule
 end
 
 class NotValidatableRule < ValidRule
-  self.description = 'skipped'
+  self.description = [DescriptionToken.new('skipped')]
 
   def validatable?
     false
@@ -35,7 +43,7 @@ class NotValidatableRule < ValidRule
 end
 
 class InvalidRule < ValidRule
-  self.description = 'not successful'
+  self.description = [DescriptionToken.new('not successful')]
 
   def valid?
     false
@@ -43,7 +51,7 @@ class InvalidRule < ValidRule
 end
 
 class DisabledRule < ValidRule
-  self.description = 'not enabled'
+  self.description = [DescriptionToken.new('not enabled')]
 
   def enabled?
     false

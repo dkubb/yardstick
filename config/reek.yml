@@ -114,4 +114,5 @@ UtilityFunction:
   enabled: true
   exclude:
   - Yardstick::RuleConfig#initialize
+  - Yardstick::Decorator#initialize
   max_helper_calls: 0
