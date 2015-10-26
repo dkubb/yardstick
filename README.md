@@ -1,13 +1,13 @@
 # yardstick
 
 [![Gem Version](http://img.shields.io/gem/v/yardstick.svg)][gem]
-[![Build Status](http://img.shields.io/travis/dkubb/yardstick.svg)][travis]
+[![Build status](https://img.shields.io/circleci/project/dkubb/yardstick.svg)][circle]
 [![Dependency Status](http://img.shields.io/gemnasium/dkubb/yardstick.svg)][gemnasium]
 [![Code Climate](http://img.shields.io/codeclimate/github/dkubb/yardstick.svg)][codeclimate]
 [![Coverage Status](http://img.shields.io/coveralls/dkubb/yardstick.svg)][coveralls]
 
 [gem]: https://rubygems.org/gems/yardstick
-[travis]: https://travis-ci.org/dkubb/yardstick
+[circle]: https://circleci.com/gh/dkubb/yardstick
 [gemnasium]: https://gemnasium.com/dkubb/yardstick
 [codeclimate]: https://codeclimate.com/github/dkubb/yardstick
 [coveralls]: https://coveralls.io/r/dkubb/yardstick
