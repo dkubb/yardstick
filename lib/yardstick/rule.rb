@@ -35,6 +35,13 @@ module Yardstick
     end
     private_class_method :inherited
 
+    # Macro for describing current rule
+    #
+    # @param text [String]
+    #
+    # @return [RuleDescription]
+    #
+    # @api private
     def self.describe(text)
       self.description = RuleDescription.parse(text)
     end
