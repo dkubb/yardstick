@@ -44,6 +44,17 @@ module Yardstick
       )
     end
 
+    # Initialize document with docstring
+    #
+    # @param docstring [YARD::Docstring]
+    #
+    # @return [undefined]
+    #
+    # @api private
+    def initialize(docstring)
+      @docstring = docstring
+    end
+
     # @!attribute [r] docstring
     #
     # Return document yard docstring
@@ -51,7 +62,7 @@ module Yardstick
     # @return [YARD::Docstring]
     #
     # @api private
-    include Concord::Public.new(:docstring)
+    attr_reader :docstring
 
     # The raw text for the summary
     #
