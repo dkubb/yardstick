@@ -1,0 +1,9 @@
+---
+threshold: 75.5
+path:
+  - lib/yardstick/document.rb
+rules:
+  ApiTag::Presence:
+    enabled: true
+    exclude:
+      - spec/foo/bar.rb

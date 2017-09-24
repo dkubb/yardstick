@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'yaml'
+
 module Yardstick
   # Handles Yardstick configuration
   #
@@ -7,6 +9,7 @@ module Yardstick
     # Error raised when an invalid rule is provided
     InvalidRule = Class.new(StandardError)
 
+    DEFAULT_CONFIG_FILE = '.yardstick.yml'.freeze
     NAMESPACE_PREFIX = 'Yardstick::Rules::'.freeze
 
     # Set the threshold
@@ -69,7 +72,46 @@ module Yardstick
     #
     # @api private
     def self.coerce(hash, &block)
-      new(normalize_hash(hash), &block)
+      if default_config_file.exist?
+        from_file(default_config_file, hash, &block)
+      else
+        new(normalize_hash(hash), &block)
+      end
+    end
+
+    # Searches the directory tree for path to default config file
+    #
+    # @return [Pathname, nil]
+    #
+    # @api private
+    def self.default_config_file
+      @default_config_file ||= begin
+        root = defined?(::Bundler) ? Bundler.root : nil
+        config_dir = Pathname(Dir.getwd).ascend.detect do |path|
+          path == root || path.join(DEFAULT_CONFIG_FILE).exist?
+        end
+
+        config_dir ? config_dir.join(DEFAULT_CONFIG_FILE) : nil
+      end
+    end
+
+    # Reads the configuration from a YAML file
+    #
+    # @param [String] file
+    #
+    # @param [Hash] overrides
+    #   optional configuration overrides
+    #
+    # @yieldparam [Yardstick::Config] config
+    #   the config object
+    #
+    # @return [Yardstick::Config]
+    #
+    # @api private
+    def self.from_file(file, overrides = {}, &block)
+      config_hash = normalize_hash(YAML.load_file(file))
+      overrides = normalize_hash(overrides)
+      new(config_hash.merge(overrides), &block)
     end
 
     # Converts string keys into symbol keys
@@ -176,7 +218,7 @@ module Yardstick
     end
 
     class << self
-      private :normalize_hash
+      private :default_config_file, :normalize_hash
     end
   end
 end
