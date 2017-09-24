@@ -7,6 +7,7 @@ shared_examples_for 'displays help' do
   let(:message) do
     <<-OUTPUT.gsub(/^\s{6}/, '')
       Usage: #{OptionParser.new.program_name} [options]
+          -c, --config FILE                load config file (default .yardstick.yml)
           -v, --version                    print version information and exit
           -h, --help                       display this help and exit
     OUTPUT
@@ -60,6 +61,29 @@ describe Yardstick::CLI do
 
       # By default, all files in lib/ are measured
       it_should_behave_like 'measures files', Dir["lib/yardstick/{cli,config,rules/summary}.rb"]
+    end
+
+    config = "spec/fixtures/config1.yml" # contains { path: 'lib/yardstick/document.rb' }
+    [['-c', config], ['--config', config]].each do |config_options|
+      describe  "with #{config_options} options" do
+        before do
+          @measurements = capture_stdout { described_class.run(*config_options) }
+        end
+
+        it_should_behave_like 'measured itself'
+        it_should_behave_like 'displays coverage summary'
+        it_should_behave_like 'only measures files', %w[lib/yardstick/document.rb]
+      end
+    end
+
+    describe "with --config does-not-exist.yml options" do
+      before do
+        capture_display { described_class.run("--config", "does-not-exist.yml") }
+      end
+
+      it "exits with an error message about config file not existing" do
+        expect(@output).to eql "Config file not found: does-not-exist.yml\n"
+      end
     end
 
     %w[-h --help].each do |help_option|
