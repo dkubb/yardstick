@@ -33,9 +33,12 @@ module Yardstick
     #
     # @api private
     def self.parse_config(args)
-      args << '--help' if args.empty?
       option_parser.parse!(args)
-      Config.new(path: args)
+      if args.any?
+        Config.coerce(path: args)
+      else
+        Config.coerce({}) # Default path
+      end
     rescue OptionParser::InvalidOption => error
       display_exit(error)
     end

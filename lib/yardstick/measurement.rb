@@ -3,6 +3,13 @@
 module Yardstick
   # A measurement given a constraint on the docs
   class Measurement
+    # The wrapped yard docstring
+    #
+    # @return [Yardstick::Document]
+    #
+    # @api private
+    attr_reader :document
+
     # Return a Measurement instance
     #
     # @example

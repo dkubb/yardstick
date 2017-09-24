@@ -26,8 +26,22 @@ end
 
 shared_examples_for 'displays coverage summary' do
   it 'outputs the coverage summary' do
-    expect(@output)
-      .to eql("\nYARD-Coverage: 100.0%  Success: 30  Failed: 0  Total: 30\n")
+    summary = /YARD-Coverage: [\d.]+%  Success: (\d+)  Failed: \d+  Total: \d+\n/
+    expect(@output).to match(summary)
+  end
+end
+
+shared_examples_for 'measures files' do |files|
+  it 'includes files in documentation coverage' do
+    files_measured = @measurements.map {|m| m.document.file }.uniq
+    expect(files_measured).to include(*files.map {|f| Pathname(f) })
+  end
+end
+
+shared_examples_for 'only measures files' do |files|
+  it 'only includes files in documentation coverage' do
+    files_measured = @measurements.map {|m| m.document.file }.uniq
+    expect(files_measured).to match_array(files.map {|f| Pathname(f) })
   end
 end
 
@@ -41,10 +55,11 @@ describe Yardstick::CLI do
   describe '.run' do
     describe 'with no arguments' do
       before do
-        capture_display { described_class.run }
+        @measurements = capture_stdout { described_class.run }
       end
 
-      it_should_behave_like 'displays help'
+      # By default, all files in lib/ are measured
+      it_should_behave_like 'measures files', Dir["lib/yardstick/{cli,config,rules/summary}.rb"]
     end
 
     %w[-h --help].each do |help_option|
@@ -65,6 +80,25 @@ describe Yardstick::CLI do
 
         it_should_behave_like 'displays version'
       end
+    end
+
+    describe 'with a .yardstick.yml config' do
+      before do
+        config_file = File.open('.yardstick.yml', 'w') do |file|
+          file.write("---\npath: ['lib/yardstick/cli.rb']")
+          file.path # Passed back through block for assignment
+        end
+
+        begin
+          @measurements = capture_stdout { described_class.run }
+        ensure
+          File.unlink(config_file)
+        end
+      end
+
+      it_should_behave_like 'measured itself'
+      it_should_behave_like 'displays coverage summary'
+      it_should_behave_like 'only measures files', %w[lib/yardstick/cli.rb]
     end
 
     describe 'with a String path' do
