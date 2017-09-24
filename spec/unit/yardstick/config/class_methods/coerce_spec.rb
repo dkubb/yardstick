@@ -29,4 +29,26 @@ describe Yardstick::Config, '.coerce' do
       expect(subject.path).to eql(new_path)
     end
   end
+
+  context 'when default config file exists' do
+    subject(:config) { described_class.coerce(hash) }
+
+    before do
+      allow(described_class)
+        .to receive(:default_config_file)
+        .and_return(Pathname('spec/fixtures/config1.yml'))
+    end
+
+    it 'includes configuration from the config file' do
+      expect(config.threshold).to eq 75.5
+    end
+
+    context 'when hash has conflicting keys with the config file' do
+      let(:hash) { { 'threshold' => 84.4 } }
+
+      it 'uses the value from the hash' do
+        expect(config.threshold).to eq 84.4
+      end
+    end
+  end
 end

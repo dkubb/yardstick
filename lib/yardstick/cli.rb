@@ -8,7 +8,7 @@ module Yardstick
     # Parse the command line options, and run the command
     #
     # @example
-    #   Yardstick::CLI.run(%w[ article.rb ])  # => [ Measurement ]
+    #   Yardstick::CLI.run(*%w[ article.rb ])  # => [ Measurement ]
     #
     # @param [Array] args
     #   arguments passed in from the command line
@@ -33,9 +33,17 @@ module Yardstick
     #
     # @api private
     def self.parse_config(args)
-      args << '--help' if args.empty?
-      option_parser.parse!(args)
-      Config.new(path: args)
+      options = {}
+      option_parser.parse!(args, into: options)
+
+      overrides = {}
+      overrides[:path] = args if args.any?
+
+      if options[:config]
+        Config.from_file(options[:config], overrides)
+      else
+        Config.coerce(overrides)
+      end
     rescue OptionParser::InvalidOption => error
       display_exit(error)
     end
@@ -47,9 +55,18 @@ module Yardstick
     #
     # @api private
     def self.option_parser
-      opts = OptionParser.new
-      opts.on_tail('-v', '--version', 'print version information and exit') { display_exit("#{opts.program_name} #{VERSION}") }
-      opts.on_tail('-h', '--help',    'display this help and exit')         { display_exit(opts) }
+      @option_parser ||= OptionParser.new do |opts|
+        opts.on('-c FILE', '--config FILE', "load config file (default #{Yardstick::Config::DEFAULT_CONFIG_FILE})") do |file|
+          if File.exist?(file)
+            Pathname(file)
+          else
+            display_exit("Config file not found: #{file}")
+          end
+        end
+
+        opts.on_tail('-v', '--version', 'print version information and exit') { display_exit("#{opts.program_name} #{VERSION}") }
+        opts.on_tail('-h', '--help',    'display this help and exit')         { display_exit(opts) }
+      end
     end
 
     # Display a message and exit

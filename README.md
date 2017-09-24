@@ -92,7 +92,20 @@ Every rule in Yardstick can be turned off globally and locally. All rules are en
 Default configuration:
 ```yaml
 ---
+# Minimum documentation coverage required for verifications to pass
 threshold: 100
+
+# Specify if the coverage summary should be displayed
+verbose: true
+
+# List of paths to measure. List may contain paths to files or globs
+path:
+  - lib/**/*.rb
+
+# Specify if the threshold should match the coverage
+require_exact_threshold: true
+
+# Rules that get applied to each source code file
 rules:
   ApiTag::Presence:
     enabled: true
@@ -126,6 +139,12 @@ rules:
     exclude: []
 ```
 
+#### Overriding Defaults
+
+Yardstick looks for a `.yardstick.yml` file in the project root for any
+project-specific config overrides. To adjust defaults, copy the above
+configuration to a file named `.yardstick.yml` and change as necessary.
+
 To disable a rule for some part of the code use:
 
 ```yaml
@@ -136,14 +155,6 @@ rules:
       - Foo::Bar  # class or module
       - Foo#bar   # instance method
       - Foo.bar   # class method
-```
-
-Rake tasks take these options as a second argument:
-
-```ruby
-options = YAML.load_file('config/yardstick.yml')
-
-Yardstick::Rake::Verify.new(:verify_measurements, options)
 ```
 
 ## Contributing
