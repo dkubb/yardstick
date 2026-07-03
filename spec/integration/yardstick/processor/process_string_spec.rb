@@ -1,15 +1,15 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 require 'spec_helper'
 
 describe Yardstick::Document, '#process_string' do
   subject(:measurements) { processor.process_string(method) }
 
-  let(:processor) { Yardstick::Processor.new(config) }
+  let(:processor) { Yardstick::Processor.new(config: config) }
   let(:config)    { Yardstick::Config.new            }
 
   let(:valid_method) do
-    (<<-RUBY)
+    <<-RUBY
       # This is a method summary that is the maximum -- exactly 79 characters in length
       #
       # @example
@@ -58,7 +58,7 @@ describe Yardstick::Document, '#process_string' do
   describe 'without a method summary when validations are turned off' do
     let(:config) do
       Yardstick::Config.new(rules: {
-                              'Summary::Presence'.to_sym => { enabled: false }
+                              'Summary::Presence': { enabled: false }
                             })
     end
     let(:method) { 'def test(value); end' }
@@ -73,7 +73,7 @@ describe Yardstick::Document, '#process_string' do
   describe 'without a method summary when validations are turned off for given class' do
     let(:config) do
       Yardstick::Config.new(rules: {
-                              'Summary::Presence'.to_sym => { enabled: true, exclude: %w[World] }
+                              'Summary::Presence': { enabled: true, exclude: %w[World] }
                             })
     end
     let(:method) { 'class World; def test(value); end; end' }
@@ -98,7 +98,7 @@ describe Yardstick::Document, '#process_string' do
 
   describe 'with a method summary that is 81 characters in length' do
     let(:method) do
-      (<<-RUBY)
+      <<-RUBY
         # This is a method summary greater than the maximum - it is precisely 80 characters
         def test(value)
         end

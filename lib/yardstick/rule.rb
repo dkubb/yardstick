@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 require 'forwardable'
 
@@ -31,6 +31,7 @@ module Yardstick
     #
     # @api private
     def self.inherited(subclass)
+      super
       Document.register_rule(subclass)
     end
     private_class_method :inherited

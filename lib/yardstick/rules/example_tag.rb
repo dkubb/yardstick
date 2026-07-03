@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 module Yardstick
   module Rules
@@ -7,7 +7,7 @@ module Yardstick
     # This applies only for public methods
     #
     class ExampleTag < Rule
-      describe '*@example* should be specified for _public_ and _semipublic_ methods'.freeze
+      describe '*@example* should be specified for _public_ and _semipublic_ methods'
 
       # @see class description
       #

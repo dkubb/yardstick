@@ -1,6 +1,6 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 module Yardstick
   # Gem version
-  VERSION = '0.9.9'.freeze
-end # module Yardstick
+  VERSION = '0.9.9'
+end

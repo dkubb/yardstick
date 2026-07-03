@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 module Yardstick
   # Parses files and strings using YARD
@@ -10,7 +10,7 @@ module Yardstick
     #
     # @api private
     def self.parse_paths(paths)
-      YARD.parse(paths, [], Logger::ERROR)
+      YARD.parse(paths, [], YARD::Logger::ERROR)
       documents
     end
 

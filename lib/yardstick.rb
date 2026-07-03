@@ -1,15 +1,10 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
-require 'set'
 require 'pathname'
 require 'delegate'
 
 require 'yard'
 require 'yard/logging'
-require 'concord'
-require 'ice_nine'
-require 'adamantium'
-require 'abstract_type'
 
 require 'yardstick/ordered_set'
 require 'yardstick/measurement'
@@ -58,7 +53,7 @@ module Yardstick
   #
   # @api public
   def self.measure(config = Config.new)
-    Processor.new(config).process
+    Processor.new(config: config).process
   end
 
   # Measure a string of code and YARD documentation
@@ -78,7 +73,7 @@ module Yardstick
   #
   # @api public
   def self.measure_string(string, config = Config.new)
-    Processor.new(config).process_string(string)
+    Processor.new(config: config).process_string(string)
   end
 
   # Round percentage to 1/10th of a percent
@@ -93,4 +88,4 @@ module Yardstick
   def self.round_percentage(percentage)
     (percentage * 10).floor / 10.0
   end
-end # module Yardstick
+end

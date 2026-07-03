@@ -1,6 +1,16 @@
+# frozen_string_literal: true
+
+# Measure YARD documentation coverage
 module Yardstick
+  # @!attribute [r] tokens
+  #   The parsed description tokens
+  #   @api private
+  #   @return [Array<RuleDescription::Token>]
+  RuleDescriptionData = Data.define(:tokens)
+  private_constant :RuleDescriptionData
+
   # Rule description composed of tokens which can be formatted
-  class RuleDescription
+  class RuleDescription < RuleDescriptionData
     extend Forwardable
 
     # Parse a rule description into tokens and initialize
@@ -11,10 +21,10 @@ module Yardstick
     #
     # @api private
     def self.parse(description)
-      new(Tokenizer.new(description).tokenize)
+      new(tokens: Tokenizer.new(text: description).tokenize)
     end
 
-    include Adamantium, Concord.new(:tokens), Enumerable
+    include Enumerable
 
     # @!method each
     # Iterate over each token in description

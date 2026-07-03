@@ -1,8 +1,6 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
-class DescriptionToken
-  include Concord.new(:string)
-
+class DescriptionToken < Data.define(:string)
   def decorate
     string
   end
@@ -19,7 +17,7 @@ class ValidRule
     @document = document
   end
 
-  self.description = [DescriptionToken.new('successful')]
+  self.description = [DescriptionToken.new(string: 'successful')]
 
   def enabled?
     true
@@ -35,7 +33,7 @@ class ValidRule
 end
 
 class NotValidatableRule < ValidRule
-  self.description = [DescriptionToken.new('skipped')]
+  self.description = [DescriptionToken.new(string: 'skipped')]
 
   def validatable?
     false
@@ -43,7 +41,7 @@ class NotValidatableRule < ValidRule
 end
 
 class InvalidRule < ValidRule
-  self.description = [DescriptionToken.new('not successful')]
+  self.description = [DescriptionToken.new(string: 'not successful')]
 
   def valid?
     false
@@ -51,7 +49,7 @@ class InvalidRule < ValidRule
 end
 
 class DisabledRule < ValidRule
-  self.description = [DescriptionToken.new('not enabled')]
+  self.description = [DescriptionToken.new(string: 'not enabled')]
 
   def enabled?
     false

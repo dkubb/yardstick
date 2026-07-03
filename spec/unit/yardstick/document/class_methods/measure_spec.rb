@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 require 'spec_helper'
 
@@ -15,7 +15,7 @@ describe Yardstick::Document, '.measure' do
   before do
     registered_rules.each do |rule_class|
       expect(rule_class).to receive(:coerce).with(document, config)
-        .and_return(ValidRule.new(document))
+                                            .and_return(ValidRule.new(document))
     end
   end
 

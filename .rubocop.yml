@@ -1,6 +1,5 @@
 AllCops:
-  Include:
-    - 'Gemfile'
+  NewCops: enable
+  SuggestExtensions: false
   Exclude:
-    - 'Gemfile.devtools'
     - 'vendor/**/*'

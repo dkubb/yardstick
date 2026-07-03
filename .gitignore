@@ -35,3 +35,4 @@ tags
 Gemfile.lock
 
 ## PROJECT::SPECIFIC
+node_modules

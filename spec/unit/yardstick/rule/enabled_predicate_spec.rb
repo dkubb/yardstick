@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 require 'spec_helper'
 
@@ -11,7 +11,7 @@ describe Yardstick::Rule, '#enabled?' do
 
   before do
     allow(config).to receive(:enabled_for_path?).with('Foo#bar')
-      .and_return(return_value)
+                                                .and_return(return_value)
   end
 
   it { should eq(return_value) }

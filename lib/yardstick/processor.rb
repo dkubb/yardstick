@@ -1,10 +1,17 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
+# Measure YARD documentation coverage
 module Yardstick
-  # Handle procesing a docstring or path of files
-  class Processor
-    include Concord.new(:config)
+  # Holds the attributes for a Processor
+  # @!attribute [r] config
+  #   The yardstick configuration
+  #   @api private
+  #   @return [Yardstick::Config]
+  ProcessorData = Data.define(:config)
+  private_constant :ProcessorData
 
+  # Handle procesing a docstring or path of files
+  class Processor < ProcessorData
     # Measure files specified in the config
     #
     # @return [Yardstick::MeasurementSet]
@@ -38,5 +45,5 @@ module Yardstick
     def paths
       Array(config.path).map(&:to_s)
     end
-  end # class Processor
-end # module Yardstick
+  end
+end

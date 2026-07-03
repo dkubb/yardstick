@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 require 'spec_helper'
 
@@ -6,7 +6,7 @@ describe Yardstick::Config, '#for_rule' do
   subject { described_class.new(options).for_rule(rule_class) }
 
   let(:options) do
-    { rules: { 'Summary::Presence'.to_sym => { enabled: false } } }
+    { rules: { 'Summary::Presence': { enabled: false } } }
   end
 
   let(:rule_config) { double('RuleConfig') }
@@ -15,8 +15,8 @@ describe Yardstick::Config, '#for_rule' do
     let(:rule_class) { Yardstick::Rules::Summary::Presence }
 
     before do
-      allow(Yardstick::RuleConfig).to receive(:new).with(enabled: false)
-        .and_return(rule_config)
+      allow(Yardstick::RuleConfig).to receive(:new).with({ enabled: false })
+                                                   .and_return(rule_config)
     end
 
     it { should be(rule_config) }
@@ -27,7 +27,7 @@ describe Yardstick::Config, '#for_rule' do
 
     before do
       allow(Yardstick::RuleConfig).to receive(:new).with({})
-        .and_return(rule_config)
+                                                   .and_return(rule_config)
     end
 
     it { should be(rule_config) }

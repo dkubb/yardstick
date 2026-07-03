@@ -1,21 +1,19 @@
 inherit_from: ../.rubocop.yml
 
+# class Foo < Data.define(:a, :b) is preferred over the block form for named
+# classes: it produces a proper named class that knows its own name and supports
+# inheritance within the class body (e.g. subclasses, include).
+Style/DataInheritance:
+  Enabled: false
+
 # Avoid parameter lists longer than five parameters.
-ParameterLists:
+Metrics/ParameterLists:
   Max: 3
   CountKeywordArgs: true
 
 # Avoid more than `Max` levels of nesting.
-BlockNesting:
+Metrics/BlockNesting:
   Max: 3
-
-# Align with the style guide.
-CollectionMethods:
-  PreferredMethods:
-    collect:  'map'
-    inject:   'reduce'
-    find:     'detect'
-    find_all: 'select'
 
 # Do not force public/protected/private keyword to be indented at the same
 # level as the def keyword. My personal preference is to outdent these keywords
@@ -23,51 +21,72 @@ CollectionMethods:
 # sections of code and visually separate them. When the keyword is at the same
 # level I think it sort of blends in with the def keywords and makes it harder
 # to scan the code and see where the sections are.
-AccessModifierIndentation:
+Layout/AccessModifierIndentation:
   Enabled: false
 
 # Limit line length
-LineLength:
+Layout/LineLength:
   Max: 146  # TODO: lower to 79
 
+# Align if/else blocks with the variable assignment
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+
+# Allow additional specs
+Layout/ExtraSpacing:
+  Enabled: false
+
 # Disable documentation checking until a class needs to be documented once
-Documentation:
+Style/Documentation:
   Enabled: false
 
 # Do not favor modifier if/unless usage when you have a single-line body
-IfUnlessModifier:
+Style/IfUnlessModifier:
   Enabled: false
 
 # Do not use sprintf instead of String#%.
-FormatString:
+Style/FormatString:
   EnforcedStyle: percent
 
 # Not all trivial readers/writers can be defined with attr_* methods
-TrivialAccessors:
+Style/TrivialAccessors:
   Enabled: false
 
 # Don't prefer each_with_object to inject/reduce
-EachWithObject:
+Style/EachWithObject:
   Enabled: false
 
 # Allow trailing commas
-TrailingComma:
+Style/TrailingCommaInArguments:
   Enabled: false
 
-# Allow additional specs
-ExtraSpacing:
+Style/TrailingCommaInArrayLiteral:
   Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
+# Renaming has_tag? to tag? would be a breaking API change
+Naming/PredicatePrefix:
+  Enabled: false
+
+# Spec and gemspec blocks are naturally long; so are Rakefile task blocks
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+    - '*.gemspec'
+    - 'Rakefile'
 
 # Buggy
-FormatParameterMismatch:
+Lint/FormatParameterMismatch:
   Enabled: false
 
-# Align if/else blocks with the variable assignment
-EndAlignment:
-  AlignWith: variable
+# We intentionally declare development dependencies in the gemspec
+Gemspec/DevelopmentDependencies:
+  Enabled: false
 
 # Use square brackets for literal Array objects
-PercentLiteralDelimiters:
+Style/PercentLiteralDelimiters:
   PreferredDelimiters:
     '%':  '{}'
     '%i': '[]'

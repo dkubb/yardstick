@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+npx --no-install commitlint --config config/commitlintrc.yml --edit "$1"

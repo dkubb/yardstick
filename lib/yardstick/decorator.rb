@@ -1,21 +1,43 @@
+# frozen_string_literal: true
+
+# Measure YARD documentation coverage
 module Yardstick
+  # Holds the attributes for a Decorator
+  # @!attribute [r] color
+  #   The resolved ANSI color code
+  #   @api private
+  #   @return [Integer]
+  # @!attribute [r] mode
+  #   The resolved ANSI mode code
+  #   @api private
+  #   @return [Integer]
+  DecoratorData = Data.define(:color, :mode)
+  private_constant :DecoratorData
+
   # A string decorator for applying unix console codes
-  class Decorator
-    include Adamantium, Concord.new(:color, :mode)
+  # @!attribute [r] color
+  #   The resolved ANSI color code
+  #   @api private
+  #   @return [Integer]
+  # @!attribute [r] mode
+  #   The resolved ANSI mode code
+  #   @api private
+  #   @return [Integer]
+  # @api public
+  class Decorator < DecoratorData
+    FORMAT = "\e[%<mode>d;%<color>dm%<string>s\e[0m"
 
-    FORMAT = "\e[%{mode};%{color}m%{string}\e[0m".freeze
-
-    COLOR_CODES = IceNine.deep_freeze(
-      red:    31,
+    COLOR_CODES = {
+      red: 31,
       yellow: 33
-    )
+    }.freeze
 
-    MODE_CODES = IceNine.deep_freeze(
-      bold:      1,
+    MODE_CODES = {
+      bold: 1,
       underline: 4
-    )
+    }.freeze
 
-    private_constant(*constants(false))
+    private_constant :FORMAT, :COLOR_CODES, :MODE_CODES
 
     # Initializes new string decorator instance
     #
@@ -25,8 +47,8 @@ module Yardstick
     # @return [undefined]
     #
     # @api private
-    def initialize(color, mode)
-      super(COLOR_CODES.fetch(color), MODE_CODES.fetch(mode))
+    def initialize(color:, mode:)
+      super(color: COLOR_CODES.fetch(color), mode: MODE_CODES.fetch(mode))
     end
 
     # Decorate a string
@@ -40,16 +62,9 @@ module Yardstick
       FORMAT % { mode: mode, color: color, string: string }
     end
 
-    NONE = Class.new(self) do
-      def initialize
-      end
+    NONE = Data.define { def decorate(string) = string }.new
 
-      def decorate(string)
-        string
-      end
-    end.new
-
-    RED_BOLD          = new(:red, :bold)
-    YELLOW_UNDERLINED = new(:yellow, :underline)
-  end # class Decorator
-end # module Yardstick
+    RED_BOLD          = new(color: :red,    mode: :bold)
+    YELLOW_UNDERLINED = new(color: :yellow, mode: :underline)
+  end
+end

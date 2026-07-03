@@ -1,16 +1,10 @@
 # yardstick
 
-[![Gem Version](http://img.shields.io/gem/v/yardstick.svg)][gem]
-[![Build status](https://img.shields.io/circleci/project/dkubb/yardstick.svg)][circle]
-[![Dependency Status](http://img.shields.io/gemnasium/dkubb/yardstick.svg)][gemnasium]
-[![Code Climate](http://img.shields.io/codeclimate/github/dkubb/yardstick.svg)][codeclimate]
-[![Coverage Status](http://img.shields.io/coveralls/dkubb/yardstick.svg)][coveralls]
+[![Gem Version](https://img.shields.io/gem/v/yardstick.svg)][gem]
+[![CI Status](https://github.com/dkubb/yardstick/actions/workflows/continuous_integration.yml/badge.svg)][ci]
 
 [gem]: https://rubygems.org/gems/yardstick
-[circle]: https://circleci.com/gh/dkubb/yardstick
-[gemnasium]: https://gemnasium.com/dkubb/yardstick
-[codeclimate]: https://codeclimate.com/github/dkubb/yardstick
-[coveralls]: https://coveralls.io/r/dkubb/yardstick
+[ci]: https://github.com/dkubb/yardstick/actions/workflows/continuous_integration.yml
 
 Yardstick is a tool that verifies documentation coverage of Ruby code.  It will measure the source and provide feedback on what is missing from the documentation and what can be improved.
 
@@ -141,7 +135,7 @@ rules:
 Rake tasks take these options as a second argument:
 
 ```ruby
-options = YAML.load_file('config/yardstick.yml')
+options = YAML.safe_load_file('config/yardstick.yml')
 
 Yardstick::Rake::Verify.new(:verify_measurements, options)
 ```

@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 require 'optparse'
 
@@ -36,8 +36,8 @@ module Yardstick
       args << '--help' if args.empty?
       option_parser.parse!(args)
       Config.new(path: args)
-    rescue OptionParser::InvalidOption => error
-      display_exit(error)
+    rescue OptionParser::InvalidOption => e
+      display_exit(e)
     end
 
     # Return an OptionParser instance for the command-line app
@@ -68,5 +68,5 @@ module Yardstick
     class << self
       private :option_parser, :parse_config, :display_exit
     end
-  end # module CLI
-end # module Yardstick
+  end
+end

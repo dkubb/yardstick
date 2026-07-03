@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 shared_examples_for 'measured itself' do
   it 'returns a MeasurementSet' do

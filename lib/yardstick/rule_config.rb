@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 module Yardstick
   # Config class for rules
@@ -6,9 +6,7 @@ module Yardstick
   # It is used to check if document should be validated or not.
   #
   class RuleConfig
-    include Concord.new(:enabled, :exclude)
-
-    METHOD_SEPARATOR = /\#|\./.freeze
+    METHOD_SEPARATOR = /\#|\./
 
     # Initializes new instance of rule config
     #
@@ -19,7 +17,9 @@ module Yardstick
     #
     # @api private
     def initialize(options = {})
-      super(options.fetch(:enabled, true), options.fetch(:exclude, []))
+      @enabled = options.fetch(:enabled, true)
+      @exclude = options.fetch(:exclude, [])
+      freeze
     end
 
     # Checks if given path should be checked using this rule
@@ -36,6 +36,20 @@ module Yardstick
     end
 
     private
+
+    # Whether the rule is enabled
+    #
+    # @return [Boolean]
+    #
+    # @api private
+    attr_reader :enabled
+
+    # The list of paths excluded from this rule
+    #
+    # @return [Array<String>]
+    #
+    # @api private
+    attr_reader :exclude
 
     # Checks if given path is in exclude list
     #

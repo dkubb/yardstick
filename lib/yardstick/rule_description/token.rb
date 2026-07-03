@@ -1,8 +1,17 @@
+# frozen_string_literal: true
+
 module Yardstick
   # Rule description composed of tokens which can be formatted
   class RuleDescription
+    # @!attribute [r] string
+    #   The token string content
+    #   @api private
+    #   @return [String]
+    TokenData = Data.define(:string)
+    private_constant :TokenData
+
     # @abstract string token
-    class Token
+    class Token < TokenData
       extend Forwardable
 
       # Coerce string token into unformatted text
@@ -13,10 +22,8 @@ module Yardstick
       #
       # @api private
       def self.coerce(string)
-        new(string[1..-2])
+        new(string: string[1..-2])
       end
-
-      include AbstractType, Adamantium, Concord.new(:string)
 
       # Decorate using decorator specified by token type
       #
@@ -57,7 +64,7 @@ module Yardstick
         #
         # @api private
         def self.coerce(string)
-          new(string)
+          new(string: string)
         end
       end
     end

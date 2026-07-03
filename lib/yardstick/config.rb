@@ -1,27 +1,27 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 module Yardstick
   # Handles Yardstick configuration
   #
   class Config
     # Error raised when an invalid rule is provided
-    InvalidRule = Class.new(StandardError)
+    class InvalidRule < StandardError
+    end
 
-    NAMESPACE_PREFIX = 'Yardstick::Rules::'.freeze
+    NAMESPACE_PREFIX = 'Yardstick::Rules::'
 
     # Set the threshold
     #
     # @return [undefined]
     #
     # @api public
-    attr_writer :threshold
 
     # Threshold value
     #
     # @return [Integer]
     #
     # @api private
-    attr_reader :threshold
+    attr_accessor :threshold
 
     # Specify if the threshold should match the coverage
     #
@@ -35,14 +35,13 @@ module Yardstick
     # @return [undefined]
     #
     # @api public
-    attr_writer :path
 
     # List of paths to measure
     #
     # @return [String]
     #
     # @api private
-    attr_reader :path
+    attr_accessor :path
 
     # Specify if the coverage summary should be displayed
     #
@@ -68,8 +67,8 @@ module Yardstick
     # @return [Config]
     #
     # @api private
-    def self.coerce(hash, &block)
-      new(normalize_hash(hash), &block)
+    def self.coerce(hash, &)
+      new(normalize_hash(hash), &)
     end
 
     # Converts string keys into symbol keys
@@ -117,13 +116,10 @@ module Yardstick
     #
     # @api private
     def for_rule(rule_class)
-      key = rule_class.to_s[NAMESPACE_PREFIX.length..-1]
+      name = rule_class.to_s
+      raise InvalidRule, "every rule must begin with #{NAMESPACE_PREFIX}" unless name.start_with?(NAMESPACE_PREFIX)
 
-      if key
-        RuleConfig.new(@rules.fetch(key.to_sym, {}))
-      else
-        fail InvalidRule, "every rule must begin with #{NAMESPACE_PREFIX}"
-      end
+      RuleConfig.new(@rules.fetch(name.delete_prefix(NAMESPACE_PREFIX).to_sym, {}))
     end
 
     # Specify if the coverage summary should be displayed

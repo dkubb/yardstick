@@ -1,14 +1,23 @@
-module Yardstick
-  class RuleDescription
-    # Rule description text formatter
-    class Formatter
-      include Adamantium, Concord.new(:description)
+# frozen_string_literal: true
 
+# Measure YARD documentation coverage
+module Yardstick
+  # Parsed rule description composed of formatted tokens
+  class RuleDescription
+    # @!attribute [r] description
+    #   The rule description to format
+    #   @api private
+    #   @return [RuleDescription]
+    FormatterData = Data.define(:description)
+    private_constant :FormatterData
+
+    # Rule description text formatter
+    class Formatter < FormatterData
       # Map of token types to decorators
       TOKEN_DECORATORS = {
         Token::Subject => Decorator::RED_BOLD,
-        Token::Option  => Decorator::YELLOW_UNDERLINED,
-        Token::Text    => Decorator::NONE
+        Token::Option => Decorator::YELLOW_UNDERLINED,
+        Token::Text => Decorator::NONE
       }.freeze
 
       # Translate rule description tokens into a single decorated string

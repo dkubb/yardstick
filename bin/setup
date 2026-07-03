@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+bundle install
+
+# Install the Conventional Commit commit-msg hook (Husky + commitlint).
+# npm is optional: if not present, commits are not validated locally, but
+# the enforce_conventional_commits CI workflow will still catch violations.
+if command -v npm >/dev/null 2>&1; then
+  npm install
+else
+  echo "WARNING: npm not found — skipping Husky/commitlint setup."
+  echo "         Commit messages will not be validated locally before push."
+  echo "         Install Node.js/npm and re-run bin/setup to enable the hook."
+fi

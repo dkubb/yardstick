@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 module Yardstick
   # Wraps a yard docstring to make a nicer interface
@@ -83,7 +83,7 @@ module Yardstick
     #   true if tag exists
     #
     # @api private
-    def has_tag?(name) # rubocop:disable PredicateName
+    def has_tag?(name)
       docstring.has_tag?(name)
     end
 
@@ -198,8 +198,7 @@ module Yardstick
       # @return [nil]
       #
       # @api private
-      def text
-      end
+      def text; end
 
       # Empty list of types
       #

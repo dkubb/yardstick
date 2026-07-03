@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 require 'spec_helper'
 
@@ -9,7 +9,7 @@ describe Yardstick::Measurement, '#description' do
   let(:document) { DocumentMock.new        }
 
   let(:formatted_description) do
-    Yardstick::RuleDescription::Formatter.new(ValidRule.description).format
+    Yardstick::RuleDescription::Formatter.new(description: ValidRule.description).format
   end
 
   it { should eql(ValidRule.description) }

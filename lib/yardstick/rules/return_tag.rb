@@ -1,11 +1,11 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 module Yardstick
   module Rules
     # Checks if method has a @return tag
     #
     class ReturnTag < Rule
-      describe '*@return* should be specified'.freeze
+      describe '*@return* should be specified'
 
       # @see class description
       #

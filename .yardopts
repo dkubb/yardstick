@@ -1,4 +1,11 @@
-README.md
+--default-return=''
+--hide-void-return
+--fail-on-warning
+--markup=markdown
+--readme README.md
 lib/**/*.rb
-bin/*
+-
+README.md
+CHANGELOG.md
+CONTRIBUTING.md
 LICENSE

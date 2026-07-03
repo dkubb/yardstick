@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 module Yardstick
   # A set of yardstick measurements
@@ -125,5 +125,5 @@ module Yardstick
     def total_text
       'Total: %d' % total
     end
-  end # class MeasurementSet
-end # module Yardstick
+  end
+end

@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 require 'spec_helper'
 
@@ -12,7 +12,6 @@ describe Yardstick::ReportOutput, '.coerce' do
   its(:to_s) { should eql(target) }
 
   it 'coerces target to Pathname' do
-    target = subject.instance_variable_get(:@target)
-    expect(target).to be_a(Pathname)
+    expect(subject.target).to be_a(Pathname)
   end
 end

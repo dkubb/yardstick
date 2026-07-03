@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 require 'spec_helper'
 
@@ -14,10 +14,10 @@ describe Yardstick::DocumentSet, '#measure' do
 
   before do
     expect(Yardstick::Document).to receive(:measure).with(document1, config)
-      .and_return(Yardstick::MeasurementSet.new([measurement1]))
+                                                    .and_return(Yardstick::MeasurementSet.new([measurement1]))
 
     expect(Yardstick::Document).to receive(:measure).with(document2, config)
-      .and_return(Yardstick::MeasurementSet.new([measurement2]))
+                                                    .and_return(Yardstick::MeasurementSet.new([measurement2]))
   end
 
   it { should be_a(Yardstick::MeasurementSet) }

@@ -1,15 +1,15 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 require 'spec_helper'
 
 RSpec.describe Yardstick::RuleDescription::Formatter, '#format' do
-  subject { described_class.new(description).format }
+  subject { described_class.new(description: description).format }
 
   let(:description) do
     [
-      Yardstick::RuleDescription::Token::Subject.new('important'),
-      Yardstick::RuleDescription::Token::Text.new(' recommended '),
-      Yardstick::RuleDescription::Token::Option.new('value')
+      Yardstick::RuleDescription::Token::Subject.new(string: 'important'),
+      Yardstick::RuleDescription::Token::Text.new(string: ' recommended '),
+      Yardstick::RuleDescription::Token::Option.new(string: 'value')
     ]
   end
 
